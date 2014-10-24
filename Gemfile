@@ -10,3 +10,4 @@ gem "builder", "~> 3.0"
 
 # Others
 gem "nokogiri"
+gem "erb2haml"
