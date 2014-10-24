@@ -1,0 +1,62 @@
+---
+layout: post
+title: ! '* Mobile Shellでリモートログインを快適に'
+published: true
+date: 2014-04-16 12:31
+comments: true
+categories:
+- サーバ設定
+tags: []
+keywords:
+- サーバ設定
+---
+<p>先日ゼミでVPSセットアップ講座なるものをやらされ</p>
+
+<p>sshのお話をしていたら先輩に「時代はmosh！！！」と言われたので使ってみた。</p>
+
+### Mobile Shellとは
+
+<p>リモートログインの際、sshに替わってつないでくれる賢いソフト。</p>
+
+<p>ネットが切れてもきちんと繋ぎ直してくれたり、IPが変わっても平気だったりとても便利。</p>
+
+<p>認証周りは従来通りssh通信で行っており、そのうえ導入も簡単。</p>
+
+<p>詳しくはこちらの記事をどうぞ → [mosh: MITからモバイル時代のSSH代替品](http://d.hatena.ne.jp/karasuyamatengu/20120411/1334092521 "mosh: MITからモバイル時代のSSH代替品")</p>
+
+<p>Mobile Shell HP → [http://mosh.mit.edu/](http://mosh.mit.edu/ "http://mosh.mit.edu/")</p>
+
+### ローカルに導入
+
+<p>OS Xの場合はHomebrewで一発。</p>
+
+<p>`brew install mobile-shell`</p>
+
+<p>楽ちん。</p>
+
+### サーバに導入
+
+<p>yumで入る。</p>
+
+<p>`sudo yum install mosh`</p>
+
+<p>これで準備は完了！</p>
+
+### つなぐ
+
+<p>鍵認証でつなぐ場合、こんな感じ。</p>
+
+<p>`mosh --ssh="ssh -i ~/.ssh/id_rsa" user@example.com`</p>
+
+<p>パスワード認証の場合はこんな感じ。</p>
+
+<p>`mosh user@example.com`</p>
+
+<p>とても楽ちん。</p>
+
+<p>これでaliasでも貼っておけばいちいちログインし直す必要がなくなる。</p>
+
+<p>何か間違いがあれば[@sota1235](https://twitter.com/sota1235 "@sota1235")まで！それでは！</p>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

@@ -1,0 +1,247 @@
+---
+layout: post
+title: ! '* OS X 10.9をクリーンインストールした後に行ったこと'
+published: true
+date: 2014-10-07 09:45
+comments: true
+categories:
+- 日常
+tags: []
+keywords:
+- 日常
+---
+<p>OS X 10.8から10.9にアップデートしたのだが、zshの一部の機能がエラーを吐いたり、brew doctorがいつまでたってもバグ吐いたりgemコマンドが使えなかったりとRuby周りがカオスだったりでめんどくさかったのでMavericksをクリーンインストールした。</p>
+
+<p>その後に行ったことを自分用にメモ</p>
+
+<p>1.アプリをインストール</p>
+
+<p>愛用してた以下のアプリケーションをインストール</p>
+
+
+- 開発系
+
+
+- Google Chrome(常用、Googleアカウント様々)
+- Fire Fox (開発用)
+- Mou(Markdownエディタ)
+- Sublime Text 2(言わずと知れたエディタ)
+- iTerm2(軽量シェル)
+- Wireshark(パケットキャプチャ等)
+- Dash(ドキュメントリーダー)
+- Xcode(ユーザではないがCommand line toolsが欲しい for Homebrew)
+
+- 日々充実系
+
+
+- Alfred(Mac生活)
+- Pocket(記事購読用)
+- VLC(動画再生ソフト)
+- Gyazo(スクショ用)
+- Wake up time(目覚まし、寝坊するので・・・)
+- AppCleaner
+
+- コミュニケーション系
+
+
+- Slack(ゼミのチャット用)
+- 夜フクロウ(Twitter)
+
+- 音楽系
+
+
+- CocoaPiano(ピッチ違うけどまぁ参考程度に)
+- MuseScore (無料楽譜作成ソフト)
+
+
+
+
+- CUI環境を整備
+
+
+<p>ここはかなり丁寧にやった(気がする)</p>
+
+
+- bashの脆弱性、Shellshock対策
+
+
+<p>テストコマンドを打ったところ、脆弱性があったので改善する(最新のイメージが修正されてないんか・・・)。</p>
+
+<p>以下のWebサイトで修正バッチをダウンロード、実行しておk</p>
+
+<p>http://support.apple.com/kb/DL1769</p>
+
+
+- Colore Scheme
+
+
+<p>ちまたではSolarizedが流行ってるみたいだけど僕はSmyckを入れます</p>
+
+<p>http://color.smyck.org/</p>
+
+
+- Homebrewを入れる
+
+
+<p>言わずと知れたパッケージマネージャ。</p>
+
+<p>これなきゃ生きていけない</p>
+
+<p>http://brew.sh/</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”</pre>
+
+<p>んで、思いつく限りの使ってたコマンドを入れた</p>
+
+<p>wget
+zsh
+git
+gist
+youtube-dl
+nicovideo-dl
+sl
+vim</p>
+
+<p>`brew doctor`するとエラーが出る</p>
+
+<p>既存のモジュールが優先されるからインストールしたやつ使えねーよ！って感じらしいのでzsh入れた後にパスを追加する</p>
+
+<p>さぁ、ここからいろいろと整えていきたい</p>
+
+
+- zsh
+
+
+<p>ゼミの先輩のタレを分けていただくか、自分で書くかという選択肢もあったが今後ゆっくりやろうってことで無難にOh-my-zsh</p>
+
+<p>[Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh "Oh-my-zsh")</p>
+
+<p>テーマは`wedisagree`にした</p>
+
+<p>あと前回はオレオレaliasを大量に.zshrcに書き込んでいたが、oh-my-zsh周りをいじるのはちょっとアレだなと思ったので外部ファイルにして、.zshrcで呼び出すことにした。</p>
+
+<p>[blog.paz-para.com:シェルスクリプトで外部ファイルを読み込む](http://blog.paz-para.com/?p=1881 "blog.paz-para.com:シェルスクリプトで外部ファイルを読み込む")</p>
+
+
+- ssh
+
+
+<p>VPSとかGitHubのためにssh周りの設定</p>
+
+<p>案の定忘れてたのでggりながら…</p>
+
+<p>クリーンインストールする前、GitHubだけつながらなくなってたのでそれだけ設定</p>
+
+<p>[Qiita:ターミナルからgithubのリポジトリにアクセスする設定(sshの設定)](http://qiita.com/pakiln/items/bd89ef5cc148a5349964 "Qiita:ターミナルからgithubのリポジトリにアクセスする設定(sshの設定)")</p>
+
+<p>ほかのはバックアップからコピーでおk</p>
+
+
+- Vim
+
+
+<p>emacsを触ったことがないので戦争はしないけどVimずっと触ってたのでVim好きです</p>
+
+<p>このままだとしごくコードが書きづらいので適当にvimrcを探す</p>
+
+<p>リポジトリ検索をしてよさげなやつを導入</p>
+
+<p>[GitHub:amix/vimrc](https://github.com/amix/vimrc "GitHub:amix/vimrc")</p>
+
+
+- Git
+
+
+<p>ホームディレクトリに.gitconfigを作成</p>
+
+<p>以下を参考にした</p>
+
+<p>[ゆるよろ日記:.gitconfigに設定してるaliasなどのまとめ](http://yuroyoro.hatenablog.com/entry/20101008/1286531851 "ゆるよろ日記:.gitconfigに設定してるaliasなどのまとめ")
+[GitHub:geta6/dotfiles](https://github.com/geta6/dotfiles "GitHub:geta6/dotfiles")</p>
+
+
+- Node.js
+
+
+<p>前回はbrewで入れてたけど、今回はバージョン管理できるnvmを使ってみる</p>
+
+<p>[GitHub:creationix/nvm](https://github.com/creationix/nvm "GitHub:creationix/nvm")</p>
+
+<p>ちょっと調べた感じ不具合はなさそうなので、問題なければこれで管理していくかなー</p>
+
+<p>とりあえず以下のコマンドを実行</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">git clone https://github.com/creationix/nvm.git ~/.nvm &amp;&amp; cd ~/.nvm &amp;&amp; git checkout `git describe --abbrev=0 --tags`</pre>
+
+<p>そして.zshrcに以下を追加</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">source ~/.nvm/nvm.sh</pre>
+
+<p>`nvm ls-remote`でダウンロードできるバージョンを指定できるので、とりあえず安定版v0.10.32をダウンロード</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">nvm install v0.10.32</pre>
+
+<p>そして普段使うものもこのバージョンに指定</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">nvm alias default v0.10.32</pre>
+
+<p>うん、快適</p>
+
+<p>以下を参考にしました</p>
+
+<p>[もろず blog:nvm を利用したnode.js のインストール](http://moro-archive.hatenablog.com/entry/2014/03/01/213314 "もろず blog:nvm を利用したnode.js のインストール")</p>
+
+
+- Ruby
+
+
+<p>問題のRuby</p>
+
+<p>前回と同じくrbenvを使います</p>
+
+<p>brewを使ってrbenv, ruby-buildを入れる</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">brew install rbenv ruby-builde</pre>
+
+<p>後にrbenvを使ってrubyをインストール</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">rbenv install 2.1.2
+rbenv global 2.1.2
+rbenv rehash</pre>
+
+<p>これでおk</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">ruby -v
+ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin13]
+</pre>
+
+
+- Python
+
+
+<p>とくにPythonを使って大層なプログラムを書くこともなかったのでbrewに甘んじてたのだが、せっかくなのでバージョン管理する</p>
+
+<p>どうやら`pyenv`というものがあるらしい</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">brew install pyenv</pre>
+
+<p>して.zshrcに以下を追記する</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">eval &quot;$(pyenv init -)&quot;</pre>
+
+<p>あとはインストールしたいやつをインストール！</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">pyenv install 3.4.1
+pyenv install 2.7.8
+pyenv global 3.4.1</pre>
+
+<p>以下を参考にさせていただきました</p>
+
+<p>[pixyzehn blog:MavericksでPythonのバージョン管理pyenvの設定をしてシステムではなくpyenvのPythonを使う](http://rikei-webmemo.hateblo.jp/entry/2014/06/21/102331 "pixyzehn blog:MavericksでPythonのバージョン管理pyenvの設定をしてシステムではなくpyenvのPythonを使う")</p>
+
+<p>めでたく動きましたとさ！</p>
+
+<p>とりあえず今回はこれでおしまい。</p>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

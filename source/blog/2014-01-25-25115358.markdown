@@ -1,0 +1,59 @@
+---
+layout: post
+title: ! '* zshのEDITOR設定'
+published: true
+date: 2014-01-25 11:53
+comments: true
+categories:
+- サーバ設定
+tags: []
+keywords:
+- サーバ設定
+---
+今、TwitterBotを作っていて、その関係でcronの設定をしたのですが (botはまた別に記事にします)
+
+`crontab -e`と打つと、vimじゃなくてviが起動しちゃうんですね。
+
+.vimrcでいれてるものがvi対応じゃないものが混じってるのでそれだとエラーになってとても困るので普段は
+
+`alias vi="vim"`
+
+することで回避してるのですが、
+
+`crontab`コマンドだとviが起動されてしまう。
+
+んでちょっと調べてみるとどうやらシェルの環境変数のうち、EDITOR変数がviのままなのがいけないらしい。
+
+どういうこっちゃねんってことで試しにMacbook Airたんで`env | grep EDITOR`してみた。
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+% env | grep EDITOR
+EDITOR=/usr/bin/vim
+GIT_EDITOR=/usr/bin/vim
+</pre>
+
+なるほど。vimになっとるね。
+
+んで、この環境変数なるものを設定するにはどうすればいいかとggってみると、.zshenvたんを作ればいいらしい。
+
+てわけで作成。
+
+**~/.zshenv**
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+EDITOR=/usr/bin/vim
+export EDITOR
+</pre>
+
+これで`source ~/.zshenv`して`crontab -e`してみたら…
+
+
+
+起動できたー！
+
+エラーなし。これは正真正銘vimですわ。
+
+では就活に行ってきます。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

@@ -1,0 +1,142 @@
+---
+layout: post
+title: ! '* +演算子だけで四則演算 @ Python'
+published: true
+date: 2014-02-28 02:17
+comments: true
+categories:
+- Python
+tags: []
+keywords:
+- Python
+---
+## 元気ですか
+
+どうも、お久しぶりです。
+
+実はまたまた企業さんのインターンに参加させていただいてまして
+
+昨日今日の２日間でやってます。
+
+テーマが「アルゴリズムクイズをひたすら解く」という非常にシンプルなもの。
+
+わかりやすくてよいね。
+
+その中で１つ面白い問題があったので紹介します。
+
+<del datetime="2014-02-27T17:02:45+00:00">一番乗りで解けたのが嬉しかったから紹介するわけではないからね。</del>
+
+## +演算子だけで四則演算をするプログラム
+
+まぁまんまその通りです。
+
+足し算はまぁそのままやるとして、引き算、掛け算、割り算を全部+演算子だけで解けというもの。
+
+その際の条件としては以下の感じ。
+
+
+- 割り算は整数で返しておｋ</p>
+- <p>止む終えなかったら計算以外でなら-演算子使っていいよ</p>
+- <p>ビット演算はなし</p>
+
+
+<p>おもしろそう。解けた順に解説。
+
+### 掛け算
+
+これは楽勝ですね。
+
+a,b２つの引数があったら、`ans += a`をb回ループで回せばおｋ。
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+def multiply(a, b):
+    ans = 0
+    for i in range(b): ans += a
+    return ans
+</pre>
+
+僕のPython力ではこれが限界かなぁ。
+
+もっと短く書けそう。
+
+### 割り算
+
+一瞬悩んだけど、引数a,bのうちaを超えるまでbを足し続ければ整数の答えは出せる。
+
+早く終わって暇だったので小数第一位まで出す関数も書いた。
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# integral number ver
+def devide(a, b):
+    ans = 0
+    bb = b
+    while b &lt; a:
+        ans += 1
+        b += bb
+    return ans
+
+# decimal number ver
+def devide_d(a, b):
+    ans = 0
+    bb = b
+    while b &lt; a:
+        ans += 1
+        b += bb
+    b -= bb
+    # 小数第一位
+    while b &lt; a:
+        ans += 0.1
+        b += multiply(0.1, bb)
+    return ans
+</pre>
+
+これでできた。
+
+※ multiply()は先ほどの掛け算の関数
+
+### 引き算
+
+周りの様子を見てるとみんなここで詰まってるっぽかった。
+
+最初は+だけでいかに引き算を表現するか考えてたけど、**整数の引き算**って条件があるんだから１ずつ足してカウントすればいいじゃん！と気付き、こんな感じに書いた。
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+def minus(a, b):
+    ans = 0
+    flag = &#039;a&#039; if a &gt; b else &#039;b&#039;
+    while a != b:
+        ans += 1
+        if a &gt; b: b += 1
+        else: a += 1
+    return ans if flag == &#039;a&#039; else int(&#039;-&#039;+str(ans))
+</pre>
+
+答えがマイナスになる時はハイフンを使わざるを得ない。
+
+しかし-演算子を使ってはいけない。
+
+じゃあString型でハイフンくっつけてint型に直せばよくね？って感じで書いた。我ながらわろた。
+
+いい方法待ってます。
+
+## インターン
+
+自己紹介のとき、周りがガチガチの理工学部ばっかで死にたくなったけどなんとか渡り合えてる感じがして楽しいです。
+
+言うても前のハッカソンとは違って競技プログラミングみたいな感じなのでいかにスマートに解けるか、ってとこが評価ポイントみたい。
+
+ゴリゴリに実装したコード見せたら微妙な反応された。
+
+明日も頑張ってきますぜ。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

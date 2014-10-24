@@ -1,0 +1,61 @@
+---
+layout: post
+title: ! '* gistコマンド - アカウント設定'
+published: true
+date: 2014-01-20 11:55
+comments: true
+categories:
+- GitHub
+tags: []
+keywords:
+- GitHub
+---
+gistをコマンドラインから投稿できるように設定した。
+
+前からやろうと思ってたけど、めんどくてやってなかったがやったら簡単だった。
+
+とりあえずメモメモ。
+
+&nbsp;
+## **１．gistコマンドをインストール**
+みんなだいすきHomebrew.
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">brew install gist</pre>
+
+&nbsp;
+## **２．ユーザ登録**
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist --login</pre>
+上記のようにコマンドを打つとアカウント名とパスワードを聞かれるので入力。
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">GitHub username: sota1235
+GitHub password: password
+Success! https://github.com/settings/applications</pre>
+これだけ。簡単！
+
+試しに投稿。
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">% gist -f hello.js
+(type a gist.  to cancel,  when done)
+document.write(&quot;hello gist&quot;);
+[ctrl+d]</pre>
+
+`-f`オプションでファイル名を指定できる。
+
+gistページに行ったら見れたよ！
+
+<a title="https://gist.github.com/8513912" href="https://gist.github.com/8513912">https://gist.github.com/8513912</a>
+
+ちなみにファイルをそのままアップロードしたかったらこう。
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist hello.js</pre>
+ファイル名を変えたい場合はこう。
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist hello.js &lt; upload.js</pre>
+調べたらいろいろ出てきたけど結局こんだけで済むお話でした。
+
+**ちなみに。。。**
+
+アカウント設定しなくてもgistコマンドは使えますがanonymousで登録されます。
+
+<a title="失敗したやつ" href="https://gist.github.com/anonymous/8513806" target="_blank">失敗したやつ</a>
+
+あとはアカウント設定した後でも`-a`コマンドをつければanonymous投稿できます。
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist -a hello.js</pre>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

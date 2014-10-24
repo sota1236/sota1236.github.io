@@ -1,0 +1,96 @@
+---
+layout: post
+title: ! '* 順列を実装する @ Python'
+published: true
+date: 2014-03-09 19:20
+comments: true
+categories:
+- Python
+- アルゴリズム
+tags: []
+keywords:
+- Python
+- アルゴリズム
+---
+お久しぶりです。
+
+今回は与えられた要素から考えうる順列を全て洗い出すスクリプトを書いてみようと思います。
+
+できそうでできずにインターンで苦しんだのでゆっくり考えてみたのでメモがわりに。
+
+## 順列とは
+
+**異なる数個のものを順序づけて一列に並べる並べ方の一つ一つをいう。n個からr個とる順列（n個のものからr個選んで得られる順列）の数を(/n)P(/r)と書く。**
+
+[引用: kotobank.jp](http://kotobank.jp/word/%E9%A0%86%E5%88%97 "引用: kotobank.jp")
+
+だそうです。
+
+例えば
+
+`list = ['a','b','c']`
+
+から３つ取り出して並べる方法は 3! 通り。
+
+全て書きだすとこんな感じ。
+
+`
+['a', 'b', 'c']
+['a', 'c', 'b']
+['b', 'a', 'c']
+['b', 'c', 'a']
+['c', 'a', 'b']
+['c', 'b', 'a']
+`
+
+なんてことない、中学生レベルのお話ですね。
+
+## コード
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+#!/usr/bin/python
+
+# ans : 組み合わせの数 order : 並び順
+ans = 0
+order = []
+
+def make_segment(array, order, n):
+    if n == len(array):
+        print order
+        global ans
+        ans += 1
+        return
+    for i in range(len(array)):
+        if array[i] not in order:
+            order.append(array[i])
+            make_segment(array, order, n+1)
+            order.pop()
+        else:
+            continue
+# main
+array = [&#039;0&#039;,&#039;1&#039;,&#039;2&#039;,&#039;3&#039;,&#039;4&#039;,&#039;5&#039;,&#039;6&#039;,&#039;7&#039;,&#039;8&#039;,&#039;9&#039;]
+
+make_segment(array, order, 0)
+print ans
+</pre>
+
+テスト用に`0~9`の文字列を作ってやってます。
+
+アルゴリズムとしては単純なもので、
+
+
+- どんどん下に掘っていってorderに要素を積んでいく</p>
+- <p>orderに既にあるものは積まずにcontinue</p>
+- <p>orderが渡された配列の長さと一致した時点でprint,return</p>
+
+
+<p>という感じです。
+
+ただ、問題点として要素数が9以上になると処理時間が増えるところですね。。。
+
+もうちょっといろいろ勉強しよう。
+
+ちゃんちゃん。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

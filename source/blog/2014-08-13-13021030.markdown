@@ -1,0 +1,79 @@
+---
+layout: post
+title: ! '* 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)'
+published: true
+date: 2014-08-13 02:10
+comments: true
+categories:
+- Ruby
+- いろいろ作る
+tags: []
+keywords:
+- Ruby
+- いろいろ作る
+---
+<p>先日の続きってほどでもないけど、実用的なもん作った。</p>
+
+<p>私はWebマンガが好きでしょっちゅう読んでいるのだけど週刊誌と違って不定期更新がゆえ、「うわ、一ヶ月前に更新されてたああああああ(:.;゜;Д;゜;.:)」みたいなことがよくある。</p>
+
+<p>ので私が好きなWebマンガの一つの`堀さんと宮村くん`が更新されたらYoがくるアカウントを作った</p>
+
+## HORIMIYARSS
+
+<p>もし通知が欲しかったら`HORIMIYARSS`に一回Yoしてくれれば更新されたときにYoが来ます。</p>
+
+<p>実装はこんな感じ(Webクロール楽しいいいいいいいいい)</p>
+
+<pre class="brush: ruby; gutter: true; first-line: 1; highlight: []; html-script: false">
+#!/usr/bin/ruby
+
+require &#039;open-uri&#039;
+require &#039;nokogiri&#039;
+require &#039;kconv&#039;
+require &#039;net/http&#039;
+
+# 各話の情報をクローリング
+url = &quot;http://dka-hero.com/h_01.html&quot;
+new = &quot;&quot; # 最新話
+
+# Yo API
+yo_url = &#039;http://api.justyo.co/yoall/&#039;
+api_token = &#039;hogehoge&#039;
+
+while true do
+  html = open(url).read
+  doc = Nokogiri::HTML(html.toutf8, nil, &#039;utf-8&#039;)
+  episodes = doc.xpath(&#039;//a[@target=&quot;contents&quot;]&#039;)
+  title = episodes[-3].inner_text.to_s
+  if new == title
+    puts &quot;最新話の更新はありません&quot;
+  else
+    puts &quot;最新話の更新がありました：&quot; + title
+    Net::HTTP.post_form(URI.parse(yo_url), {&#039;api_token&#039; =&gt; api_token})
+    new = title
+  end
+  sleep 60 * 30
+end
+
+puts &quot;最新話は&quot; + title
+</pre>
+
+<p>これを</p>
+
+<pre>`nohup ruby yo.rb &amp;
+`</pre>
+
+<p>で、VPSのバックグラウンドプロセスとして回してる。</p>
+
+<p>おしまい</p>
+
+#### P.S.
+
+<p>nohupコマンド、友人から聞いて知ったのだけど(情弱でさーせん…)</p>
+
+<p>これサーバの再起動とかしたらプロセス死ぬよね？</p>
+
+<p>サーバの再起動と合わせてプロセス復活するようないい方法あったら知りたい〜</p>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

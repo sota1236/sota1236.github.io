@@ -1,0 +1,194 @@
+---
+layout: post
+title: ! '* stat関数'
+published: true
+date: 2013-12-07 15:50
+comments: true
+categories:
+- C
+- 授業
+tags: []
+keywords:
+- C
+- 授業
+---
+こんばんわ。
+
+突然ですがこのコードは何でしょう。
+<pre class="brush: c; gutter: true">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;time.h&gt;
+#include&lt;dirent.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;sys/stat.h&gt;
+#include&lt;string.h&gt;
+/* Created by sota1235
+ * Date : 2013/12/6
+ * for SystemProgramming homework */
+
+// 関数宣言
+void ls_r(char *directory,int tab_num);
+void tab_writer(int num);
+
+int main(int argc,char *argv[]){
+
+  // 引数が無い時もしくは多すぎるときのエラー処理
+  if(argc != 2){
+    fprintf(stderr, &quot;main : 実行引数の数が不当です\n&quot;);
+    exit(EXIT_FAILURE);
+  }
+
+  fprintf(stdout,&quot;%s\n&quot;,argv[1]);
+  ls_r(argv[1],1);
+}
+
+void ls_r(char *directory,int tab_num){
+  DIR *dirp = opendir(directory);
+  struct dirent *dp; // ディレクトリ一覧の構造体
+  struct stat stat_buf; // ファイル情報の構造体
+  char *path,r_path[512];
+
+  // statが失敗した場合return
+  if(stat(directory,&amp;stat_buf)==-1){
+    //perror(&quot;stat&quot;);
+    return;
+  }
+
+  while((dp = readdir(dirp)) != NULL){
+    if((stat_buf.st_mode &amp; S_IFMT)==S_IFDIR){
+      path = dp-&gt;d_name;
+      if(strncmp(path,&quot;.&quot;,1)!=0 &amp;&amp; strncmp(path,&quot;..&quot;,2)!=0){
+        tab_writer(tab_num);
+        fprintf(stdout,&quot;%s\n&quot;,path);
+
+        // rootディレクトリの場合はdirecotry変数をつなげない
+        if(strncmp(directory,&quot;/&quot;,1)){
+          sprintf(r_path,&quot;/%s&quot;,path);
+        } else {
+          sprintf(r_path,&quot;%s/%s&quot;,directory,path);
+        }
+
+        ls_r(r_path,tab_num+1);
+      }
+    }
+  }
+  closedir(dirp);
+}
+
+void tab_writer(int num){
+  int i;
+  for(i=0;i&lt;num;i++){
+    fprintf(stdout,&quot;  &quot;);
+  }
+}</pre>
+
+きったないですね。初のブログでのコード公開です。
+
+このコードは現在とっている授業の明日までの課題です。
+
+課題の内容としては
+
+"プログラム実行の際の引数にフォルダを入力すると、その中のフォルダを再帰的に表示するプログラムを作成せよ。"
+
+つまり、
+
+[html]
+a.out /
+[/html]
+
+と実行すると
+
+[html]
+var
+  sys
+  etc
+    apache
+    cups
+[/html]
+
+みたいな感じで表示されるプログラムを作れという課題。
+
+で、何を使ってるのかというとシステムコールのdirent.h周りの関数を使っています。
+
+ポインタエラーやらopendirのエラーやらに四苦八苦しながら40分ぐらいで書いたのですが、
+
+どうにもこうにも動かない。
+
+というのもファイルがフォルダであるかファイルであるかを判定するstat関数がどうもうまく動いていない。
+
+ディレクトリか否かの判定は
+
+- S_IFDIR　-&gt;　(stat_buf.st_mode &amp; S_IFMT)==S_IFDIR
+
+
+- S_ISDIR　-&gt;　S_ISDIR(stat_buf.st_mode)
+
+でbooleanが返ってくる。
+
+前者はマクロであり、後者は内蔵のメソッド(?)である。(と僕が認識してるだけなので間違ってたらコメントおなしゃす。)
+
+しかし両方の方法で試してもファイルをフォルダと認識するため、プログラムがエラーで止まってしまう。。。
+
+そこでこちらを参考にしてフォルダチェックを関数化。
+
+[にたまごほうれんそう](http://d.hatena.ne.jp/emergent/20080412/1208024023 "にたまごほうれんそう")
+<pre class="brush: c; gutter: true">void check_stat(struct stat *st){
+    mode_t m = st-&gt;st_mode;
+    if (S_ISDIR(m))  { 
+    return 1; 
+    } else {
+    return 0;
+    }
+}</pre>
+
+もしフォルダだったら1を、それ以外なら0を返すだけの関数。
+
+実行すると…
+
+[html]
+mach_kernel
+[1] 64998 segmentation fault ./a.out /
+[/html]
+
+なんだよmach_kernel...
+
+他のファイルはしっかり判別してるのにmach_kernelだけなぜかファイルなのにフォルダと認識される。
+
+とりあえず無理やりmach_kernelをif文の中から追い出して動かしてみる。
+
+以下を書き換え
+<pre class="brush: c; gutter: true">while((dp = readdir(dirp)) != NULL){
+    if(check_stat(&amp;amp;stat_buf)){
+      path = dp-&amp;gt;d_name;
+      if(strncmp(path,&quot;.&quot;,1)!=0 &amp;amp;&amp;amp; strncmp(path,&quot;..&quot;,2)!=0 &amp;&amp; strncmp(path,&quot;mach_kernel&quot;,11)){
+        tab_writer(tab_num);
+        fprintf(stdout,&quot;%s\n&quot;,path);
+
+        // rootディレクトリの場合はdirecotry変数をつなげない
+        if(!strncmp(directory,&quot;/&quot;,1)){
+          sprintf(r_path,&quot;/%s&quot;,path);
+        } else {
+          sprintf(r_path,&quot;%s/%s&quot;,directory,path);
+        }
+        ls_r(r_path,tab_num+1);
+      }
+    }
+  }</pre>
+実行すると。。。
+
+動いた！！
+
+しかしなぜかフォルダにもぐっていくのが一定のところで止まる。
+
+しかもファイルが結局表示されてる。
+
+ぐああーーー、原因わからず！！！！
+
+わかったらまた日記書きます。
+
+もしggってこのページ見つけた人いたらごめんなさい。
+
+まだまだですね。。。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

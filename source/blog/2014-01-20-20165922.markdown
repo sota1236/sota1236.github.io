@@ -1,0 +1,94 @@
+---
+layout: post
+title: ! '* tmuxの自動起動設定'
+published: true
+date: 2014-01-20 16:59
+comments: true
+categories:
+- サーバ設定
+tags: []
+keywords:
+- サーバ設定
+---
+今日はtmuxのお話。
+
+
+私が普段使っているコンソールはターミナルではなく、
+
+iTerm2なるものを使っています。
+
+[iTerm2](http://www.iterm2.com/#/section/home "iTerm2")
+
+ターミナルと何が違うのかと言われると、まぁいろいろ違うのですがわかりやすい機能で私が一番好きな機能がこれです。
+
+<img src="http://gyazo.com/4940a78784b61cfe5646a64b3da5ed7b.png" alt="" />
+
+そう、シェルの切り分けができるのです。
+
+しかもショートカットキーが簡単で
+
+### [command + d] -> 横に分割
+
+### [command + d + shift] -> 縦に分割
+
+これがとってもとっても快適。
+
+
+と、前置きはここまでで
+
+ローカルではこのiTerm2を使えばいいのですが
+
+リモートの作業ではそういう訳には行きません。
+
+そこで活躍するのが**tmux**。
+
+インストールしてしまえばコマンドを打つことで複数画面作ることができます。
+
+このtmuxをログインした時に常に起動したいというのが今日の本題。
+
+ってことで`.zshrc`に以下を書き加え
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+# tmux (auto start)
+is_screen_running() {
+  [ ! -z &quot;$WINDOW&quot; ]
+}
+is_tmux_runnning() {
+  [ ! -z &quot;$TMUX&quot; ]
+}
+is_screen_or_tmux_running() {
+  is_screen_running || is_tmux_runnning
+}
+shell_has_started_interactively() {
+  [ ! -z &quot;$PS1&quot; ]
+}
+resolve_alias() {
+  cmd=&quot;$1&quot;
+  while \
+    whence &quot;$cmd&quot; &gt;/dev/null 2&gt;/dev/null \
+    &amp;&amp; [ &quot;$(whence &quot;$cmd&quot;)&quot; != &quot;$cmd&quot; ]
+  do
+    cmd=$(whence &quot;$cmd&quot;)
+  done
+  echo &quot;$cmd&quot;
+}
+
+if ! is_screen_or_tmux_running &amp;&amp; shell_has_started_interactively; then
+  for cmd in tmux ; do
+    if whence $cmd &gt;/dev/null 2&gt;/dev/null; then
+      $(resolve_alias &quot;$cmd&quot;)
+      break
+    fi
+  done
+fi
+</pre>
+
+コードはこちらを参考にしました。
+
+- [MBA-HACK - tmux](http://mba-hack.blogspot.jp/2013/05/tmux.html#c07 "MBA-HACK - tmux")
+
+</ br>
+これで`source ~/.zshrc`して快適。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

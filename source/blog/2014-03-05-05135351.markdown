@@ -1,0 +1,181 @@
+---
+layout: post
+title: ! '* Nクイーン問題'
+published: false
+date: 2014-03-05 13:53
+comments: true
+categories:
+- Python
+- アルゴリズム
+tags: []
+keywords:
+- Python
+- アルゴリズム
+---
+## インターンわず
+
+2/28~29でインターンに行ってきました。
+
+先日の記事にも書きましたが、僕のチームはアルゴリズムをひたすら解いていました。
+
+問題文(一部)と解答はここにあがってたりしてます -> [GitHub:TIS_Hack](https://github.com/sota1235/TIS_Hack "GitHub:TIS_Hack")
+
+一部解けてなかったり問題文抜けてますが、もし来年TISのインターンに行く人がいたら見てみてください。
+
+## アルゴリズム
+
+そのインターンの参加者に一人Pythonガチ勢がいて
+
+僕は彼のいい引き立て役になってしまったのですが、とても勉強になりました。
+
+それで彼といろいろ話してみると、競技プログラミングガチ勢。なるほど。
+
+それでいろいろと興味が湧いてきたタイトルのNクイーン問題とやらを解いてみた。
+
+## ルール
+
+詳しくは[Wikipedia](http://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A4%E3%83%88%E3%83%BB%E3%82%AF%E3%82%A4%E3%83%BC%E3%83%B3 "Wikipedia")を見てくれると早いのですが、
+
+
+- 与えられた数字N × Nのボードがあると仮定</p>
+- <p>そこにN個のクイーンを配置する</p>
+- <p>クイーンは１回のターンでタテ・ヨコ・ナナメに無制限に移動できる</p>
+- <p>全てのクイーンがお互いに１回のターンでぶつからない配置を全て求めよ</p>
+
+
+<p>って感じ。
+
+で、今回はバックトラック法とやらを使ってみる。
+
+## コード
+
+ちょっとイケメンな名前だけど要するに
+
+**<em>深さ探索優先を行う</em>**
+
+↓
+
+**<em>条件と違うことがわかった時点でノードを戻り、その枝を切る</em>**
+
+なのでこの問題だと
+
+**<em>クイーンを総当りで順番に盤面に配置する</em>**
+
+↓
+
+**<em>クイーン同士が一手で行ける配置になったら置いたクイーンを消去</em>**
+
+↓
+
+**<em>手前のパターンから探索する</em>**
+
+って感じでしょうか。
+
+以下コード。
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+# !/usr/bin/env python
+# -*- coding:utf-8 -*-
+ 
+# Written by sota1235
+# Date 2014/3/2
+ 
+import sys
+ 
+&quot;&quot;&quot;
+board上の(x,y)の縦横斜めの値にnを足す
+&quot;&quot;&quot;
+def changeBoard(board, x, y, n, p):
+    N = n
+ 
+    # 縦横にnを足す
+    for i in range(N):
+        board[x][i] += p
+        board[i][y] += p
+ 
+    # 右下がり斜め
+    if x &gt; y:
+        for i in range(N - abs(x - y)):
+            board[i+(x-y)][i] += p
+    elif x &lt;= y:
+        for i in range(N - abs(x - y)):
+            board[i][i+(y-x)] += p
+ 
+    # 左下がり斜め
+    if (x+y) &lt; N:
+        for i in range(x + y + 1):
+            board[i][x+y-i] += p
+    elif (x+y) &gt;= N:
+        for i in range(x + y + N + 1, N):
+            board[x+y-i][i] += p
+ 
+    board[x][y] -= 3
+ 
+    return board
+ 
+&quot;&quot;&quot;
+queenのx行にQueenをセット
+&quot;&quot;&quot;
+def setQueen(x, board, queen):
+    N = len(queen)
+    &quot;&quot;&quot;
+    print N
+    print x
+    &quot;&quot;&quot;
+    # i=N で終了
+    if x == N:
+        printQueen(queen)
+        return
+ 
+    for y in range(N):
+        if board[x][y] == 0:
+            queen[x] = y+1
+            board = changeBoard(board, x, y, N, 1)
+            setQueen(x+1, board, queen)
+            board = changeBoard(board, x, y, N, -1)
+&quot;&quot;&quot;
+結果出力
+&quot;&quot;&quot;
+def printQueen(queen):
+    j = 0
+    ans = str(len(queen)) + &quot; queen: &quot;
+    for i in queen:
+        ans += str(i) + &quot; &quot;
+    print ans
+ 
+&quot;&quot;&quot;
+Main
+&quot;&quot;&quot;
+def __main__(N):
+    board = [[0 for i in range(N)] for j in range(N)]
+    queen = [0 for i in range(N)]
+    setQueen(0, board, queen)
+ 
+ 
+# Nの入力
+N = int(raw_input(&quot;N = &quot;))
+__main__(N)
+</pre>
+
+これで例えばN=5と入力すると
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+% python n_queen.py
+N = 5
+5 queen: 1 3 5 2 4
+5 queen: 1 4 2 5 3
+5 queen: 1 5 4 3 2
+</pre>
+
+こんな感じに答えが返ってきます。
+
+もしバックトラック法を使わないのであれば、setQueen()の再帰をxの値がNになった時点で有効な盤面かどうかチェックすることになるのですが、それだと時間がかかるのでコマを置けるところを0、置けないところを1とした二次元配列boardを用意し、
+
+毎回コマを置くときにそこが0かどうかで枝切りを行うか否か決めます。
+
+## 感想
+
+少し
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

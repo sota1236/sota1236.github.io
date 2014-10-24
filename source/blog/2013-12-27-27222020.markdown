@@ -1,0 +1,68 @@
+---
+layout: post
+title: ! '* mtコマンド'
+published: true
+date: 2013-12-27 22:20
+comments: true
+categories:
+- GitHub
+- Python
+tags: []
+keywords:
+- GitHub
+- Python
+---
+私の大学では11月にOpen Research Forumなるものを六本木のかっちょいーところで開催していて、私の研究室もブースを出しました。
+
+その時に情弱な僕は何かを実装できるわけではなく、先輩のお手伝い(≒雑用）をしていました。
+
+その内容というのがjsonファイルをパースして階層に応じたフォルダを作るというまぁ要するにモックアップの準備だったわけで、その時はPythonを使って書いてました。
+
+ただ、毎回毎回同じようなものを何回も書くのは効率が悪すぎたのでいろいろと練習を兼ねてmtコマンドなるものを作ってみました。
+
+[GitHub : makeTree](https://github.com/sota1235/makeTree "GitHub : makeTree")
+
+何をするコマンドかというと、まぁ半角スペースでフォルダ構造の書かれたMarkdownファイルからフォルダを出力するコマンドです。
+
+とは言ってもコマンドを作る知識が無かったので
+
+１．リポジトリフォルダをホームフォルダにコピーする
+
+２．aliasコマンドでaliasを張る
+
+って感じで実装しました。
+
+例えばこんな階層構造でフォルダを作りたいとしましょう。
+<pre class="brush: shell; gutter: true">Current 
+　- Movie 
+　- Music 
+　　- J-POP 
+　　- J-ROCK 
+　　- Acapella 
+　- Picture 
+　　- 2013 
+　　　- Spring 
+　　- 2012</pre>
+そしたら、こんなファイル(folder.md)を作って
+<pre class="brush: shell; gutter: true">Current 
+　Movie 
+　Music 
+　　J-POP 
+　　J-ROCK 
+　　Acapella 
+　Picture 
+　　2013 
+　　　Spring 
+　　2012</pre>
+こんな感じで実行すれば
+<pre class="brush: shell; gutter: true">mt folder.md</pre>
+あら不思議！
+
+思い通りのフォルダー構造のできあがり！って感じです。
+
+まぁ練習がてらに作っただけですが自分のために機能付けたそうと思っていまする。
+
+<del datetime="2013-12-27T13:04:27+00:00">現状だとzshにしか対応してないし…</del>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

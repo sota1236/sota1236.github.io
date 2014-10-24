@@ -1,0 +1,70 @@
+---
+layout: post
+title: ! '* URLを変更せずにファイル単位でリダイレクトする'
+published: true
+date: 2014-05-26 10:46
+comments: true
+categories:
+- Apache
+tags: []
+keywords:
+- Apache
+---
+<p>サークルの後輩にファイルを共有する際、自分のサイトにファイルを置いてURLを教えていたのですが、</p>
+
+<p>ファイルの置き場所を変えたくなっちゃったので`.htaccess`を利用してやってみた。</p>
+
+<p>`/hoge/`をファイル公開ディレクトリとする。(`http://sota1235.net/files/*.zip`で`/hoge/&#42;.zip`にアクセスできる。)</p>
+
+
+- <p>元のファイルの置き場所: `/hoge/*.zip`</p>
+- <p>新しい置き場所: `/hoge/fuga/*.zip`</p>
+
+
+<p>`.htaccess`ファイルの置き場所はファイル公開ディレクトリでよい。</p>
+
+### なにはともあれ書いてみる
+
+<p>最初、以下のように記述してみた。</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+Redirect /hoge/ http://example.ne.jp/files/fuga/
+</pre>
+
+<p>こうすることで**/hoge/ディレクトリへのアクセスをhttp://example.ne.jp/files/fuga/にリダイレクトする**という意味になる</p>
+
+<p>そして試しにアクセスすると無限ループした(´・ω・`)</p>
+
+<p>こんな感じになってるらしい (参考：[ ミケネコ研究所](http://mikeneko.creator.club.ne.jp/~lab/web/htaccess/redirect.html " ミケネコ研究所"))</p>
+
+<p><strong><em>ブラウザの要求： http://example.ne.jp/hoge/</p>
+
+<p>サーバの返答　： http://example.ne.jp/files/fuga/ リダイレクトせよ</p>
+
+<p>ブラウザの要求： http://example.ne.jp/files/fuga/</p>
+
+<p>サーバの返答　： http://example.ne.jp/files/fuga/fuga/ リダイレクトせよ</p>
+
+<p>ブラウザの要求： http://example.ne.jp/files/fuga/fuga/</p>
+
+<p>サーバの返答　： http://example.ne.jp/files/fuga/fuga/fuga リダイレクトせよ</p>
+
+<p>ブラウザの要求： http://example.ne.jp/files/fuga/fuga/fuga
+</em></strong></p>
+
+<p>なるほど。</p>
+
+<p>正しく(というより自分の場合の解決策)はこういう風に書けばよい。</p>
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+Redirect 301 /hoge/*.zip http://example.ne.jp/fuga/*.zip
+</pre>
+
+<p>これで**/hoge/&#42;.zipにマッチするファイルへのアクセスをhttp://example.ne.jp/files/fuga/&#42;.zipにリダイレクトする**という意味になる。</p>
+
+<p>301は`Moved Permanently`、ざっくり言うとコンテンツの移動を意味するHTTPステータスコードですね。</p>
+
+<p>これで後輩に修正URLを布教することなくファイル移動を行えましたとさ〜</p>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

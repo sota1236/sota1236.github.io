@@ -1,0 +1,96 @@
+---
+layout: post
+title: ! '* タダコピの陰を消す(3/28)'
+published: true
+date: 2014-02-14 03:39
+comments: true
+categories:
+- February Hackathon
+- Processing
+tags: []
+keywords:
+- February Hackathon
+- Processing
+---
+こんばんわ。
+
+友人から楽譜をスキャンしてもらったのですがその裏にタダコピがうっすら写ってる…
+
+<img src="http://gyazo.com/0def774b7e5e3231fd4b0115cdf1268b.png" alt="score" />
+
+ダサい。
+
+ってことで習いたての画像処理でどうにかしてみた。
+
+**[twocolor_gene.pde]**
+
+<pre class="brush: java; gutter: true; first-line: 1; highlight: []; html-script: false">
+/* Created by sota1235
+ * Date:2014/02/14
+ */
+ 
+PImage img, img2;
+img = loadImage(&quot;path/image&quot;);
+int w = img.width, h = img.height;
+ 
+size(w, h);
+img2 = createImage(w,h,RGB);
+ 
+img.loadPixels();
+img2.loadPixels();
+ 
+for(int i=0;i&lt;w*h;i++){
+  if(brightness(img.pixels[i]) &gt; 180) {
+    img2.pixels[i] = color(255);
+  } else {
+    img2.pixels[i] = color(0);
+  }
+}
+ 
+img.updatePixels();
+img2.updatePixels();
+ 
+image(img2, 0, 0);
+save(&quot;path/&quot;);
+</pre>
+
+[Gist : twocolor_gene.pde](https://gist.github.com/sota1235/8980916 "Gist : twocolor_gene.pde")
+
+## 1.画像を読み込む
+
+PImageを使って`img`に画像を読み込み。
+
+保存用の変数として`img2`を用意。
+
+## 2.ピクセル走査
+
+15~21行目のfor文で`img`のピクセルを順番にチェック。
+
+輝度が180を超えるものを白塗り、その他を黒塗りにする。
+
+※ 輝度はMaxで255
+
+## 3.保存
+
+save()関数で一発。
+
+んでできあがったのがこれ。
+
+<img src="http://gyazo.com/557722ab2a7371c60c1789566625bde8.png" alt="" />
+
+うん、荒いけど綺麗！
+
+もっと詰めればきれいになりそうだけどとりあえずこんな感じで。
+
+Processingは簡単に扱えるからいいけどパラメータの調整が難しいですね。
+
+それではまた。
+
+P.S.
+
+Markdownプラグインを入れました。
+
+これでMarkdownで記事が書ける。快適。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

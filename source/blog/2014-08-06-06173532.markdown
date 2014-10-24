@@ -1,0 +1,102 @@
+---
+layout: post
+title: ! '* YoのAPIを触ってみる(その１)'
+published: true
+date: 2014-08-06 17:35
+comments: true
+categories:
+- いろいろ作る
+tags: []
+keywords:
+- いろいろ作る
+---
+### 流行りに乗り遅れたYO
+
+<p>ちまたで噂のYoのAPIを触ってみた</p>
+
+<p>とりあえず</p>
+
+
+- <p>特定のユーザにYoを送る</p>
+- <p>自身を登録してるユーザ全てにYoを送る</p>
+- <p>Yoを送ってきた時のログを取る</p>
+
+
+<p>ところまでやってみた。</p>
+
+### API Keyを取得する
+
+<p>YoのAPIを使いたい場合、API専用のアカウントを作成する必要がある。(2014/08/06現在)</p>
+
+<p>なので既に作成したアカウントの名前で実装したい場合は一回アカウントを削除しなきゃいけない。</p>
+
+<p>また、APIアカウントを作るためにYoのアカウントがひとつ、必要となるので注意。</p>
+
+<p>Signupは以下のページでできる。</p>
+
+<p>[API Sign up](http://developer.justyo.co/ "API Sign up")</p>
+
+<p>登録するとこんな感じの画面が出てくる。</p>
+
+<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/08/スクリーンショット-2014-08-06-17.27.38.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/08/スクリーンショット-2014-08-06-17.27.38.png" alt="スクリーンショット 2014-08-06 17.27.38" width="1046" height="495" class="alignnone size-full wp-image-312" /></a></p>
+
+<p>ここの"見せられないよ！"の部分にAPI Keyが表示される。</p>
+
+### Yoを送る
+
+<p>Yoの送り方は非常にシンプルで、決められたURLにPOSTリクエストを送るだけである。</p>
+
+#### 全員に送る
+
+<p>自分を登録してるユーザ全てにYoを送る</p>
+
+<pre>`URL: http://api.justyo.co/yoall/
+
+POST Paramater: api_token={{発行されたAPI Key}}&amp;username={{送りたい相手のユーザ名}}
+`</pre>
+
+#### 個人に送る
+
+<p>個人宛てにYoを送る。</p>
+
+<pre>`URL: http://api.justyo.co/yoall/
+
+POST Paramater: api_token={{発行されたAPI Key}}&amp;username={{送りたい相手のユーザ名}}
+`</pre>
+
+#### Yoを受け取る
+
+<p>DeveloperページでCallback URLを登録すると、Yoが来るたびにそのURLがリクエストされる。</p>
+
+<p>その際、GETパラメータでusernameがくっついてくるので、PHPとかなら`$_GET["username"]`で誰からYoが来たのかが分かる。</p>
+
+<p>自分でテストするために書いたスクリプトが以下の感じ(必要最低限)。</p>
+
+<pre class="brush: php; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;?php
+
+$fp = fopen(&quot;log.txt&quot;, &quot;a&quot;);
+
+if(isset($_GET[&quot;username&quot;])) {
+  fwrite($fp, date(&quot;Y/m/d H:i:s&quot;).&quot; &quot;.$_GET[&quot;username&quot;].&quot;\n&quot;);
+}
+
+fclose($fp);
+
+?&gt;</pre>
+
+<p>Yoが送られてきたら、その日付とアカウント名をlog.txtに追記するだけ。</p>
+
+<p>ここらへんいじくり回せばいろいろと作れそう</p>
+
+### 感想
+
+<p>とても簡単。少なくともTwitterより簡単。</p>
+
+<p>近々、これを作ってページが更新されたらYoが来るようなものを作ろうと思ってる。</p>
+
+<p>のでまた記事にしようかな〜</p>
+
+<p>それではこれにて</p>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

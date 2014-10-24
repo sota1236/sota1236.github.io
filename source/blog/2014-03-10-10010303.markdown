@@ -1,0 +1,114 @@
+---
+layout: post
+title: ! '* 今週のお題：7セグメントコードの反転 @CodeIQ'
+published: true
+date: 2014-03-10 01:03
+comments: true
+categories:
+- CodeIQ
+- アルゴリズム
+tags: []
+keywords:
+- CodeIQ
+- アルゴリズム
+---
+最近CodeIQでちょこちょこ問題を解いています。
+
+その中でこの問題を解いてみた。
+
+[今週のお題：7セグメントコードの反転](https://codeiq.jp/ace/thisweek_masuipeo/q755 "今週のお題：7セグメントコードの反転")
+
+## 7セグメントディスプレイ
+
+詳しくはこちら参照→[Wikipedia: 7セグメントディスプレイ](http://ja.wikipedia.org/wiki/7%E3%82%BB%E3%82%B0%E3%83%A1%E3%83%B3%E3%83%88%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4 "Wikipedia: 7セグメントディスプレイ")
+
+７桁の２進数を使って０〜９の数字を表現することができるディスプレイのこと。
+
+原理はこんな感じ↓(CodeIQ様より引用)
+
+<a href="http://gyazo.com/15fccc48ffe1b681007b7420018867ac.png"></a>
+
+## 問題
+
+肝心の課題は要約すると
+
+**「7セグメントディスプレイで1,0の切り替え回数を最も少なく0から9を表現するとき、切り替え回数は何回か」**
+
+というもの。
+
+ここで言う切り替え回数とは、例えば以下の場合は1,3,4,5,7桁目を切り替えればいいので切り替え回数は５回。
+
+### １→２
+
+`1 → 0110000`
+
+`2 → 1101101`
+
+０〜９の数字を並び替えて、切り替え回数が最も少なくなる時の回数を求めよとの問題。
+
+## 解答
+
+回答方法に指定はなかったので、Pythonで求めてみた。
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# 切り替え回数を入れる
+tmp_ans = 0
+ans = 100
+
+# セグメントの順番
+order = []
+ans_order = []
+
+def check_change(before,after):
+    res = 0
+    for (b,a) in zip(before,after):
+        if b != a:
+            res += 1
+    return res
+
+# n = セグメントの順番
+def make_segment(array, order, n):
+    global ans, tmp_ans, ans_order
+
+    if n == len(array):
+        tmp_ans += check_change(order[n-2], order[n-1])
+        if ans &gt; tmp_ans:
+            ans = tmp_ans
+            ans_order = order
+        tmp_ans -= check_change(order[n-2], order[n-1])
+        return
+    for i in range(len(array)):
+        if array[i] not in order:
+            order.append(array[i])
+            if len(order) &gt;= 2: tmp_ans += check_change(order[n-1], order[n])
+            make_segment(array, order, n+1)
+            if len(order) &gt;= 2: tmp_ans -= check_change(order[n-1], order[n])
+            order.pop()
+        else:
+            continue
+# main
+array = [&#039;1111110&#039;,&#039;0110000&#039;,&#039;1101101&#039;,&#039;1111001&#039;,&#039;0110011&#039;,&#039;1011011&#039;,&#039;1011111&#039;,&#039;1110000&#039;,&#039;1111111&#039;,&#039;1111011&#039;]
+
+make_segment(array, order, 0)
+print ans
+</pre>
+
+とりあえず０〜９の２進数表示をarrayに格納。
+
+２つの要素を渡すと切り替え回数を求めるcheck_change関数を作成。
+
+それでひたすら０〜９の順列を求めて総当り。
+
+ans変数に暫定トップの答えを格納。
+
+一応答えは出せたので提出しました。答え合わせ待ち〜
+
+ただ、言わずもがなですが処理時間が長すぎるのでうまいこと枝切りする必要がありましたね。
+
+いじってgistにあげようと思います。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

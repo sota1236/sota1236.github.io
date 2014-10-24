@@ -1,0 +1,111 @@
+---
+layout: post
+title: ! '* ファイル取得@Ruby (2/28)'
+published: true
+date: 2014-02-09 01:05
+comments: true
+categories:
+- February Hackathon
+- Ruby
+tags: []
+keywords:
+- February Hackathon
+- Ruby
+---
+## <em>**おい、お前１日１実装言うたやないか。**</em>
+
+ごめんて。
+
+実は火曜日から４日間ほど熱でダウンしておりまして
+
+今日やっと復活なんです。
+
+だからおおめに見てちょ。
+
+(3月になっても終わってなかったらもちろんやるよ)
+
+簡潔に。Web上のファイルを取得して保存するスクリプトをRubyで書きました。
+<blockquote>
+<h4>俺「先輩、Rubyって何が向いてるんですか？」
+
+先輩(ゼミ)「全部だよ全部」</h4></blockquote>
+らしいのでまぁなんとなくやりました。Ruby触ったことないですし。
+
+今回の要件
+
+**・Webページの`.png`画像を取ってくる**
+
+**・`.png`画像は連番なのでfor文で回す**
+
+ここで厄介なことに今回のターゲットにしたURLが
+### http://hoge-<span style="color: #d60000;">[number]</span>-moge/<span style="color: #d60000;">[number]</span>.png
+みたいな感じで全部の画像が同じURLに乗っかっておらず中間の数字も少し変わってたのでそこもループを回す
+
+と、当然いらない処理多すぎなので以下の条件も追加
+
+**・もう一箇所の数字も回す**
+
+**・取得に成功した番号の画像は処理を行わない**
+
+かなりggりながらの作業だったけどまぁ動いたのでよし。
+
+<pre class="brush: ruby; gutter: true; first-line: 1; highlight: []; html-script: false">
+#! /usr/bin/ruby
+# Date 2014/02/08
+# Created by sota1235
+ 
+require &#039;open-uri&#039;
+ 
+# 成功したら配列から削除
+$array = [*1..1368]
+ 
+def save_pic(url)
+  fName = File.basename(url)
+  # ファイル保存場所
+  path = &quot;/hoge/&quot; + fName
+ 
+  begin
+    open(path,&#039;wb&#039;) do |output|
+      open(url) do |data|
+        output.write(data.read)
+      end
+    end
+    print(fName,&quot; is success.\n&quot;)
+    $array.delete(fName.delete(&quot;.png&quot;).to_i)
+    $array.insert fName.delete(&quot;.png&quot;).to_i - 1, &quot;x&quot; # xを突っ込むことでfor文でのポインタずれを回避
+  rescue
+    print(fName,&quot; is failed.\n&quot;)
+    File.unlink path
+  end
+end
+ 
+base1 = &quot;http://hoge-&quot;
+base2 = &quot;-moge/&quot;
+for num1 in 48..57 do
+  for num2 in $array do
+    unless num2==&#039;x&#039;
+      save_pic(base1 + num1.to_s + base2 + num2.to_s + &quot;.png&quot;)
+    end
+  end
+end
+</pre>
+
+[Gist : taker.rb](https://gist.github.com/sota1235/8885899 "Gist : taker.rb")
+
+Rubyのこのendってやつ、個人的に気に入りました。
+
+Pythonとかで入れ子作りすぎると可読性下がるので。。。
+
+まぁ入れ子作りすぎんなって話なのですけれでも。
+
+明日もなんか書くぞ。
+
+
+P.S.
+
+就活の一貫で今月２つほどハッカソンに出かけてきます。
+
+両方とも何やらAPIを扱うとか抽象的な感じなのですが、情弱なりに頑張ってきます。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

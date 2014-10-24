@@ -1,0 +1,26 @@
+---
+layout: post
+title: ! '* トイチスクリプト'
+published: true
+date: 2014-04-24 23:20
+comments: true
+categories:
+- Python
+tags: []
+keywords:
+- Python
+---
+<p>おふざけ。</p>
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># -*- coding: utf-8 -*-
+while True:
+    print &quot;借りる値段を入力してね٩(ˊᗜˋ*)و&quot;
+    n = input(&#039;&gt; &#039;)
+    month = n * (1.1 ** 3)
+    year = n * (1.1 ** 36)
+    five_month = n * (1.1 ** (36 * 5))
+    print &quot;１ヶ月で{}円, １年で{}円, ５年で{}円かかるよ(,,Ծ‸Ծ,, )\n&quot;.format(int(month),int(year),int(five_month))
+</pre>
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

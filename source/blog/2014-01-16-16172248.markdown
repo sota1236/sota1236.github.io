@@ -1,0 +1,114 @@
+---
+layout: post
+title: ! '* sota1235.comを手直し'
+published: true
+date: 2014-01-16 17:22
+comments: true
+categories:
+- CSS
+tags: []
+keywords:
+- CSS
+---
+昨日、面接でコード見せてよと言われて焦ったので顔であるsota1235.comをいじいじ。
+
+とはいってもCSS苦手なので少しずついじいじ。
+
+日進月歩というじゃないですか。
+
+
+TwitterとFacebookとGithubのリンクをアイコン化しました。
+
+アイコンはこちらから頂いた → [Simple Icons](http://simpleicons.org "Simple Icons")
+
+こういうアイコンって意外とないのよね…
+
+HTMLのリンク部分にclassを追加
+
+
+**[index.html]**
+
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">
+&lt;a href=&quot;https://twitter.com/sota1235&quot; class=&quot;twitter&quot;&gt;Twitter&lt;/a&gt;
+&lt;a href=&quot;http://facebook.com/sota.sugiura&quot; class=&quot;facebook&quot;&gt;Facebook&lt;/a&gt;
+&lt;a href=&quot;https://github.com/sota1235&quot; class=&quot;github&quot;&gt;GitHub&lt;/a&gt;
+</pre>
+
+んでCSSにスタイルを追加
+
+**[style.css]**
+
+<pre class="brush: css; gutter: true; first-line: 1; highlight: []; html-script: false">.twitter {
+  display: block;
+  width: 64px;
+  height: 64px;
+  float: left;
+  background-image: url(&quot;path&quot;);
+  text-indent: -9999px;
+}
+
+.facebook {
+  display: block;
+  width: 64px;
+  height: 64px;
+  float: left;
+  background-image: url(&quot;path&quot;);
+  text-indent: -9999px;
+}
+
+.github {
+  display: block;
+  width: 64px;
+  height: 64px;
+  float: left;
+  background-image: url(&quot;path&quot;);
+  text-indent: -9999px;
+}
+</pre>
+
+a要素の文字はindentに-9999pxを指定することで無理やり避難。
+
+同じ物を３つ書いちゃって、普通にスマートでないので整理したら動いたのでこうした。
+
+**[index.html]**
+
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">
+&lt;div id=&quot;sns&quot;&gt;
+  &lt;a href=&quot;https://twitter.com/sota1235&quot; class=&quot;twitter&quot;&gt;Twitter&lt;/a&gt;
+  &lt;a href=&quot;http://facebook.com/sota.sugiura&quot; class=&quot;facebook&quot;&gt;Facebook&lt;/a&gt;
+  &lt;a href=&quot;https://github.com/sota1235&quot; class=&quot;github&quot;&gt;GitHub&lt;/a&gt;
+&lt;/div&gt;
+
+</pre>
+
+
+[style.css]
+
+<pre class="brush: css; gutter: true; first-line: 1; highlight: []; html-script: false">#sns a{
+  display: block;
+  width: 64px;
+  height: 64px;
+  float: left;
+  text-indent: -9999px;
+}
+
+.twitter {
+  background-image: url(&quot;path&quot;);
+}
+
+.facebook {
+  background-image: url(&quot;path&quot;);
+}
+
+.github {
+  background-image: url(&quot;path&quot;);
+}
+</pre>
+
+
+圧倒的にすっきり。
+
+今日はとりまここまで。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

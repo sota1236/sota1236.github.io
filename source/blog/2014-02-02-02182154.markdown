@@ -1,0 +1,95 @@
+---
+layout: post
+title: ! '* mailias (1/28)'
+published: true
+date: 2014-02-02 18:21
+comments: true
+categories:
+- February Hackathon
+- Python
+tags: []
+keywords:
+- February Hackathon
+- Python
+---
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">alias hoge=&quot;ssh hoge@hoge.com&quot;
+alias t11460ss=&quot;ssh gonyogonyo@gonyogonyo.com&quot;
+alias sota1235=&quot;cd ~/Documents/sota1235&quot;
+alias score=&quot;cd ~/Desktop/KOE/Scores&quot;
+</pre>
+
+こんな感じで普段よく作業するフォルダとか、リモートログインとかをaliasで登録するのですが
+
+毎回、`.zshrc`をいじくり回すのがめんどいのでpythonでスパッとできるようにしたい。
+
+ってことでやってみる。
+
+**とりあえず**
+
+以下の感じで実行できるように考えてみる。
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">% python mailias.py [path] [alias name]</pre>
+
+いい加減ファイル操作は慣れてきた。
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># encoding:utf-8
+# Copytright sota1235
+# Date 2014/02/02
+
+import sys
+
+# .zshrcに追加するalias
+argvs = sys.argv
+insert = &quot;alias &quot;+argvs[2]+&quot;=\&quot;cd &quot;+argvs[1]+&quot;\&quot;&quot;
+
+# 書き込み
+f = open(&#039;~/.zshrc&#039;,&#039;a+&#039;)
+f.write(insert)
+f.close()</pre>
+
+引数から`~/.zshrc`に書き込むためのテキストをinsertに入れて、あとはwrite()するだけ。
+
+**実行してみる**
+
+<pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+% python mailias.py ~/Documents/sota1235/FebruaryHackathon febhack
+Traceback (most recent call last):
+  File &quot;mailias.py&quot;, line 12, in &lt;module&gt;
+    f = open(&#039;~/.zshrc&#039;,&#039;a+&#039;)
+IOError: [Errno 2] No such file or directory: &#039;~/.zshrc&#039;</pre>
+
+あかん、~/.zshrcを認識しない…。
+
+ホームディレクトリを取得できてないのかなと思い調べてたら取得する方法があったのでやってみた。
+
+Thanks -> [ponkan lab](http://d.hatena.ne.jp/ponkan_z/20080910/1221054657 "ponkan lab")
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># encoding:utf-8
+# Copytright sota1235
+# Date 2014/02/02
+
+import sys
+import os
+
+# .zshrcに追加するalias
+argvs = sys.argv
+insert = &quot;alias &quot;+argvs[2]+&quot;=\&quot;cd &quot;+argvs[1]+&quot;\&quot;&quot;
+home = os.environ[&#039;HOME&#039;]
+
+# 書き込み
+f = open(home+&#039;/.zshrc&#039;,&#039;a+&#039;)
+f.write(insert)
+f.close()</pre>
+
+**実行してみると…**
+
+できた！！
+
+`source ~/.zshrc`したらしっかりaliasが貼られていました。
+
+終わり。
+
+参照：[mailias](https://github.com/sota1235/mailias "mailias")
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

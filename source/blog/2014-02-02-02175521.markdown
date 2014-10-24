@@ -1,0 +1,32 @@
+---
+layout: post
+title: ! '* February Hackathon'
+published: true
+date: 2014-02-02 17:55
+comments: true
+categories:
+- February Hackathon
+tags: []
+keywords:
+- February Hackathon
+---
+就活中です。
+
+某はしゅから
+
+**「２月中、一日一実装しようぜー」**
+
+と言われ、いい機会かなと思いやることにしました。
+
+とはいえ2/2なのですでに１日すっぽかした形となってしまいましたが…
+
+けどまぁ今日２つ作って辻褄合わせればいいんだろ！！！ってことでやります。今日から。
+
+なんとなく名前あった方がテンションあがるのでFebruary Hackathonと題してやります。
+
+計28個、ゴミを量産するので適当に見守っててください。
+
+# カテゴリもFebruary Hackathonを追加しました。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

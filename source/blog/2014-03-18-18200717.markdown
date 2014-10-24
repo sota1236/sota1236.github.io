@@ -1,0 +1,44 @@
+---
+layout: post
+title: ! '* Python楽しい'
+published: true
+date: 2014-03-18 20:07
+comments: true
+categories:
+- AOJ
+tags: []
+keywords:
+- AOJ
+---
+一週間前くらいからAOJを始めました。
+
+[AIZU ONLINE JUDGE](http://judge.u-aizu.ac.jp/onlinejudge/index.jsp "AIZU ONLINE JUDGE")
+
+競技プログラミングのサイトで問題があってそれを解くと難易度に応じてポイントがもらえるーって感じなのですが、
+
+他のサイトと比べて
+
+
+- 日本語の問題が多い(序盤のみ)</p>
+- <p>序盤の難易度が優しい</p>
+
+
+<p>ってとこからとりあえず暇な時にカリカリ解いてます。
+
+まだ序盤の消化試合なのでさくさく解けてる。
+
+最初、`C`、`C++`、`C#`、`Java`縛りなのかと思ったらだいたいの言語使えたのでPythonを使ってます。<del datetime="2014-03-18T11:00:05+00:00">楽だから</del>
+
+例えば「与えられた数字ｎの各桁の和を求めよ」って問題だと
+
+<pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">while True:
+  n = int(raw_input())
+  if n == 0: break
+  print sum(map(int, list(str(n))))</pre>
+
+これで終わり。同じ問題をC言語の授業で出されてめんどくせえええええええってなってたけどPythonたんだと楽ちん。
+
+レートもやっと０を脱出したのでひとまず500くらいを目指してコツコツ解くかね。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

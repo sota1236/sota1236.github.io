@@ -1,0 +1,72 @@
+---
+layout: post
+title: ! '* MySQLを導入'
+published: true
+date: 2013-11-26 18:50
+comments: true
+categories:
+- サーバ設定
+tags: []
+keywords:
+- サーバ設定
+---
+以下を参考にしました
+
+[さくらのvps-を使いはじめる-5](http://akabeko.me/blog/2010/09/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEvps-%E3%82%92%E4%BD%BF%E3%81%84%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B-5-%E2%80%93-mysql-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8/#vps05_lang_ja "さくらのvps-を使いはじめる-5")
+
+- CentOS日本語化
+
+しようと思ったのですが...
+
+うまく反映されない。
+
+/etc/sysconfig/i18n
+
+[html]
+
+LANG=&quot;ja_JP.UTF-8&quot;
+
+[/html]
+
+これで日本語になるらしいがならぬ。
+
+誰か教えてください...
+
+&lt;追記&gt;
+
+rootの.zshrcをいじっていたらなぜか日本語化できました。
+
+謎…
+
+- MySQL導入
+
+[html]
+
+sudo yum -y install mysql-server
+/etc/my.conf
+
+[/html]
+
+~追記~
+
+[html]
+
+\# character-set
+default-character-set=utf8
+skip-character-set-client-handshake
+
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqldump]
+default-character-set=utf8
+
+[/html]
+
+こんな感じでできた。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

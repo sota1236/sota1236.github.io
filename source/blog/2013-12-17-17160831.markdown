@@ -1,0 +1,104 @@
+---
+layout: post
+title: ! '* 404ページをカスタマイズする'
+published: true
+date: 2013-12-17 16:08
+comments: true
+categories:
+- サーバ設定
+tags: []
+keywords:
+- サーバ設定
+---
+どうも、久しぶりの投稿です。
+
+VPSのリダイレクト設定等を全くしてなかったので、無効なURLにアクセスするとこんなページが表示されます。
+
+<a href="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.09.34.png"><img class="alignnone size-full wp-image-49" alt="404 Not Found" src="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.09.34.png" width="782" height="471" border="3px" /></a>
+
+ApacheのデフォルトのNot Foundですね。
+
+ださい。
+
+ということでカスタマイズしたいー。
+
+で、ググって出てきたページを参考にして設定してみた。
+
+[はじめての自宅サーバ構築 - Federa/CentOS -](http://kajuhome.com/apache_err_custom.shtml "はじめての自宅サーバ構築 - Federa/CentOS -")
+
+１．errorページの参照先を変更する
+
+/etc/httpd/conf/httpd.confを編集
+<pre class="brush: shell; gutter: true">&lt;IfModule mod_negotiation.c&gt;
+&lt;IfModule mod_include.c&gt;
+    &lt;Directory &quot;/var/www/error&quot;&gt;
+        AllowOverride None
+        Options IncludesNoExec
+        AddOutputFilter Includes html
+        AddHandler type-map var
+        Order allow,deny
+        Allow from all
+        LanguagePriority en es de fr
+        ForceLanguagePriority Prefer Fallback
+    &lt;/Directory&gt;
+
+#    ErrorDocument 400 /error/HTTP_BAD_REQUEST.html.var
+#    ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var
+#    ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var
+#    ErrorDocument 404 /error/HTTP_NOT_FOUND.html.var
+#    ErrorDocument 405 /error/HTTP_METHOD_NOT_ALLOWED.html.var
+#    ErrorDocument 408 /error/HTTP_REQUEST_TIME_OUT.html.var
+#    ErrorDocument 410 /error/HTTP_GONE.html.var
+#    ErrorDocument 411 /error/HTTP_LENGTH_REQUIRED.html.var
+#    ErrorDocument 412 /error/HTTP_PRECONDITION_FAILED.html.var
+#    ErrorDocument 413 /error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
+#    ErrorDocument 414 /error/HTTP_REQUEST_URI_TOO_LARGE.html.var
+#    ErrorDocument 415 /error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
+#    ErrorDocument 500 /error/HTTP_INTERNAL_SERVER_ERROR.html.var
+#    ErrorDocument 501 /error/HTTP_NOT_IMPLEMENTED.html.var
+#    ErrorDocument 502 /error/HTTP_BAD_GATEWAY.html.var
+#    ErrorDocument 503 /error/HTTP_SERVICE_UNAVAILABLE.html.var
+#    ErrorDocument 506 /error/HTTP_VARIANT_ALSO_VARIES.html.var</pre>
+
+後ろに、以下の一行を追加
+
+<pre>ErrorDocument 404 /error/404.html</pre>
+
+これで完了。
+
+２．/var/www/error/404.htmlを作成
+
+簡単なHTMLを配置。
+
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">
+
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+     &lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=EUC-JP&quot;&gt;
+     &lt;META http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;
+     &lt;TITLE&gt;Not found sota1235&lt;/TITLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;CENTER&gt;&lt;H3&gt;指定されたページが見つかりませんでした。&lt;/H3&gt;
+       &lt;H4&gt;Error Code 404(HTTP_NOT_FOUND)&lt;/H4&gt;
+       &lt;p&gt;リンク切れ、もしくは無効なURLです&lt;/p&gt;&lt;/ br&gt;
+       &lt;a href=&quot;sota1235.com&quot;&gt;sota1235.com&lt;/a&gt;
+    &lt;/CENTER&gt;
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+
+</pre>
+
+３．完了！
+
+sota1235.com/hogeにアクセスしてみると…
+
+<a href="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.29.04.png"><img src="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.29.04.png" alt="スクリーンショット 2013-12-13 18.29.04" width="420" height="270" class="alignnone size-full wp-image-52" border="2px" /></a>
+
+できた！
+
+こんな感じでした。
+
+---
+※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。
