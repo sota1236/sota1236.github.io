@@ -10,203 +10,203 @@ tags: []
 keywords:
 - CTF
 ---
-<p>解けたの嬉しかったし初めてWrite-Upとやらを書いてみる。</p>
+解けたの嬉しかったし初めてWrite-Upとやらを書いてみる。
 
-<p>ガチ勢には相当ゆるい内容らしいけどまぁいいよね。</p>
+ガチ勢には相当ゆるい内容らしいけどまぁいいよね。
 
-<p>[XSS Game](https://xss-game.appspot.com/ "XSS Game")</p>
+[XSS Game](https://xss-game.appspot.com/ "XSS Game")
 
-<p>以下ネタバレ注意</p>
+以下ネタバレ注意
 
-<p>問題の流れとしては</p>
-
-
-- <p>全６問</p>
-- <p>iframe内の擬似ブラウザでalert出せればオッケー</p>
-- <p>全部解けたらケーキあげるヨ！</p>
+問題の流れとしては
 
 
-<p>って感じですかね。</p>
+- 全６問
+- iframe内の擬似ブラウザでalert出せればオッケー
+- 全部解けたらケーキあげるヨ！
 
-<p><br /></p>
+
+って感じですかね。
+
+<br />
 
 ## Level 1: Hello, world of XSS
 
-<p>こんな感じのフォームが表示される</p>
+こんな感じのフォームが表示される
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png" alt="Level1-1" width="703" height="365" class="alignnone size-full wp-image-280" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png" alt="Level1-1" width="703" height="365" class="alignnone size-full wp-image-280" /></a>
 
-<p>試しに"a"ってうつとこんな感じ</p>
+試しに"a"ってうつとこんな感じ
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png" alt="Level1-2" width="702" height="364" class="alignnone size-full wp-image-282" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png" alt="Level1-2" width="702" height="364" class="alignnone size-full wp-image-282" /></a>
 
-<p>タグで囲まれて入力内容が出力されてますね。</p>
+タグで囲まれて入力内容が出力されてますね。
 
-<p>とりあえず&lt;script&gt;タグを入れてみる。</p>
+とりあえず&lt;script&gt;タグを入れてみる。
 
 <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;script&gt;alert(1);&lt;/script&gt;</pre>
 
-<p>そしたらalert出た。楽しい₍₍ ◝( ´ω´ )◟ ⁾⁾</p>
+そしたらalert出た。楽しい₍₍ ◝( ´ω´ )◟ ⁾⁾
 
-<p><br /></p>
+<br />
 
 ## Level 2: Persistence is key
 
-<p>こんな感じの画面</p>
+こんな感じの画面
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.08.28.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.08.28.png" alt="スクリーンショット 2014-07-26 18.08.28" width="703" height="366" class="alignnone size-full wp-image-286" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.08.28.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.08.28.png" alt="スクリーンショット 2014-07-26 18.08.28" width="703" height="366" class="alignnone size-full wp-image-286" /></a>
 
-<p>簡単な掲示板で、下のテキストボックスに内容をいれると追加されていく。</p>
+簡単な掲示板で、下のテキストボックスに内容をいれると追加されていく。
 
-<p>お約束的な流れでスクリプトタグの挿入を試みる。こんな感じに。</p>
+お約束的な流れでスクリプトタグの挿入を試みる。こんな感じに。
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.10.48.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.10.48.png" alt="スクリーンショット 2014-07-26 18.10.48" width="593" height="213" class="alignnone size-full wp-image-287" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.10.48.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.10.48.png" alt="スクリーンショット 2014-07-26 18.10.48" width="593" height="213" class="alignnone size-full wp-image-287" /></a>
 
-<p>&lt;script&gt;タグ挿入はできたのだけどスクリプトが実行されない…</p>
+&lt;script&gt;タグ挿入はできたのだけどスクリプトが実行されない…
 
-<p>いろいろggったりしてみても分からんかったので友達のxss芸人に聞いたら「よくわからないけど動かない」らしいので別の方法を考える。</p>
+いろいろggったりしてみても分からんかったので友達のxss芸人に聞いたら「よくわからないけど動かない」らしいので別の方法を考える。
 
-<p>">"とか"&lt;"とか全然エスケープされてないので僕の知る数少ない定石を打ち込んだら成功。</p>
+">"とか"&lt;"とか全然エスケープされてないので僕の知る数少ない定石を打ち込んだら成功。
 
-<p><pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;img src=&quot;x&quot; onerror=&quot;alert(&#039;xss&#039;)&quot;&gt;</pre></p>
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;img src=&quot;x&quot; onerror=&quot;alert(&#039;xss&#039;)&quot;&gt;</pre>
 
-<p><br /></p>
+<br />
 
 ## Level 3: That sinking Feeling...
 
-<p>画面はこんな感じ。</p>
+画面はこんな感じ。
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png" alt="スクリーンショット 2014-07-26 18.20.35" width="702" height="363" class="alignnone size-full wp-image-292" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png" alt="スクリーンショット 2014-07-26 18.20.35" width="702" height="363" class="alignnone size-full wp-image-292" /></a>
 
-<p>"Image2"とかを選ぶとhashの値が"2"になって、画像も切り替わるみたいな感じ。</p>
+"Image2"とかを選ぶとhashの値が"2"になって、画像も切り替わるみたいな感じ。
 
-<p>コードを見てみるとlocation.hashの値をsubstr(1)してhtml内に出力している。</p>
+コードを見てみるとlocation.hashの値をsubstr(1)してhtml内に出力している。
 
-<p>出力部分だけ見るとこんな感じ。</p>
+出力部分だけ見るとこんな感じ。
 
-<p><pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">
+<pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">
         var html = &quot;Image &quot; + parseInt(num) + &quot;&lt;br&gt;&quot;;
         html += &quot;&lt;img src=&#039;/static/level3/cloud&quot; + num + &quot;.jpg&#039; /&gt;&quot;;
         $(&#039;#tabContent&#039;).html(html);
-</pre></p>
+</pre>
 
-<p>てなわけで以下のテキストを突っ込んでタグ破壊。</p>
+てなわけで以下のテキストを突っ込んでタグ破壊。
 
-<p><pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">&#039;&gt;&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt;</pre></p>
+<pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">&#039;&gt;&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt;</pre>
 
-<p><br /></p>
+<br />
 
 ## Level 4: Context matters
 
-<p>画面はこんな感じ。</p>
+画面はこんな感じ。
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.28.42.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.28.42.png" alt="スクリーンショット 2014-07-27 0.28.42" width="702" height="366" class="alignnone size-full wp-image-296" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.28.42.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.28.42.png" alt="スクリーンショット 2014-07-27 0.28.42" width="702" height="366" class="alignnone size-full wp-image-296" /></a>
 
-<p>テキストボックスに数字を入れるとその数だけカウントしてくれるWebアプリ。</p>
+テキストボックスに数字を入れるとその数だけカウントしてくれるWebアプリ。
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.31.02.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.31.02.png" alt="スクリーンショット 2014-07-27 0.31.02" width="700" height="365" class="alignnone size-full wp-image-297" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.31.02.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.31.02.png" alt="スクリーンショット 2014-07-27 0.31.02" width="700" height="365" class="alignnone size-full wp-image-297" /></a>
 
-<p>てなわけでどこにどう出力してるか確認。</p>
+てなわけでどこにどう出力してるか確認。
 
-<p>コードを見てみるとGETリクエストで受け取った"timer"の値をtimer.html内の{{timer}}に出力している。</p>
+コードを見てみるとGETリクエストで受け取った"timer"の値をtimer.html内の{{timer}}に出力している。
 
-<p>timer.html
+timer.html
 <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">    &lt;img src=&quot;/static/loading.gif&quot; onload=&quot;startTimer(&#039;{{ timer }}&#039;);&quot; /&gt;
     &lt;br&gt;
-    &lt;div id=&quot;message&quot;&gt;Your timer will execute in {{ timer }} seconds.&lt;/div&gt;</pre></p>
+    &lt;div id=&quot;message&quot;&gt;Your timer will execute in {{ timer }} seconds.&lt;/div&gt;</pre>
 
-<p>しかしながら"X-XSS-Protection"ヘッダがついてるため、この場合divタグ内にscriptタグを挿入することはできない。</p>
+しかしながら"X-XSS-Protection"ヘッダがついてるため、この場合divタグ内にscriptタグを挿入することはできない。
 
-<p>のでstartTimer()関数内に着目し、以下をぶっこんで終わり。</p>
+のでstartTimer()関数内に着目し、以下をぶっこんで終わり。
 
-<p><pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">&#039;);alert(&quot;xss&quot;);(&#039;</pre></p>
+<pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">&#039;);alert(&quot;xss&quot;);(&#039;</pre>
 
-<p><br /></p>
+<br />
 
 ## Level 5: Breaking protocol
 
-<p>プロトコルを破壊せよ。</p>
+プロトコルを破壊せよ。
 
-<p>どういうことでしょう。</p>
+どういうことでしょう。
 
-<p>画面はこんな感じ！</p>
+画面はこんな感じ！
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-12.51.39.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-12.51.39.png" alt="スクリーンショット 2014-07-27 12.51.39" width="702" height="365" class="alignnone size-full wp-image-299" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-12.51.39.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-12.51.39.png" alt="スクリーンショット 2014-07-27 12.51.39" width="702" height="365" class="alignnone size-full wp-image-299" /></a>
 
-<p>Sign upをクリックするとメアド入力を求められ、入力するとconfirm画面になり、最初のページにリダイレクトされる。</p>
+Sign upをクリックするとメアド入力を求められ、入力するとconfirm画面になり、最初のページにリダイレクトされる。
 
-<p>今回もLevel4と同じくJSでの出力でなく、サーバ側での出力に着目する。</p>
+今回もLevel4と同じくJSでの出力でなく、サーバ側での出力に着目する。
 
-<p>するとsignup.htmlにこんなところがある。</p>
+するとsignup.htmlにこんなところがある。
 
-<p><pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;a href=&quot;{{ next }}&quot;&gt;Next &gt;&gt;&lt;/a&gt;</pre></p>
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;a href=&quot;{{ next }}&quot;&gt;Next &gt;&gt;&lt;/a&gt;</pre>
 
-<p>ので、覚えたてのJavascriptスキームを使って終了！</p>
+ので、覚えたてのJavascriptスキームを使って終了！
 
-<p><pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">https://xss-game.appspot.com/level5/frame/signup?next=javascript:alert(&quot;xss&quot;);</pre></p>
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">https://xss-game.appspot.com/level5/frame/signup?next=javascript:alert(&quot;xss&quot;);</pre>
 
-<p><br /></p>
+<br />
 
 ## Level6: Follow the
 
-<p>こんな感じの画面。</p>
+こんな感じの画面。
 
-<p>仕様としては、location.hashからJavascriptをロードしてscriptタグ内に出力って感じ。</p>
+仕様としては、location.hashからJavascriptをロードしてscriptタグ内に出力って感じ。
 
-<p>なので外部からalertの含まれた.jsファイルを読みこませれば勝ち。</p>
+なので外部からalertの含まれた.jsファイルを読みこませれば勝ち。
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.42.41.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.42.41.png" alt="スクリーンショット 2014-07-27 13.42.41" width="702" height="365" class="alignnone size-full wp-image-300" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.42.41.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.42.41.png" alt="スクリーンショット 2014-07-27 13.42.41" width="702" height="365" class="alignnone size-full wp-image-300" /></a>
 
-<p>しかしながらhashの値は正規表現を通してるのでhttp://hogeとかhttps://hogeは通らない。</p>
+しかしながらhashの値は正規表現を通してるのでhttp://hogeとかhttps://hogeは通らない。
 
-<p><pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">      if (url.match(/^https?:\/\//)) {
+<pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">      if (url.match(/^https?:\/\//)) {
         setInnerText(document.getElementById(&quot;log&quot;),
           &quot;Sorry, cannot load a URL containing \&quot;http\&quot;.&quot;);
         return;
       }
-</pre></p>
+</pre>
 
-<p>けど小文字大文字チェックはしてないのでHttp://***とすることで正規表現は回避。</p>
+けど小文字大文字チェックはしてないのでHttp://***とすることで正規表現は回避。
 
-<p>とりあえず試しに自分のサーバに.jsファイルを置いて</p>
+とりあえず試しに自分のサーバに.jsファイルを置いて
 
-<p><pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">#Http://sota1235.net/alert.js</pre></p>
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">#Http://sota1235.net/alert.js</pre>
 
-<p>とやってみる。</p>
+とやってみる。
 
-<p>するとエラー。どうやら何かしらの制限がかかってて外部のリソースを読み込めない(？)らしい。</p>
+するとエラー。どうやら何かしらの制限がかかってて外部のリソースを読み込めない(？)らしい。
 
-<p>どうしたものかーと考えたところでdata URI スキームの存在を思い出す。</p>
+どうしたものかーと考えたところでdata URI スキームの存在を思い出す。
 
-<p>ので、alert("xss");をbase64エンコード。</p>
+ので、alert("xss");をbase64エンコード。
 
-<p><pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:text/javascript;base64,YWxlcnQoInhzcyIpOw==</pre></p>
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:text/javascript;base64,YWxlcnQoInhzcyIpOw==</pre>
 
-<p>でもわざわざエンコードしなくてよいことに気づいたのでこれで解決</p>
+でもわざわざエンコードしなくてよいことに気づいたのでこれで解決
 
-<p><pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:,alert(&quot;xss&quot;);</pre></p>
+<pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:,alert(&quot;xss&quot;);</pre>
 
-<p><br /></p>
+<br />
 
 ## Cake!!
 
-<p>ケーキはアスキーアートのケーキでしたとさ。</p>
+ケーキはアスキーアートのケーキでしたとさ。
 
-<p>しかしなんか型崩れしててりんごにしか見えない。</p>
+しかしなんか型崩れしててりんごにしか見えない。
 
-<p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.47.43.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.47.43.png" alt="スクリーンショット 2014-07-27 13.47.43" width="1424" height="860" class="alignnone size-full wp-image-301" /></a></p>
+<a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.47.43.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.47.43.png" alt="スクリーンショット 2014-07-27 13.47.43" width="1424" height="860" class="alignnone size-full wp-image-301" /></a>
 
-<p><br /></p>
+<br />
 
 ## 感想
 
-<p>初心者なりに楽しみました。</p>
+初心者なりに楽しみました。
 
-<p>ggったりしながらだけど一応最後まで解けたし満足です。</p>
+ggったりしながらだけど一応最後まで解けたし満足です。
 
-<p>何か間違いとかあったら[@sota1235](https://twitter.com/sota1235 "@sota1235")までお願いします。</p>
+何か間違いとかあったら[@sota1235](https://twitter.com/sota1235 "@sota1235")までお願いします。
 
-<p>(Write-Up適当でごめんなさい)</p>
+(Write-Up適当でごめんなさい)
 
 ---
 ※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

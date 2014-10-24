@@ -10,7 +10,7 @@ tags: []
 keywords:
 - Python
 ---
-<p>おふざけ。</p>
+おふざけ。
 
 <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># -*- coding: utf-8 -*-
 while True:

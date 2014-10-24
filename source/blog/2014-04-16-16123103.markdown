@@ -10,53 +10,53 @@ tags: []
 keywords:
 - サーバ設定
 ---
-<p>先日ゼミでVPSセットアップ講座なるものをやらされ</p>
+先日ゼミでVPSセットアップ講座なるものをやらされ
 
-<p>sshのお話をしていたら先輩に「時代はmosh！！！」と言われたので使ってみた。</p>
+sshのお話をしていたら先輩に「時代はmosh！！！」と言われたので使ってみた。
 
 ### Mobile Shellとは
 
-<p>リモートログインの際、sshに替わってつないでくれる賢いソフト。</p>
+リモートログインの際、sshに替わってつないでくれる賢いソフト。
 
-<p>ネットが切れてもきちんと繋ぎ直してくれたり、IPが変わっても平気だったりとても便利。</p>
+ネットが切れてもきちんと繋ぎ直してくれたり、IPが変わっても平気だったりとても便利。
 
-<p>認証周りは従来通りssh通信で行っており、そのうえ導入も簡単。</p>
+認証周りは従来通りssh通信で行っており、そのうえ導入も簡単。
 
-<p>詳しくはこちらの記事をどうぞ → [mosh: MITからモバイル時代のSSH代替品](http://d.hatena.ne.jp/karasuyamatengu/20120411/1334092521 "mosh: MITからモバイル時代のSSH代替品")</p>
+詳しくはこちらの記事をどうぞ → [mosh: MITからモバイル時代のSSH代替品](http://d.hatena.ne.jp/karasuyamatengu/20120411/1334092521 "mosh: MITからモバイル時代のSSH代替品")
 
-<p>Mobile Shell HP → [http://mosh.mit.edu/](http://mosh.mit.edu/ "http://mosh.mit.edu/")</p>
+Mobile Shell HP → [http://mosh.mit.edu/](http://mosh.mit.edu/ "http://mosh.mit.edu/")
 
 ### ローカルに導入
 
-<p>OS Xの場合はHomebrewで一発。</p>
+OS Xの場合はHomebrewで一発。
 
-<p>`brew install mobile-shell`</p>
+`brew install mobile-shell`
 
-<p>楽ちん。</p>
+楽ちん。
 
 ### サーバに導入
 
-<p>yumで入る。</p>
+yumで入る。
 
-<p>`sudo yum install mosh`</p>
+`sudo yum install mosh`
 
-<p>これで準備は完了！</p>
+これで準備は完了！
 
 ### つなぐ
 
-<p>鍵認証でつなぐ場合、こんな感じ。</p>
+鍵認証でつなぐ場合、こんな感じ。
 
-<p>`mosh --ssh="ssh -i ~/.ssh/id_rsa" user@example.com`</p>
+`mosh --ssh="ssh -i ~/.ssh/id_rsa" user@example.com`
 
-<p>パスワード認証の場合はこんな感じ。</p>
+パスワード認証の場合はこんな感じ。
 
-<p>`mosh user@example.com`</p>
+`mosh user@example.com`
 
-<p>とても楽ちん。</p>
+とても楽ちん。
 
-<p>これでaliasでも貼っておけばいちいちログインし直す必要がなくなる。</p>
+これでaliasでも貼っておけばいちいちログインし直す必要がなくなる。
 
-<p>何か間違いがあれば[@sota1235](https://twitter.com/sota1235 "@sota1235")まで！それでは！</p>
+何か間違いがあれば[@sota1235](https://twitter.com/sota1235 "@sota1235")まで！それでは！
 
 ---
 ※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

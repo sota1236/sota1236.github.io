@@ -10,11 +10,11 @@ tags: []
 keywords:
 - HTML
 ---
-<p>課題で使いたいので探したらあった。</p>
+課題で使いたいので探したらあった。
 
-<p>[Gist: gist:4286673](https://gist.github.com/davidmatas/4286673 "Gist: gist:4286673")</p>
+[Gist: gist:4286673](https://gist.github.com/davidmatas/4286673 "Gist: gist:4286673")
 
-<p>以下のを文章内に追加すればおｋ</p>
+以下のを文章内に追加すればおｋ
 
 <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;!-- Highlight syntax for Mou.app, insert at the bottom of the markdown document  --&gt;
  
@@ -24,7 +24,7 @@ keywords:
   hljs.initHighlightingOnLoad();
 &lt;/script&gt;</pre>
 
-<p>楽しかった。</p>
+楽しかった。
 
 ---
 ※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。

@@ -10,25 +10,25 @@ tags: []
 keywords:
 - node.js
 ---
-<p>最近、node.jsをひいひい言いながら書いてるのだがプログラムの実行過程が知りたくて`console.log`する時、色をつけたかったので調べた。</p>
+最近、node.jsをひいひい言いながら書いてるのだがプログラムの実行過程が知りたくて`console.log`する時、色をつけたかったので調べた。
 
-<p>すると、こんな便利な`npm`があるらしい。</p>
+すると、こんな便利な`npm`があるらしい。
 
-<p>[npm - colors](https://www.npmjs.org/package/colors "npm - colors")</p>
+[npm - colors](https://www.npmjs.org/package/colors "npm - colors")
 
-<p>こう書くと</p>
+こう書くと
 
-<p><img src="http://i.gyazo.com/a596b7f9f2c788243952593c5e8ff00f.png" alt="pic" /></p>
+<img src="http://i.gyazo.com/a596b7f9f2c788243952593c5e8ff00f.png" alt="pic" />
 
-<p>こうなる</p>
+こうなる
 
-<p><img src="http://i.gyazo.com/a92e7010abd5a061e283460127fe9345.png" alt="pic" /></p>
+<img src="http://i.gyazo.com/a92e7010abd5a061e283460127fe9345.png" alt="pic" />
 
-<p>これでエラーの出力とか便利になった。</p>
+これでエラーの出力とか便利になった。
 
-<p>ちなみに以下のサイトさんに教えていただきました。</p>
+ちなみに以下のサイトさんに教えていただきました。
 
-<p>[Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)](http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719 "Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)")</p>
+[Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)](http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719 "Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)")
 
 ---
 ※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。
