@@ -8,4 +8,12 @@
     = feed_tag :atom, "/feed.xml", title: "Atom Feed"
   %body
     #main{:role => "main"}
+      %h2
+        = current_article.title
+      %time
+        = current_article.date.strftime '%b %e %Y'
+      %ul.tags
+        -current_article.data.tags.each do |f|
+          %li
+            = link_to f, "/blog/tags/#{f.downcase}.html"
       = yield
