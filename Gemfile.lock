@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/yterajima/middleman-pure.git
+  revision: 4af32e3a5567a6bb1ce944325b22bb2820e3f61f
+  specs:
+    middleman-pure (0.5.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -33,6 +39,8 @@ GEM
     erubis (2.7.0)
     execjs (2.2.2)
     ffi (1.9.6)
+    font-awesome-middleman (4.2.1)
+      middleman-core (>= 3.0.0)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -133,6 +141,8 @@ PLATFORMS
 DEPENDENCIES
   builder (~> 3.0)
   erb2haml
+  font-awesome-middleman
   middleman (~> 3.3.6)
   middleman-blog (~> 3.5.3)
+  middleman-pure!
   nokogiri

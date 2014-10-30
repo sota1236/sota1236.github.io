@@ -5,6 +5,10 @@ source 'http://rubygems.org'
 gem "middleman", "~> 3.3.6"
 gem "middleman-blog", "~> 3.5.3"
 
+# Pure plugin
+gem "middleman-pure", :github => 'yterajima/middleman-pure'
+gem "font-awesome-middleman"
+
 # For feed.xml.builder
 gem "builder", "~> 3.0"
 
