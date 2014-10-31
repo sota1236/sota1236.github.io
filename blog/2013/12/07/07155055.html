@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * stat関数
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * stat関数
+                </h2>
+                <p class='post-meta'>
+                  Dec  7 2013
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <p>こんばんわ。</p>
+                  
+                  <p>突然ですがこのコードは何でしょう。
+                  &lt;pre class="brush: c; gutter: true"&gt;#include&lt;stdio.h&gt;
+                  #include&lt;stdlib.h&gt;
+                  #include&lt;time.h&gt;
+                  #include&lt;dirent.h&gt;
+                  #include&lt;sys/types.h&gt;
+                  #include&lt;sys/stat.h&gt;
+                  #include&lt;string.h&gt;
+                  /* Created by sota1235
+                   * Date : 2013/12/6
+                   * for SystemProgramming homework */</p>
+                  
+                  <p>// 関数宣言
+                  void ls_r(char *directory,int tab_num);
+                  void tab_writer(int num);</p>
+                  
+                  <p>int main(int argc,char *argv[]){</p>
+                  
+                  <p>// 引数が無い時もしくは多すぎるときのエラー処理
+                    if(argc != 2){
+                      fprintf(stderr, "main : 実行引数の数が不当です\n");
+                      exit(EXIT_FAILURE);
+                    }</p>
+                  
+                  <p>fprintf(stdout,"%s\n",argv[1]);
+                    ls_r(argv[1],1);
+                  }</p>
+                  
+                  <p>void ls_r(char *directory,int tab_num){
+                    DIR *dirp = opendir(directory);
+                    struct dirent *dp; // ディレクトリ一覧の構造体
+                    struct stat stat_buf; // ファイル情報の構造体
+                    char *path,r_path[512];</p>
+                  
+                  <p>// statが失敗した場合return
+                    if(stat(directory,&amp;stat_buf)==-1){
+                      //perror("stat");
+                      return;
+                    }</p>
+                  
+                  <p>while((dp = readdir(dirp)) != NULL){
+                      if((stat_buf.st_mode &amp; S_IFMT)==S_IFDIR){
+                        path = dp-&gt;d_name;
+                        if(strncmp(path,".",1)!=0 &amp;&amp; strncmp(path,"..",2)!=0){
+                          tab_writer(tab_num);
+                          fprintf(stdout,"%s\n",path);</p>
+                  
+                  <pre><code>    // rootディレクトリの場合はdirecotry変数をつなげない
+                      if(strncmp(directory,&amp;quot;/&amp;quot;,1)){
+                        sprintf(r_path,&amp;quot;/%s&amp;quot;,path);
+                      } else {
+                        sprintf(r_path,&amp;quot;%s/%s&amp;quot;,directory,path);
+                      }
+                  
+                      ls_r(r_path,tab_num+1);
+                    }
+                  }   }   closedir(dirp); }
+                  </code></pre>
+                  
+                  <p>void tab_writer(int num){
+                    int i;
+                    for(i=0;i&lt;num;i++){
+                      fprintf(stdout,"  ");
+                    }
+                  }&lt;/pre&gt;</p>
+                  
+                  <p>きったないですね。初のブログでのコード公開です。</p>
+                  
+                  <p>このコードは現在とっている授業の明日までの課題です。</p>
+                  
+                  <p>課題の内容としては</p>
+                  
+                  <p>"プログラム実行の際の引数にフォルダを入力すると、その中のフォルダを再帰的に表示するプログラムを作成せよ。"</p>
+                  
+                  <p>つまり、</p>
+                  
+                  <p>[html]
+                  a.out /
+                  [/html]</p>
+                  
+                  <p>と実行すると</p>
+                  
+                  <p>[html]
+                  var
+                    sys
+                    etc
+                      apache
+                      cups
+                  [/html]</p>
+                  
+                  <p>みたいな感じで表示されるプログラムを作れという課題。</p>
+                  
+                  <p>で、何を使ってるのかというとシステムコールのdirent.h周りの関数を使っています。</p>
+                  
+                  <p>ポインタエラーやらopendirのエラーやらに四苦八苦しながら40分ぐらいで書いたのですが、</p>
+                  
+                  <p>どうにもこうにも動かない。</p>
+                  
+                  <p>というのもファイルがフォルダであるかファイルであるかを判定するstat関数がどうもうまく動いていない。</p>
+                  
+                  <p>ディレクトリか否かの判定は</p>
+                  
+                  <ul>
+                    <li>
+                      <p>S_IFDIR　-&gt;　(stat_buf.st_mode &amp; S_IFMT)==S_IFDIR</p>
+                    </li>
+                    <li>
+                      <p>S_ISDIR　-&gt;　S_ISDIR(stat_buf.st_mode)</p>
+                    </li>
+                  </ul>
+                  
+                  <p>でbooleanが返ってくる。</p>
+                  
+                  <p>前者はマクロであり、後者は内蔵のメソッド(?)である。(と僕が認識してるだけなので間違ってたらコメントおなしゃす。)</p>
+                  
+                  <p>しかし両方の方法で試してもファイルをフォルダと認識するため、プログラムがエラーで止まってしまう。。。</p>
+                  
+                  <p>そこでこちらを参考にしてフォルダチェックを関数化。</p>
+                  
+                  <p><a title="にたまごほうれんそう" href="http://d.hatena.ne.jp/emergent/20080412/1208024023">にたまごほうれんそう</a>
+                  &lt;pre class="brush: c; gutter: true"&gt;void check_stat(struct stat *st){
+                      mode_t m = st-&gt;st_mode;
+                      if (S_ISDIR(m))  { 
+                      return 1; 
+                      } else {
+                      return 0;
+                      }
+                  }&lt;/pre&gt;</p>
+                  
+                  <p>もしフォルダだったら1を、それ以外なら0を返すだけの関数。</p>
+                  
+                  <p>実行すると…</p>
+                  
+                  <p>[html]
+                  mach_kernel
+                  [1] 64998 segmentation fault ./a.out /
+                  [/html]</p>
+                  
+                  <p>なんだよmach_kernel…</p>
+                  
+                  <p>他のファイルはしっかり判別してるのにmach_kernelだけなぜかファイルなのにフォルダと認識される。</p>
+                  
+                  <p>とりあえず無理やりmach_kernelをif文の中から追い出して動かしてみる。</p>
+                  
+                  <p>以下を書き換え
+                  &lt;pre class="brush: c; gutter: true"&gt;while((dp = readdir(dirp)) != NULL){
+                      if(check_stat(&amp;amp;stat_buf)){
+                        path = dp-&amp;gt;d_name;
+                        if(strncmp(path,".",1)!=0 &amp;amp;&amp;amp; strncmp(path,"..",2)!=0 &amp;&amp; strncmp(path,"mach_kernel",11)){
+                          tab_writer(tab_num);
+                          fprintf(stdout,"%s\n",path);</p>
+                  
+                  <pre><code>    // rootディレクトリの場合はdirecotry変数をつなげない
+                      if(!strncmp(directory,&amp;quot;/&amp;quot;,1)){
+                        sprintf(r_path,&amp;quot;/%s&amp;quot;,path);
+                      } else {
+                        sprintf(r_path,&amp;quot;%s/%s&amp;quot;,directory,path);
+                      }
+                      ls_r(r_path,tab_num+1);
+                    }
+                  }   }&lt;/pre&gt; 実行すると。。。
+                  </code></pre>
+                  
+                  <p>動いた！！</p>
+                  
+                  <p>しかしなぜかフォルダにもぐっていくのが一定のところで止まる。</p>
+                  
+                  <p>しかもファイルが結局表示されてる。</p>
+                  
+                  <p>ぐああーーー、原因わからず！！！！</p>
+                  
+                  <p>わかったらまた日記書きます。</p>
+                  
+                  <p>もしggってこのページ見つけた人いたらごめんなさい。</p>
+                  
+                  <p>まだまだですね。。。</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

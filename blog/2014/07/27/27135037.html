@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * XSS Game Write-Up
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * XSS Game Write-Up
+                </h2>
+                <p class='post-meta'>
+                  Jul 27 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <p>解けたの嬉しかったし初めてWrite-Upとやらを書いてみる。</p>
+                  
+                  <p>ガチ勢には相当ゆるい内容らしいけどまぁいいよね。</p>
+                  
+                  <p><a title="XSS Game" href="https://xss-game.appspot.com/">XSS Game</a></p>
+                  
+                  <p>以下ネタバレ注意</p>
+                  
+                  <p>問題の流れとしては</p>
+                  
+                  <ul>
+                    <li>全６問</li>
+                    <li>iframe内の擬似ブラウザでalert出せればオッケー</li>
+                    <li>全部解けたらケーキあげるヨ！</li>
+                  </ul>
+                  
+                  <p>って感じですかね。</p>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="level-1-hello-world-of-xss">Level 1: Hello, world of XSS</h2>
+                  
+                  <p>こんな感じのフォームが表示される</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png" alt="Level1-1" width="703" height="365" class="alignnone size-full wp-image-280" /></a></p>
+                  
+                  <p>試しに"a"ってうつとこんな感じ</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png" alt="Level1-2" width="702" height="364" class="alignnone size-full wp-image-282" /></a></p>
+                  
+                  <p>タグで囲まれて入力内容が出力されてますね。</p>
+                  
+                  <p>とりあえず&lt;script&gt;タグを入れてみる。</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;script&gt;alert(1);&lt;/script&gt;</pre>
+                  
+                  <p>そしたらalert出た。楽しい₍₍ ◝( ´ω´ )◟ ⁾⁾</p>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="level-2-persistence-is-key">Level 2: Persistence is key</h2>
+                  
+                  <p>こんな感じの画面</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.08.28.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.08.28.png" alt="スクリーンショット 2014-07-26 18.08.28" width="703" height="366" class="alignnone size-full wp-image-286" /></a></p>
+                  
+                  <p>簡単な掲示板で、下のテキストボックスに内容をいれると追加されていく。</p>
+                  
+                  <p>お約束的な流れでスクリプトタグの挿入を試みる。こんな感じに。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.10.48.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.10.48.png" alt="スクリーンショット 2014-07-26 18.10.48" width="593" height="213" class="alignnone size-full wp-image-287" /></a></p>
+                  
+                  <p>&lt;script&gt;タグ挿入はできたのだけどスクリプトが実行されない…</p>
+                  
+                  <p>いろいろggったりしてみても分からんかったので友達のxss芸人に聞いたら「よくわからないけど動かない」らしいので別の方法を考える。</p>
+                  
+                  <p>"&gt;"とか"&lt;"とか全然エスケープされてないので僕の知る数少ない定石を打ち込んだら成功。</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;img src=&quot;x&quot; onerror=&quot;alert(&#039;xss&#039;)&quot;&gt;</pre>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="level-3-that-sinking-feeling">Level 3: That sinking Feeling…</h2>
+                  
+                  <p>画面はこんな感じ。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png" alt="スクリーンショット 2014-07-26 18.20.35" width="702" height="363" class="alignnone size-full wp-image-292" /></a></p>
+                  
+                  <p>"Image2"とかを選ぶとhashの値が"2"になって、画像も切り替わるみたいな感じ。</p>
+                  
+                  <p>コードを見てみるとlocation.hashの値をsubstr(1)してhtml内に出力している。</p>
+                  
+                  <p>出力部分だけ見るとこんな感じ。</p>
+                  
+                  <pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">
+                          var html = &quot;Image &quot; + parseInt(num) + &quot;&lt;br&gt;&quot;;
+                          html += &quot;&lt;img src=&#039;/static/level3/cloud&quot; + num + &quot;.jpg&#039; /&gt;&quot;;
+                          $(&#039;#tabContent&#039;).html(html);
+                  </pre>
+                  
+                  <p>てなわけで以下のテキストを突っ込んでタグ破壊。</p>
+                  
+                  <pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">&#039;&gt;&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt;</pre>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="level-4-context-matters">Level 4: Context matters</h2>
+                  
+                  <p>画面はこんな感じ。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.28.42.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.28.42.png" alt="スクリーンショット 2014-07-27 0.28.42" width="702" height="366" class="alignnone size-full wp-image-296" /></a></p>
+                  
+                  <p>テキストボックスに数字を入れるとその数だけカウントしてくれるWebアプリ。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.31.02.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-0.31.02.png" alt="スクリーンショット 2014-07-27 0.31.02" width="700" height="365" class="alignnone size-full wp-image-297" /></a></p>
+                  
+                  <p>てなわけでどこにどう出力してるか確認。</p>
+                  
+                  <p>コードを見てみるとGETリクエストで受け取った"timer"の値をtimer.html内の{{timer}}に出力している。</p>
+                  
+                  <p>timer.html
+                  &lt;pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;    &lt;img src="/static/loading.gif" onload="startTimer('{{ timer }}');" /&gt;
+                      &lt;br&gt;
+                      &lt;div id="message"&gt;Your timer will execute in {{ timer }} seconds.&lt;/div&gt;&lt;/pre&gt;</p>
+                  
+                  <p>しかしながら"X-XSS-Protection"ヘッダがついてるため、この場合divタグ内にscriptタグを挿入することはできない。</p>
+                  
+                  <p>のでstartTimer()関数内に着目し、以下をぶっこんで終わり。</p>
+                  
+                  <pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">&#039;);alert(&quot;xss&quot;);(&#039;</pre>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="level-5-breaking-protocol">Level 5: Breaking protocol</h2>
+                  
+                  <p>プロトコルを破壊せよ。</p>
+                  
+                  <p>どういうことでしょう。</p>
+                  
+                  <p>画面はこんな感じ！</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-12.51.39.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-12.51.39.png" alt="スクリーンショット 2014-07-27 12.51.39" width="702" height="365" class="alignnone size-full wp-image-299" /></a></p>
+                  
+                  <p>Sign upをクリックするとメアド入力を求められ、入力するとconfirm画面になり、最初のページにリダイレクトされる。</p>
+                  
+                  <p>今回もLevel4と同じくJSでの出力でなく、サーバ側での出力に着目する。</p>
+                  
+                  <p>するとsignup.htmlにこんなところがある。</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;a href=&quot;{{ next }}&quot;&gt;Next &gt;&gt;&lt;/a&gt;</pre>
+                  
+                  <p>ので、覚えたてのJavascriptスキームを使って終了！</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">https://xss-game.appspot.com/level5/frame/signup?next=javascript:alert(&quot;xss&quot;);</pre>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="level6-follow-the">Level6: Follow the</h2>
+                  
+                  <p>こんな感じの画面。</p>
+                  
+                  <p>仕様としては、location.hashからJavascriptをロードしてscriptタグ内に出力って感じ。</p>
+                  
+                  <p>なので外部からalertの含まれた.jsファイルを読みこませれば勝ち。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.42.41.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.42.41.png" alt="スクリーンショット 2014-07-27 13.42.41" width="702" height="365" class="alignnone size-full wp-image-300" /></a></p>
+                  
+                  <p>しかしながらhashの値は正規表現を通してるのでhttp://hogeとかhttps://hogeは通らない。</p>
+                  
+                  <pre class="brush: javascript; gutter: true; first-line: 1; highlight: []; html-script: false">      if (url.match(/^https?:\/\//)) {
+                          setInnerText(document.getElementById(&quot;log&quot;),
+                            &quot;Sorry, cannot load a URL containing \&quot;http\&quot;.&quot;);
+                          return;
+                        }
+                  </pre>
+                  
+                  <p>けど小文字大文字チェックはしてないのでHttp://***とすることで正規表現は回避。</p>
+                  
+                  <p>とりあえず試しに自分のサーバに.jsファイルを置いて</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">#Http://sota1235.net/alert.js</pre>
+                  
+                  <p>とやってみる。</p>
+                  
+                  <p>するとエラー。どうやら何かしらの制限がかかってて外部のリソースを読み込めない(？)らしい。</p>
+                  
+                  <p>どうしたものかーと考えたところでdata URI スキームの存在を思い出す。</p>
+                  
+                  <p>ので、alert("xss");をbase64エンコード。</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:text/javascript;base64,YWxlcnQoInhzcyIpOw==</pre>
+                  
+                  <p>でもわざわざエンコードしなくてよいことに気づいたのでこれで解決</p>
+                  
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:,alert(&quot;xss&quot;);</pre>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="cake">Cake!!</h2>
+                  
+                  <p>ケーキはアスキーアートのケーキでしたとさ。</p>
+                  
+                  <p>しかしなんか型崩れしててりんごにしか見えない。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.47.43.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-27-13.47.43.png" alt="スクリーンショット 2014-07-27 13.47.43" width="1424" height="860" class="alignnone size-full wp-image-301" /></a></p>
+                  
+                  <p><br /></p>
+                  
+                  <h2 id="section">感想</h2>
+                  
+                  <p>初心者なりに楽しみました。</p>
+                  
+                  <p>ggったりしながらだけど一応最後まで解けたし満足です。</p>
+                  
+                  <p>何か間違いとかあったら<a title="@sota1235" href="https://twitter.com/sota1235">@sota1235</a>までお願いします。</p>
+                  
+                  <p>(Write-Up適当でごめんなさい)</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

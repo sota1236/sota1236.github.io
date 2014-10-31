@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * 今週のお題：7セグメントコードの反転 @CodeIQ
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * 今週のお題：7セグメントコードの反転 @CodeIQ
+                </h2>
+                <p class='post-meta'>
+                  Mar 10 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <p>最近CodeIQでちょこちょこ問題を解いています。</p>
+                  
+                  <p>その中でこの問題を解いてみた。</p>
+                  
+                  <p><a title="今週のお題：7セグメントコードの反転" href="https://codeiq.jp/ace/thisweek_masuipeo/q755">今週のお題：7セグメントコードの反転</a></p>
+                  
+                  <h2 id="section">7セグメントディスプレイ</h2>
+                  
+                  <p>詳しくはこちら参照→<a title="Wikipedia: 7セグメントディスプレイ" href="http://ja.wikipedia.org/wiki/7%E3%82%BB%E3%82%B0%E3%83%A1%E3%83%B3%E3%83%88%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4">Wikipedia: 7セグメントディスプレイ</a></p>
+                  
+                  <p>７桁の２進数を使って０〜９の数字を表現することができるディスプレイのこと。</p>
+                  
+                  <p>原理はこんな感じ↓(CodeIQ様より引用)</p>
+                  
+                  <p><a href="http://gyazo.com/15fccc48ffe1b681007b7420018867ac.png"></a></p>
+                  
+                  <h2 id="section-1">問題</h2>
+                  
+                  <p>肝心の課題は要約すると</p>
+                  
+                  <p><strong>「7セグメントディスプレイで1,0の切り替え回数を最も少なく0から9を表現するとき、切り替え回数は何回か」</strong></p>
+                  
+                  <p>というもの。</p>
+                  
+                  <p>ここで言う切り替え回数とは、例えば以下の場合は1,3,4,5,7桁目を切り替えればいいので切り替え回数は５回。</p>
+                  
+                  <h3 id="section-2">１→２</h3>
+                  
+                  <p><code>1 → 0110000</code></p>
+                  
+                  <p><code>2 → 1101101</code></p>
+                  
+                  <p>０〜９の数字を並び替えて、切り替え回数が最も少なくなる時の回数を求めよとの問題。</p>
+                  
+                  <h2 id="section-3">解答</h2>
+                  
+                  <p>回答方法に指定はなかったので、Pythonで求めてみた。</p>
+                  
+                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+                  #!/usr/bin/python
+                  # -*- coding: utf-8 -*-
+                  
+                  # 切り替え回数を入れる
+                  tmp_ans = 0
+                  ans = 100
+                  
+                  # セグメントの順番
+                  order = []
+                  ans_order = []
+                  
+                  def check_change(before,after):
+                      res = 0
+                      for (b,a) in zip(before,after):
+                          if b != a:
+                              res += 1
+                      return res
+                  
+                  # n = セグメントの順番
+                  def make_segment(array, order, n):
+                      global ans, tmp_ans, ans_order
+                  
+                      if n == len(array):
+                          tmp_ans += check_change(order[n-2], order[n-1])
+                          if ans &gt; tmp_ans:
+                              ans = tmp_ans
+                              ans_order = order
+                          tmp_ans -= check_change(order[n-2], order[n-1])
+                          return
+                      for i in range(len(array)):
+                          if array[i] not in order:
+                              order.append(array[i])
+                              if len(order) &gt;= 2: tmp_ans += check_change(order[n-1], order[n])
+                              make_segment(array, order, n+1)
+                              if len(order) &gt;= 2: tmp_ans -= check_change(order[n-1], order[n])
+                              order.pop()
+                          else:
+                              continue
+                  # main
+                  array = [&#039;1111110&#039;,&#039;0110000&#039;,&#039;1101101&#039;,&#039;1111001&#039;,&#039;0110011&#039;,&#039;1011011&#039;,&#039;1011111&#039;,&#039;1110000&#039;,&#039;1111111&#039;,&#039;1111011&#039;]
+                  
+                  make_segment(array, order, 0)
+                  print ans
+                  </pre>
+                  
+                  <p>とりあえず０〜９の２進数表示をarrayに格納。</p>
+                  
+                  <p>２つの要素を渡すと切り替え回数を求めるcheck_change関数を作成。</p>
+                  
+                  <p>それでひたすら０〜９の順列を求めて総当り。</p>
+                  
+                  <p>ans変数に暫定トップの答えを格納。</p>
+                  
+                  <p>一応答えは出せたので提出しました。答え合わせ待ち〜</p>
+                  
+                  <p>ただ、言わずもがなですが処理時間が長すぎるのでうまいこと枝切りする必要がありましたね。</p>
+                  
+                  <p>いじってgistにあげようと思います。</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * mailias (1/28)
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * mailias (1/28)
+                </h2>
+                <p class='post-meta'>
+                  Feb  2 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">alias hoge=&quot;ssh hoge@hoge.com&quot;
+                  alias t11460ss=&quot;ssh gonyogonyo@gonyogonyo.com&quot;
+                  alias sota1235=&quot;cd ~/Documents/sota1235&quot;
+                  alias score=&quot;cd ~/Desktop/KOE/Scores&quot;
+                  </pre>
+                  
+                  <p>こんな感じで普段よく作業するフォルダとか、リモートログインとかをaliasで登録するのですが</p>
+                  
+                  <p>毎回、<code>.zshrc</code>をいじくり回すのがめんどいのでpythonでスパッとできるようにしたい。</p>
+                  
+                  <p>ってことでやってみる。</p>
+                  
+                  <p><strong>とりあえず</strong></p>
+                  
+                  <p>以下の感じで実行できるように考えてみる。</p>
+                  
+                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">% python mailias.py [path] [alias name]</pre>
+                  
+                  <p>いい加減ファイル操作は慣れてきた。</p>
+                  
+                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># encoding:utf-8
+                  # Copytright sota1235
+                  # Date 2014/02/02
+                  
+                  import sys
+                  
+                  # .zshrcに追加するalias
+                  argvs = sys.argv
+                  insert = &quot;alias &quot;+argvs[2]+&quot;=\&quot;cd &quot;+argvs[1]+&quot;\&quot;&quot;
+                  
+                  # 書き込み
+                  f = open(&#039;~/.zshrc&#039;,&#039;a+&#039;)
+                  f.write(insert)
+                  f.close()</pre>
+                  
+                  <p>引数から<code>~/.zshrc</code>に書き込むためのテキストをinsertに入れて、あとはwrite()するだけ。</p>
+                  
+                  <p><strong>実行してみる</strong></p>
+                  
+                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+                  % python mailias.py ~/Documents/sota1235/FebruaryHackathon febhack
+                  Traceback (most recent call last):
+                    File &quot;mailias.py&quot;, line 12, in &lt;module&gt;
+                      f = open(&#039;~/.zshrc&#039;,&#039;a+&#039;)
+                  IOError: [Errno 2] No such file or directory: &#039;~/.zshrc&#039;</pre>
+                  
+                  <p>あかん、~/.zshrcを認識しない…。</p>
+                  
+                  <p>ホームディレクトリを取得できてないのかなと思い調べてたら取得する方法があったのでやってみた。</p>
+                  
+                  <p>Thanks -&gt; <a title="ponkan lab" href="http://d.hatena.ne.jp/ponkan_z/20080910/1221054657">ponkan lab</a></p>
+                  
+                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># encoding:utf-8
+                  # Copytright sota1235
+                  # Date 2014/02/02
+                  
+                  import sys
+                  import os
+                  
+                  # .zshrcに追加するalias
+                  argvs = sys.argv
+                  insert = &quot;alias &quot;+argvs[2]+&quot;=\&quot;cd &quot;+argvs[1]+&quot;\&quot;&quot;
+                  home = os.environ[&#039;HOME&#039;]
+                  
+                  # 書き込み
+                  f = open(home+&#039;/.zshrc&#039;,&#039;a+&#039;)
+                  f.write(insert)
+                  f.close()</pre>
+                  
+                  <p><strong>実行してみると…</strong></p>
+                  
+                  <p>できた！！</p>
+                  
+                  <p><code>source ~/.zshrc</code>したらしっかりaliasが貼られていました。</p>
+                  
+                  <p>終わり。</p>
+                  
+                  <p>参照：<a title="mailias" href="https://github.com/sota1235/mailias">mailias</a></p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

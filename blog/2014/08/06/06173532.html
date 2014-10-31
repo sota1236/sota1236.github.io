@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * YoのAPIを触ってみる(その１)
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * YoのAPIを触ってみる(その１)
+                </h2>
+                <p class='post-meta'>
+                  Aug  6 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <h3 id="yo">流行りに乗り遅れたYO</h3>
+                  
+                  <p>ちまたで噂のYoのAPIを触ってみた</p>
+                  
+                  <p>とりあえず</p>
+                  
+                  <ul>
+                    <li>特定のユーザにYoを送る</li>
+                    <li>自身を登録してるユーザ全てにYoを送る</li>
+                    <li>Yoを送ってきた時のログを取る</li>
+                  </ul>
+                  
+                  <p>ところまでやってみた。</p>
+                  
+                  <h3 id="api-key">API Keyを取得する</h3>
+                  
+                  <p>YoのAPIを使いたい場合、API専用のアカウントを作成する必要がある。(2014/08/06現在)</p>
+                  
+                  <p>なので既に作成したアカウントの名前で実装したい場合は一回アカウントを削除しなきゃいけない。</p>
+                  
+                  <p>また、APIアカウントを作るためにYoのアカウントがひとつ、必要となるので注意。</p>
+                  
+                  <p>Signupは以下のページでできる。</p>
+                  
+                  <p><a title="API Sign up" href="http://developer.justyo.co/">API Sign up</a></p>
+                  
+                  <p>登録するとこんな感じの画面が出てくる。</p>
+                  
+                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/08/スクリーンショット-2014-08-06-17.27.38.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/08/スクリーンショット-2014-08-06-17.27.38.png" alt="スクリーンショット 2014-08-06 17.27.38" width="1046" height="495" class="alignnone size-full wp-image-312" /></a></p>
+                  
+                  <p>ここの"見せられないよ！"の部分にAPI Keyが表示される。</p>
+                  
+                  <h3 id="yo-1">Yoを送る</h3>
+                  
+                  <p>Yoの送り方は非常にシンプルで、決められたURLにPOSTリクエストを送るだけである。</p>
+                  
+                  <h4 id="section">全員に送る</h4>
+                  
+                  <p>自分を登録してるユーザ全てにYoを送る</p>
+                  
+                  <pre>`URL: http://api.justyo.co/yoall/
+                  
+                  POST Paramater: api_token={{発行されたAPI Key}}&amp;username={{送りたい相手のユーザ名}}
+                  `</pre>
+                  
+                  <h4 id="section-1">個人に送る</h4>
+                  
+                  <p>個人宛てにYoを送る。</p>
+                  
+                  <pre>`URL: http://api.justyo.co/yoall/
+                  
+                  POST Paramater: api_token={{発行されたAPI Key}}&amp;username={{送りたい相手のユーザ名}}
+                  `</pre>
+                  
+                  <h4 id="yo-2">Yoを受け取る</h4>
+                  
+                  <p>DeveloperページでCallback URLを登録すると、Yoが来るたびにそのURLがリクエストされる。</p>
+                  
+                  <p>その際、GETパラメータでusernameがくっついてくるので、PHPとかなら<code>$_GET["username"]</code>で誰からYoが来たのかが分かる。</p>
+                  
+                  <p>自分でテストするために書いたスクリプトが以下の感じ(必要最低限)。</p>
+                  
+                  <pre class="brush: php; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;?php
+                  
+                  $fp = fopen(&quot;log.txt&quot;, &quot;a&quot;);
+                  
+                  if(isset($_GET[&quot;username&quot;])) {
+                    fwrite($fp, date(&quot;Y/m/d H:i:s&quot;).&quot; &quot;.$_GET[&quot;username&quot;].&quot;\n&quot;);
+                  }
+                  
+                  fclose($fp);
+                  
+                  ?&gt;</pre>
+                  
+                  <p>Yoが送られてきたら、その日付とアカウント名をlog.txtに追記するだけ。</p>
+                  
+                  <p>ここらへんいじくり回せばいろいろと作れそう</p>
+                  
+                  <h3 id="section-2">感想</h3>
+                  
+                  <p>とても簡単。少なくともTwitterより簡単。</p>
+                  
+                  <p>近々、これを作ってページが更新されたらYoが来るようなものを作ろうと思ってる。</p>
+                  
+                  <p>のでまた記事にしようかな〜</p>
+                  
+                  <p>それではこれにて</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

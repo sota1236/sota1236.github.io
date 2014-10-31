@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * URLを変更せずにファイル単位でリダイレクトする
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * URLを変更せずにファイル単位でリダイレクトする
+                </h2>
+                <p class='post-meta'>
+                  May 26 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <p>サークルの後輩にファイルを共有する際、自分のサイトにファイルを置いてURLを教えていたのですが、</p>
+                  
+                  <p>ファイルの置き場所を変えたくなっちゃったので<code>.htaccess</code>を利用してやってみた。</p>
+                  
+                  <p><code>/hoge/</code>をファイル公開ディレクトリとする。(<code>http://sota1235.net/files/*.zip</code>で<code>/hoge/&amp;#42;.zip</code>にアクセスできる。)</p>
+                  
+                  <ul>
+                    <li>元のファイルの置き場所: <code>/hoge/*.zip</code></li>
+                    <li>新しい置き場所: <code>/hoge/fuga/*.zip</code></li>
+                  </ul>
+                  
+                  <p><code>.htaccess</code>ファイルの置き場所はファイル公開ディレクトリでよい。</p>
+                  
+                  <h3 id="section">なにはともあれ書いてみる</h3>
+                  
+                  <p>最初、以下のように記述してみた。</p>
+                  
+                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+                  Redirect /hoge/ http://example.ne.jp/files/fuga/
+                  </pre>
+                  
+                  <p>こうすることで<strong>/hoge/ディレクトリへのアクセスをhttp://example.ne.jp/files/fuga/にリダイレクトする</strong>という意味になる</p>
+                  
+                  <p>そして試しにアクセスすると無限ループした(´・ω・`)</p>
+                  
+                  <p>こんな感じになってるらしい (参考：<a title=" ミケネコ研究所" href="http://mikeneko.creator.club.ne.jp/~lab/web/htaccess/redirect.html"> ミケネコ研究所</a>)</p>
+                  
+                  <p><strong><em>ブラウザの要求： http://example.ne.jp/hoge/</em></strong></p>
+                  
+                  <p>サーバの返答　： http://example.ne.jp/files/fuga/ リダイレクトせよ</p>
+                  
+                  <p>ブラウザの要求： http://example.ne.jp/files/fuga/</p>
+                  
+                  <p>サーバの返答　： http://example.ne.jp/files/fuga/fuga/ リダイレクトせよ</p>
+                  
+                  <p>ブラウザの要求： http://example.ne.jp/files/fuga/fuga/</p>
+                  
+                  <p>サーバの返答　： http://example.ne.jp/files/fuga/fuga/fuga リダイレクトせよ</p>
+                  
+                  <p>ブラウザの要求： http://example.ne.jp/files/fuga/fuga/fuga
+                  &lt;/em&gt;&lt;/strong&gt;</p>
+                  
+                  <p>なるほど。</p>
+                  
+                  <p>正しく(というより自分の場合の解決策)はこういう風に書けばよい。</p>
+                  
+                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+                  Redirect 301 /hoge/*.zip http://example.ne.jp/fuga/*.zip
+                  </pre>
+                  
+                  <p>これで<strong>/hoge/*.zipにマッチするファイルへのアクセスをhttp://example.ne.jp/files/fuga/*.zipにリダイレクトする</strong>という意味になる。</p>
+                  
+                  <p>301は<code>Moved Permanently</code>、ざっくり言うとコンテンツの移動を意味するHTTPステータスコードですね。</p>
+                  
+                  <p>これで後輩に修正URLを布教することなくファイル移動を行えましたとさ〜</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

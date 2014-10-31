@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * ファイル取得@Ruby (2/28)
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='pure-g' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='header'>
+          <h1 class='brand-title'>
+            はらへり日記
+          </h1>
+          <h3 class='brand-tagline'>
+            プログラムに片思い中
+          </h3>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * ファイル取得@Ruby (2/28)
+                </h2>
+                <p class='post-meta'>
+                  Feb  9 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <h2 id="emem"><em><strong>おい、お前１日１実装言うたやないか。</strong></em></h2>
+                  
+                  <p>ごめんて。</p>
+                  
+                  <p>実は火曜日から４日間ほど熱でダウンしておりまして</p>
+                  
+                  <p>今日やっと復活なんです。</p>
+                  
+                  <p>だからおおめに見てちょ。</p>
+                  
+                  <p>(3月になっても終わってなかったらもちろんやるよ)</p>
+                  
+                  <p>簡潔に。Web上のファイルを取得して保存するスクリプトをRubyで書きました。</p>
+                  <blockquote>
+                  <h4>俺「先輩、Rubyって何が向いてるんですか？」
+                  
+                  先輩(ゼミ)「全部だよ全部」</h4></blockquote>
+                  <p>らしいのでまぁなんとなくやりました。Ruby触ったことないですし。</p>
+                  
+                  <p>今回の要件</p>
+                  
+                  <p><strong>・Webページの<code>.png</code>画像を取ってくる</strong></p>
+                  
+                  <p><strong>・<code>.png</code>画像は連番なのでfor文で回す</strong></p>
+                  
+                  <p>ここで厄介なことに今回のターゲットにしたURLが
+                  ### http://hoge-<span style="color: #d60000;">[number]</span>-moge/<span style="color: #d60000;">[number]</span>.png
+                  みたいな感じで全部の画像が同じURLに乗っかっておらず中間の数字も少し変わってたのでそこもループを回す</p>
+                  
+                  <p>と、当然いらない処理多すぎなので以下の条件も追加</p>
+                  
+                  <p><strong>・もう一箇所の数字も回す</strong></p>
+                  
+                  <p><strong>・取得に成功した番号の画像は処理を行わない</strong></p>
+                  
+                  <p>かなりggりながらの作業だったけどまぁ動いたのでよし。</p>
+                  
+                  <pre class="brush: ruby; gutter: true; first-line: 1; highlight: []; html-script: false">
+                  #! /usr/bin/ruby
+                  # Date 2014/02/08
+                  # Created by sota1235
+                   
+                  require &#039;open-uri&#039;
+                   
+                  # 成功したら配列から削除
+                  $array = [*1..1368]
+                   
+                  def save_pic(url)
+                    fName = File.basename(url)
+                    # ファイル保存場所
+                    path = &quot;/hoge/&quot; + fName
+                   
+                    begin
+                      open(path,&#039;wb&#039;) do |output|
+                        open(url) do |data|
+                          output.write(data.read)
+                        end
+                      end
+                      print(fName,&quot; is success.\n&quot;)
+                      $array.delete(fName.delete(&quot;.png&quot;).to_i)
+                      $array.insert fName.delete(&quot;.png&quot;).to_i - 1, &quot;x&quot; # xを突っ込むことでfor文でのポインタずれを回避
+                    rescue
+                      print(fName,&quot; is failed.\n&quot;)
+                      File.unlink path
+                    end
+                  end
+                   
+                  base1 = &quot;http://hoge-&quot;
+                  base2 = &quot;-moge/&quot;
+                  for num1 in 48..57 do
+                    for num2 in $array do
+                      unless num2==&#039;x&#039;
+                        save_pic(base1 + num1.to_s + base2 + num2.to_s + &quot;.png&quot;)
+                      end
+                    end
+                  end
+                  </pre>
+                  
+                  <p><a title="Gist : taker.rb" href="https://gist.github.com/sota1235/8885899">Gist : taker.rb</a></p>
+                  
+                  <p>Rubyのこのendってやつ、個人的に気に入りました。</p>
+                  
+                  <p>Pythonとかで入れ子作りすぎると可読性下がるので。。。</p>
+                  
+                  <p>まぁ入れ子作りすぎんなって話なのですけれでも。</p>
+                  
+                  <p>明日もなんか書くぞ。</p>
+                  
+                  <p>P.S.</p>
+                  
+                  <p>就活の一貫で今月２つほどハッカソンに出かけてきます。</p>
+                  
+                  <p>両方とも何やらAPIを扱うとか抽象的な感じなのですが、情弱なりに頑張ってきます。</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
