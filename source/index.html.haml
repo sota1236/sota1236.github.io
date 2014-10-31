@@ -8,12 +8,21 @@ per_page: 10
   - if prev_page
     %p= link_to 'Previous page', prev_page
 - page_articles.each_with_index do |article, i|
-  %h2
-    = link_to article.title, article
-    %span= article.date.strftime('%b %e %Y')
-  = article.summary
-  %a
-    = link_to "もっと読む", article
+  .posts
+    %section.post
+      %header.post-header
+        %h2.post-title
+          = link_to article.title, article
+        %p.post-meta
+          = article.date.strftime '%b %e %Y'
+          %ul.tags
+            - article.data.tags.each do |f|
+              %li
+                = link_to f, "/blog/tags/#{f.downcase}.html"
+      .post-description
+        = article.summary
+    %a
+      = link_to "もっと読む", article
 - if paginate
   - if next_page
     %p= link_to 'Next page', next_page
