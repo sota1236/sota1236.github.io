@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記 - * 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class='blog blog_2014 blog_2014_08 blog_2014_08_13 blog_2014_08_13_13021030'>
+    <div class='pure-g-r' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='menu-box'>
+          <a class='heading' href='/'>
+            はらへり日記
+          </a>
+          <div class='menu-description'>
+            プログラムに片思い中
+          </div>
+          <nav>
+            <ul class='menu cl-effect-1'>
+              <li class='menu-item'>
+                <a href='/'>
+                  Home
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/about.html'>
+                  About
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/blog.html'>
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div class='posts'>
+          <div id='main' role='main'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  * 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)
+                </h2>
+                <p class='post-meta'>
+                  Aug 13 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>
+                  <p>先日の続きってほどでもないけど、実用的なもん作った。</p>
+                  
+                  <p>私はWebマンガが好きでしょっちゅう読んでいるのだけど週刊誌と違って不定期更新がゆえ、「うわ、一ヶ月前に更新されてたああああああ(:.;゜;Д;゜;.:)」みたいなことがよくある。</p>
+                  
+                  <p>ので私が好きなWebマンガの一つの<code>堀さんと宮村くん</code>が更新されたらYoがくるアカウントを作った</p>
+                  
+                  <h2 id="horimiyarss">HORIMIYARSS</h2>
+                  
+                  <p>もし通知が欲しかったら<code>HORIMIYARSS</code>に一回Yoしてくれれば更新されたときにYoが来ます。</p>
+                  
+                  <p>実装はこんな感じ(Webクロール楽しいいいいいいいいい)</p>
+                  
+                  <pre class="brush: ruby; gutter: true; first-line: 1; highlight: []; html-script: false">
+                  #!/usr/bin/ruby
+                  
+                  require &#039;open-uri&#039;
+                  require &#039;nokogiri&#039;
+                  require &#039;kconv&#039;
+                  require &#039;net/http&#039;
+                  
+                  # 各話の情報をクローリング
+                  url = &quot;http://dka-hero.com/h_01.html&quot;
+                  new = &quot;&quot; # 最新話
+                  
+                  # Yo API
+                  yo_url = &#039;http://api.justyo.co/yoall/&#039;
+                  api_token = &#039;hogehoge&#039;
+                  
+                  while true do
+                    html = open(url).read
+                    doc = Nokogiri::HTML(html.toutf8, nil, &#039;utf-8&#039;)
+                    episodes = doc.xpath(&#039;//a[@target=&quot;contents&quot;]&#039;)
+                    title = episodes[-3].inner_text.to_s
+                    if new == title
+                      puts &quot;最新話の更新はありません&quot;
+                    else
+                      puts &quot;最新話の更新がありました：&quot; + title
+                      Net::HTTP.post_form(URI.parse(yo_url), {&#039;api_token&#039; =&gt; api_token})
+                      new = title
+                    end
+                    sleep 60 * 30
+                  end
+                  
+                  puts &quot;最新話は&quot; + title
+                  </pre>
+                  
+                  <p>これを</p>
+                  
+                  <pre>`nohup ruby yo.rb &amp;
+                  `</pre>
+                  
+                  <p>で、VPSのバックグラウンドプロセスとして回してる。</p>
+                  
+                  <p>おしまい</p>
+                  
+                  <h4 id="ps">P.S.</h4>
+                  
+                  <p>nohupコマンド、友人から聞いて知ったのだけど(情弱でさーせん…)</p>
+                  
+                  <p>これサーバの再起動とかしたらプロセス死ぬよね？</p>
+                  
+                  <p>サーバの再起動と合わせてプロセス復活するようないい方法あったら知りたい〜</p>
+                  
+                  <hr />
+                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
