@@ -6,7 +6,7 @@
     %title
       はらへり日記#{' - ' + current_article.title unless current_article.nil?}
     = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
-    = stylesheet_link_tag "all", "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", "http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css", "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    = stylesheet_link_tag "normalize", "all", "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", "http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css", "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
   %body{:class => page_classes}
     #layout.pure-g-r
       .sidebar.pure-u-1.pure-u-md-1-4
