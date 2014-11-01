@@ -1,0 +1,47 @@
+---
+title:     ABOUT | はらへり日記
+bodyclass: about
+---
+
+.pure-g-r
+  %section.pure-u-1.pure-u-md-1-2
+    %h2.content-subhead About
+    %p Sota Sugiura
+    %p @sota1235
+    %p Masui Lab. / A Capella
+    %ul.social-list
+      %li.social-list-item
+        = link_to "https://github.com/sota1235", :target => "_blank" do
+          %i.icon-github-sign
+            Github
+      %li.social-list-item
+        = link_to "https://twitter.com/sota1235", :target => "_blank" do
+          %i.icon-twitter-sign
+            Twitter
+      %li.social-list-item
+        = link_to "https://www.facebook.com/sota.sugiura", :target => "_blank" do
+          %i.icon-facebook-sign
+            Facebook
+
+  %section.pure-u-1.pure-u-md-1-2
+    %h2.content-subhead Skill Set
+    %ul.skill-list
+      - data.skill.each do |member|
+        %li
+          .checkbox
+            %i.icon-check-empty
+            %i.icon-ok
+          %span
+            = member.skill
+    %h3.content-subhead Other
+    %ul.social-list
+      %li.social-list-item
+        = link_to "http://www.amazon.co.jp/gp/registry/wishlist/ref=nav_wish_list", :target => "_blank" do
+          %i
+            Wish List
+      %li.social-list-item
+        = link_to "http://ask.fm/sota1235", :target => "_blank" do
+          %i
+            ask.fm
+
+
