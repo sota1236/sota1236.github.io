@@ -2178,6 +2178,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 /* line 553, /Users/sota1235/Documents/sota1235/Now_Running/blog/vendor/bundle/ruby/2.1.0/gems/font-awesome-middleman-4.2.1/app/assets/stylesheets/font-awesome/_icons.scss */
 .fa-meanpath:before {
   content: ""; }
+
 @font-face {
   font-family: "mplus-2p-light";
   src: url("../fonts/mplus-2p-light.woff") format("woff"), url("../fonts/mplus-2p-light.ttf") format("truetype");
@@ -2194,161 +2195,83 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
   font-weight: normal;
   font-style: normal; }
 /* colors */
-/* fork from http://purecss.io/combo/1.17.16?/css/layouts/blog.css */
-/* line 2, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-/* line 7, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 3, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 body {
   background: #FFFFFF;
-  font-family: "mplus-2p-regular";
+  font-family: MuseoSans, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
   color: #3A4347;
-  font-size: 14px; }
+  font-size: 14px;
+  text-align: center; }
 
-/* line 14, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-a {
-  text-decoration: none;
-  color: #3d92c9; }
-  /* line 17, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  a:hover, a:focus {
-    text-decoration: underline; }
-
-/* line 20, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-h3 {
-  font-weight: 100; }
-
-/* LAYOUT CSS */
-/* line 25, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.pure-img-responsive {
-  max-width: 100%;
-  height: auto; }
-
-/* line 29, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 10, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 #layout {
-  padding: 0; }
+  padding-left: 25%;
+  position: relative; }
+  @media only screen and (max-width: 940px) {
+    /* line 10, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+    #layout {
+      padding-left: 0; } }
 
-/* line 32, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.header {
-  text-align: center;
-  top: auto;
-  margin: 3em auto; }
+/* line 16, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+.pure-g-r > div {
+  box-sizing: border-box; }
 
-/* line 37, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 19, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+.pure-g-r img {
+  max-width: 100%; }
+
+/* line 22, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 .sidebar {
-  background: #1E327A;
-  color: #fff; }
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  margin-left: -25%;
+  z-index: 10;
+  background: #160A00; }
+  @media only screen and (max-width: 940px) {
+    /* line 22, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+    .sidebar {
+      width: 100%;
+      position: relative;
+      margin-left: 0;
+      padding: 1.5em 0; } }
 
-/* line 41, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.nav-list {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
+/* line 36, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+body.index {
+  overflow: hidden;
+  background: #160A00; }
+  /* line 39, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+  body.index .main {
+    max-width: 1000px;
+    min-height: 780px;
+    text-align: left;
+    line-height: 1.8em;
+    background: url(../images/index-bg.png) left top no-repeat;
+    -webkit-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain; }
 
-/* line 46, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.nav-item {
-  display: inline-block;
-  *display: inline;
-  zoom: 1; }
-  /* line 50, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  .nav-item a {
-    background: transparent;
-    border: 2px solid #b0cadb;
-    color: #fff;
-    margin-top: 1em;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-size: 85%; }
-    /* line 58, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-    .nav-item a:hover, .nav-item a:focus {
-      border: 2px solid #3d92c9;
-      text-decoration: none; }
+/* line 49, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+.main {
+  padding: 2em 4em;
+  background-color: #FFFFFF;
+  text-align: left;
+  line-height: 1.8em;
+  background: #FFFFFF; }
+  @media only screen and (max-width: 940px) {
+    /* line 49, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+    .main {
+      padding: 1em 1.2em; } }
+  /* line 57, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+  .main a {
+    color: #cdad63;
+    text-decoration: none; }
+    /* line 60, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+    .main a:hover {
+      color: #cdad63;
+      text-decoration: underline; }
 
-/* line 62, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.content-subhead {
-  text-transform: uppercase;
-  color: #aaa;
-  border-bottom: 1px solid #eee;
-  padding: 0.4em 0;
-  font-size: 80%;
-  font-weight: 500;
-  letter-spacing: 0.1em; }
-
-/* line 71, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.content {
-  padding: 2em 1em 0; }
-
-/* line 74, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-avatar {
-  border-radius: 50px;
-  float: right;
-  margin-left: 1em; }
-
-/* line 79, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-category {
-  margin: 0 0.1em;
-  padding: 0.3em 1em;
-  color: #fff;
-  background: #999;
-  font-size: 80%; }
-
-/* line 86, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-category-design {
-  background: #5aba59; }
-
-/* line 89, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-category-pure {
-  background: #4d85d1; }
-
-/* line 92, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-category-yui {
-  background: #8156a7; }
-
-/* line 95, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-category-js {
-  background: #df2d4f; }
-
-/* line 98, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-images {
-  margin: 1em 0; }
-
-/* line 101, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.post-image-meta {
-  margin-top: -3.5em;
-  margin-left: 1em;
-  color: #fff;
-  text-shadow: 0 1px 1px #333; }
-
-/* line 107, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-.footer {
-  text-align: center;
-  padding: 1em 0; }
-  /* line 110, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  .footer a {
-    color: #ccc;
-    font-size: 80%; }
-  /* line 114, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  .footer .pure-menu a:hover, .footer .pure-menu a:focus {
-    background: none; }
-
-@media (min-width: 48em) {
-  /* line 118, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  .content {
-    padding: 2em 3em 0;
-    margin-left: 25%; }
-
-  /* line 121, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  .header {
-    margin: 80% 2em 0;
-    text-align: right; }
-
-  /* line 124, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0; } }
 /* line 2, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_about.sass */
 .about .social-list {
   margin: 0;
@@ -2488,29 +2411,3 @@ a.heading {
   -webkit-transform: translateX(0px);
   -moz-transform: translateX(0px);
   transform: translateX(0px); }
-
-/* line 2, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_blog.sass */
-.blog .post {
-  padding-bottom: 2em; }
-/* line 5, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_blog.sass */
-.blog .post-title {
-  font-size: 20px;
-  color: #222;
-  padding: 0.4em 0;
-  margin-bottom: 0.2em;
-  border-bottom: 1px solid #d1d1d1;
-  letter-spacing: 0.1em; }
-/* line 13, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_blog.sass */
-.blog .post-date {
-  color: #999;
-  font-size: 110%;
-  margin-top: 0.3em;
-  margin-bottom: 2em; }
-/* line 19, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_blog.sass */
-.blog .post-discription {
-  color: #3A4347;
-  font-size: 16px;
-  line-height: 2em; }
-/* line 24, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_blog.sass */
-.blog .post-more {
-  margin-bottom: 2em; }
