@@ -1,0 +1,456 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      はらへり日記
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class='blog'>
+    <div class='pure-g-r' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='menu-box'>
+          <a class='heading' href='/'>
+            はらへり日記
+          </a>
+          <div class='menu-description'>
+            プログラムに片思い中
+          </div>
+          <nav>
+            <ul class='menu cl-effect-1'>
+              <li class='menu-item'>
+                <a href='/'>
+                  Home
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/about.html'>
+                  About
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/blog.html'>
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <div id='main' role='main'>
+          <p>
+            Page 1 of 4
+          </p>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/10/23/23224314.html">* node.jsで標準出力に色をつける</a>
+                </h2>
+                <p class='post-meta'>
+                  Oct 23 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>最近、node.jsをひいひい言いながら書いてるのだがプログラムの実行過程が知りたくて<code>console.log</code>する時、色をつけたかったので調べた。</p>
+                
+                <p>すると、こんな便利な<code>npm</code>があるらしい。</p>
+                
+                <p><a title="npm - colors" href="https://www.npmjs.org/package/colors">npm - colors</a></p>
+                
+                <p>こう書くと</p>
+                
+                <p><img src="http://i.gyazo.com/a596b7f9f2c788243952593c5e8ff00f.png" alt="pic"></p>
+                
+                <p>こうなる</p>
+                
+                <p><img src="http://i.gyazo.com/a92e7010abd5a061e283460127fe9345.png" alt="pic"></p>
+                
+                <p>これでエラーの出力とか便利になった。</p>
+                
+                <p>ちなみに以下のサイトさんに教えていただきました。</p>
+                
+                <p><a title="Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)" href="http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719">Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)</a></p>
+                
+                <hr>
+                <p>※この記事は WordPress に投稿した記...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/10/23/23224314.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/10/07/07094511.html">* OS X 10.9をクリーンインストールした後に行ったこと</a>
+                </h2>
+                <p class='post-meta'>
+                  Oct  7 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>OS X 10.8から10.9にアップデートしたのだが、zshの一部の機能がエラーを吐いたり、brew doctorがいつまでたってもバグ吐いたりgemコマンドが使えなかったりとRuby周りがカオスだったりでめんどくさかったのでMavericksをクリーンインストールした。</p>
+                
+                <p>その後に行ったことを自分用にメモ</p>
+                
+                <p>1.アプリをインストール</p>
+                
+                <p>愛用してた以下のアプリケーションをインストール</p>
+                
+                <ul>
+                  <li>
+                    <p>開発系</p>
+                  </li>
+                  <li>Google Chrome(常用、Googleアカウント様々)</li>
+                  </ul>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/10/07/07094511.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/08/25/25171246.html">* 【Python】floatの闇</a>
+                </h2>
+                <p class='post-meta'>
+                  Aug 25 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>AOJの問題を解いてたら絶対に合ってるのに通らない問題があった。</p>
+                
+                <p>正解者のコードを見ていろいろggってるとどうやらPythonのfloatの仕様にしてやられたらしい。</p>
+                
+                <p>詳しくまとめてあるサイトがあるので難しい話はそちらでどぞ</p>
+                
+                <p><a title="Python で正確な小数の計算 (3) – float, Decimal の有効桁数" href="http://jutememo.blogspot.jp/2008/09/python-3-float-decimal.html">Python で正確な小数の計算 (3) – float, Decimal の有効桁数</a></p>
+                
+                <p>まぁ具体的に何が起きたのかというと、例えばインタラクティブシェルで以下のコードを実行する。</p>
+                
+                <p><img src="http://i.gyazo.com/1dc63ea8a3776faa9901efd7767ad158.png">&lt;/img&gt;</p>
+                
+                <p>"1 / 3"は無限小数なので省略されてこう表記されてるのだろ...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/08/25/25171246.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/08/13/13021030.html">* 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)</a>
+                </h2>
+                <p class='post-meta'>
+                  Aug 13 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>先日の続きってほどでもないけど、実用的なもん作った。</p>
+                
+                <p>私はWebマンガが好きでしょっちゅう読んでいるのだけど週刊誌と違って不定期更新がゆえ、「うわ、一ヶ月前に更新されてたああああああ(:.;゜;Д;゜;.:)」みたいなことがよくある。</p>
+                
+                <p>ので私が好きなWebマンガの一つの<code>堀さんと宮村くん</code>が更新されたらYoがくるアカウントを作った</p>
+                
+                <h2 id="horimiyarss">HORIMIYARSS</h2>
+                
+                <p>もし通知が欲しかったら<code>HORIMIYARSS</code>に一回Yoしてくれれば更新されたときにYoが来ます。</p>
+                
+                <p>実装はこんな感じ(Webクロール...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/08/13/13021030.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/08/06/06173532.html">* YoのAPIを触ってみる(その１)</a>
+                </h2>
+                <p class='post-meta'>
+                  Aug  6 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <h3 id="yo">流行りに乗り遅れたYO</h3>
+                
+                <p>ちまたで噂のYoのAPIを触ってみた</p>
+                
+                <p>とりあえず</p>
+                
+                <ul>
+                  <li>特定のユーザにYoを送る</li>
+                  <li>自身を登録してるユーザ全てにYoを送る</li>
+                  <li>Yoを送ってきた時のログを取る</li>
+                </ul>
+                
+                <p>ところまでやってみた。</p>
+                
+                <h3 id="api-key">API Keyを取得する</h3>
+                
+                <p>YoのAPIを使いたい場合、API専用のアカウントを作成する必要がある。(2014/08/06現在)</p>
+                
+                <p>なので既に作成したアカウントの名前で実装したい場合は一回アカウントを削除しなきゃいけない。</p>
+                
+                <p>また、APIアカウントを作るためにYoのアカウ...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/08/06/06173532.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/08/04/04050828.html">* Mouでシンタックスハイライトしたい</a>
+                </h2>
+                <p class='post-meta'>
+                  Aug  4 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>課題で使いたいので探したらあった。</p>
+                
+                <p><a title="Gist: gist:4286673" href="https://gist.github.com/davidmatas/4286673">Gist: gist:4286673</a></p>
+                
+                <p>以下のを文章内に追加すればおｋ</p>
+                
+                <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;!-- Highlight syntax for Mou.app, insert at the bottom of the markdown document  --&gt;
+                 
+                &lt;script src="http://yandex.st/highlightjs/7.3/highlight.min.js"&gt;&lt;/script&gt;
+                &lt;link rel="stylesheet" href="http...</pre>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/08/04/04050828.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/07/27/27135037.html">* XSS Game Write-Up</a>
+                </h2>
+                <p class='post-meta'>
+                  Jul 27 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>解けたの嬉しかったし初めてWrite-Upとやらを書いてみる。</p>
+                
+                <p>ガチ勢には相当ゆるい内容らしいけどまぁいいよね。</p>
+                
+                <p><a title="XSS Game" href="https://xss-game.appspot.com/">XSS Game</a></p>
+                
+                <p>以下ネタバレ注意</p>
+                
+                <p>問題の流れとしては</p>
+                
+                <ul>
+                  <li>全６問</li>
+                  <li>iframe内の擬似ブラウザでalert出せればオッケー</li>
+                  <li>全部解けたらケーキあげるヨ！</li>
+                </ul>
+                
+                <p>って感じですかね。</p>
+                
+                <p><br></p>
+                
+                <h2 id="level-1-hello-world-of-xss">Level 1: Hello, world of XSS</h2>
+                
+                <p>こんな感じのフォームが表示される</p>
+                
+                <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.17.00.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.17.00.png" alt="Level1-1" width="703" height="365" class="alignnone size-full wp-image-280"></a></p>
+                
+                <p>試しに"a"ってうつとこんな感じ</p>
+                
+                <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.19.24.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.19.24.png" alt="Level1-2" width="702" height="364" class="alignnone size-full wp-image-282"></a></p>
+                
+                <p>タグで囲まれて入力内容が出力されて...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/07/27/27135037.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/07/01/01165552.html">* ブログが落ちてた話</a>
+                </h2>
+                <p class='post-meta'>
+                  Jul  1 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>ここ一ヶ月ほど、このブログにアクセスすると真っ白なページにアクセスされたと思う。</p>
+                
+                <p>原因が分からず放置してたのだが、重い腰をあげていろいろといじくりなおしたらとりあえず表示された。</p>
+                
+                <p>けど、原因よくわかんないしWordpressの更新うまくできないしかといってリプレースもめんどくさすぎてどうしようかなって感じ。</p>
+                
+                <p>Tumblerとかどうなんでしょう、何かおすすめあったら教えてください…</p>
+                
+                <hr>
+                <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れま...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/07/01/01165552.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
+                </h2>
+                <p class='post-meta'>
+                  May 26 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>サークルの後輩にファイルを共有する際、自分のサイトにファイルを置いてURLを教えていたのですが、</p>
+                
+                <p>ファイルの置き場所を変えたくなっちゃったので<code>.htaccess</code>を利用してやってみた。</p>
+                
+                <p><code>/hoge/</code>をファイル公開ディレクトリとする。(<code>http://sota1235.net/files/*.zip</code>で<code>/hoge/&amp;#42;.zip</code>にアクセスできる。)</p>
+                
+                <ul>
+                  <li>元のファイルの置き場所: <code>/hoge/*.zip</code>
+                </li>
+                  <li>新しい置き場所: <code>/hoge/fuga/*.zip</code>
+                </li>
+                </ul>
+                
+                <p><code>.htaccess</code>ファイ...</p>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/05/26/26104650.html">もっと読む</a>
+            </a>
+          </div>
+          <div class='posts'>
+            <section class='post'>
+              <header class='post-header'>
+                <h2 class='post-title'>
+                  <a href="/blog/2014/05/19/19181844.html">* 逆ポーランド記法の問題を大量生産する</a>
+                </h2>
+                <p class='post-meta'>
+                  May 19 2014
+                  <ul class='tags'>
+                  </ul>
+                </p>
+              </header>
+              <div class='post-description'>
+                <p>とある友人に頼まれたのでやっつけで作った。</p>
+                
+                <p>逆ポーランド記法に関してはこちらを参照。</p>
+                
+                <p><a title="Wikipedia: 逆ポーランド記法" href="http://ja.wikipedia.org/wiki/%E9%80%86%E3%83%9D%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E8%A8%98%E6%B3%95">Wikipedia: 逆ポーランド記法</a></p>
+                
+                <p>スタックの概念を理解するために逆ポーランド記法の問題を処理するプログラムを書いたりする(らしい)。</p>
+                
+                <p>こいつの問題を大量生産したいってなったとき、考えなきゃいけないことは思いついたやつでこんな感じ。</p>
+                
+                <ul>
+                  <li>問題の先頭2つは必ず数字でなければならない</li>
+                  <li>記号、数字の数を<code>x, y</code>とすると、先頭からそれぞれ数えた時に常に<code>x &amp;lt;= y - 1</code>でなければいけな...</li>
+                </ul>
+              </div>
+            </section>
+            <a>
+              <a href="/blog/2014/05/19/19181844.html">もっと読む</a>
+            </a>
+          </div>
+          <p><a href="/blog/page/2.html">Next page</a></p>
+          <aside>
+            <h2>Recent Articles</h2>
+            <ol>
+              <li>
+                <a href="/blog/2014/10/23/23224314.html">* node.jsで標準出力に色をつける</a>
+                <span>Oct 23</span>
+              </li>
+              <li>
+                <a href="/blog/2014/10/07/07094511.html">* OS X 10.9をクリーンインストールした後に行ったこと</a>
+                <span>Oct  7</span>
+              </li>
+              <li>
+                <a href="/blog/2014/08/25/25171246.html">* 【Python】floatの闇</a>
+                <span>Aug 25</span>
+              </li>
+              <li>
+                <a href="/blog/2014/08/13/13021030.html">* 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)</a>
+                <span>Aug 13</span>
+              </li>
+              <li>
+                <a href="/blog/2014/08/06/06173532.html">* YoのAPIを触ってみる(その１)</a>
+                <span>Aug  6</span>
+              </li>
+              <li>
+                <a href="/blog/2014/08/04/04050828.html">* Mouでシンタックスハイライトしたい</a>
+                <span>Aug  4</span>
+              </li>
+              <li>
+                <a href="/blog/2014/07/27/27135037.html">* XSS Game Write-Up</a>
+                <span>Jul 27</span>
+              </li>
+              <li>
+                <a href="/blog/2014/07/01/01165552.html">* ブログが落ちてた話</a>
+                <span>Jul  1</span>
+              </li>
+              <li>
+                <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
+                <span>May 26</span>
+              </li>
+              <li>
+                <a href="/blog/2014/05/19/19181844.html">* 逆ポーランド記法の問題を大量生産する</a>
+                <span>May 19</span>
+              </li>
+            </ol>
+            <h2>Tags</h2>
+            <ol>
+            </ol>
+            <h2>By Year</h2>
+            <ol>
+              <li><a href="/blog/2014.html">2014 (28)</a></li>
+              <li><a href="/blog/2013.html">2013 (5)</a></li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
