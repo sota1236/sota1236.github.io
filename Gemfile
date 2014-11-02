@@ -12,6 +12,10 @@ gem "font-awesome-middleman"
 # For feed.xml.builder
 gem "builder", "~> 3.0"
 
+# Syntax-Highlither plugin
+gem "middleman-rouge"
+gem "redcarpet"
+
 # Others
 gem "nokogiri"
 gem "erb2haml"
