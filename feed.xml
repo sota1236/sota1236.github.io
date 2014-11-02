@@ -96,7 +96,7 @@
 
 &lt;p&gt;以下のWebサイトで修正バッチをダウンロード、実行しておk&lt;/p&gt;
 
-&lt;p&gt;http://support.apple.com/kb/DL1769&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://support.apple.com/kb/DL1769"&gt;http://support.apple.com/kb/DL1769&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Colore Scheme&lt;/li&gt;
@@ -104,7 +104,7 @@
 
 &lt;p&gt;ちまたではSolarizedが流行ってるみたいだけど僕はSmyckを入れます&lt;/p&gt;
 
-&lt;p&gt;http://color.smyck.org/&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://color.smyck.org/"&gt;http://color.smyck.org/&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Homebrewを入れる&lt;/li&gt;
@@ -114,7 +114,7 @@
 
 &lt;p&gt;これなきゃ生きていけない&lt;/p&gt;
 
-&lt;p&gt;http://brew.sh/&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://brew.sh/"&gt;http://brew.sh/&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”&lt;/pre&gt;
 
@@ -342,7 +342,7 @@ pyenv global 3.4.1&lt;/pre&gt;
 
 &lt;p&gt;ので私が好きなWebマンガの一つの&lt;code&gt;堀さんと宮村くん&lt;/code&gt;が更新されたらYoがくるアカウントを作った&lt;/p&gt;
 
-&lt;h2&gt;HORIMIYARSS&lt;/h2&gt;
+&lt;h2 id="horimiyarss"&gt;HORIMIYARSS&lt;/h2&gt;
 
 &lt;p&gt;もし通知が欲しかったら&lt;code&gt;HORIMIYARSS&lt;/code&gt;に一回Yoしてくれれば更新されたときにYoが来ます。&lt;/p&gt;
 
@@ -391,7 +391,7 @@ puts &amp;quot;最新話は&amp;quot; + title
 
 &lt;p&gt;おしまい&lt;/p&gt;
 
-&lt;h4&gt;P.S.&lt;/h4&gt;
+&lt;h4 id="p.s."&gt;P.S.&lt;/h4&gt;
 
 &lt;p&gt;nohupコマンド、友人から聞いて知ったのだけど(情弱でさーせん…)&lt;/p&gt;
 
@@ -413,7 +413,7 @@ puts &amp;quot;最新話は&amp;quot; + title
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h3&gt;流行りに乗り遅れたYO&lt;/h3&gt;
+    <content type="html">&lt;h3 id="流行りに乗り遅れたyo"&gt;流行りに乗り遅れたYO&lt;/h3&gt;
 
 &lt;p&gt;ちまたで噂のYoのAPIを触ってみた&lt;/p&gt;
 
@@ -427,7 +427,7 @@ puts &amp;quot;最新話は&amp;quot; + title
 
 &lt;p&gt;ところまでやってみた。&lt;/p&gt;
 
-&lt;h3&gt;API Keyを取得する&lt;/h3&gt;
+&lt;h3 id="api-keyを取得する"&gt;API Keyを取得する&lt;/h3&gt;
 
 &lt;p&gt;YoのAPIを使いたい場合、API専用のアカウントを作成する必要がある。(2014/08/06現在)&lt;/p&gt;
 
@@ -445,11 +445,11 @@ puts &amp;quot;最新話は&amp;quot; + title
 
 &lt;p&gt;ここの&amp;ldquo;見せられないよ！&amp;quot;の部分にAPI Keyが表示される。&lt;/p&gt;
 
-&lt;h3&gt;Yoを送る&lt;/h3&gt;
+&lt;h3 id="yoを送る"&gt;Yoを送る&lt;/h3&gt;
 
 &lt;p&gt;Yoの送り方は非常にシンプルで、決められたURLにPOSTリクエストを送るだけである。&lt;/p&gt;
 
-&lt;h4&gt;全員に送る&lt;/h4&gt;
+&lt;h4 id="全員に送る"&gt;全員に送る&lt;/h4&gt;
 
 &lt;p&gt;自分を登録してるユーザ全てにYoを送る&lt;/p&gt;
 
@@ -458,7 +458,7 @@ puts &amp;quot;最新話は&amp;quot; + title
 POST Paramater: api_token={{発行されたAPI Key}}&amp;amp;username={{送りたい相手のユーザ名}}
 `&lt;/pre&gt;
 
-&lt;h4&gt;個人に送る&lt;/h4&gt;
+&lt;h4 id="個人に送る"&gt;個人に送る&lt;/h4&gt;
 
 &lt;p&gt;個人宛てにYoを送る。&lt;/p&gt;
 
@@ -467,7 +467,7 @@ POST Paramater: api_token={{発行されたAPI Key}}&amp;amp;username={{送り�
 POST Paramater: api_token={{発行されたAPI Key}}&amp;amp;username={{送りたい相手のユーザ名}}
 `&lt;/pre&gt;
 
-&lt;h4&gt;Yoを受け取る&lt;/h4&gt;
+&lt;h4 id="yoを受け取る"&gt;Yoを受け取る&lt;/h4&gt;
 
 &lt;p&gt;DeveloperページでCallback URLを登録すると、Yoが来るたびにそのURLがリクエストされる。&lt;/p&gt;
 
@@ -491,7 +491,7 @@ fclose($fp);
 
 &lt;p&gt;ここらへんいじくり回せばいろいろと作れそう&lt;/p&gt;
 
-&lt;h3&gt;感想&lt;/h3&gt;
+&lt;h3 id="感想"&gt;感想&lt;/h3&gt;
 
 &lt;p&gt;とても簡単。少なくともTwitterより簡単。&lt;/p&gt;
 

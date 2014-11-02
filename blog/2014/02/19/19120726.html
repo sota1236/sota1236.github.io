@@ -41,175 +41,171 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * ハッカソンに行ってきた
-                </h2>
-                <p class='post-meta'>
-                  Feb 19 2014
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <h2>ハッカソンに行ってきました。</h2>
-                  
-                  <p>ある企業の選考の一貫で、２日間のハッカソンに行ってきました。</p>
-                  
-                  <p>情報を公開していいのかわからない(というか内容漏らすなみたいなやつ書いた)ので詳細は話しませんが、優勝することができました。</p>
-                  
-                  <p>とはいえ技術力が他チームより勝っていたというよりはアイディアでウケを取ったという感じになると思います。</p>
-                  
-                  <p>賞品がトロフィーと好きな技術書２冊という素晴らしすぎるものでした。感謝。</p>
-                  
-                  <p>人生で初トロフィーというね。</p>
-                  
-                  <p>一緒に開発した相方やコミュ障の僕にも仲良くしてくれた参加者各位の皆様、本当にありがとうございましたm(_ _*)m</p>
-                  
-                  <p><br /></p>
-                  
-                  <h2>何作ったん？</h2>
-                  
-                  <p>ハッカソンのテーマは、社内オンリーのAPIを使って何か開発しろ！というかなりフリーなテーマ。</p>
-                  
-                  <p>APIを使う縛りもないし特にテーマもなし。</p>
-                  
-                  <p>ただ、「なぜそのサービスを作ったのか」が発表要項に入っていたのでサービスであるという前提はありますね(当たり前か)。</p>
-                  
-                  <p>最初の２時間でうだうだ考えて出てきたのが</p>
-                  
-                  <p>”使ってる化粧品からその女性が１ヶ月にかけてる化粧代、また、その女の子とデートに行く時にかけるべきデート代を計算します”</p>
-                  
-                  <p>なんという性格の悪い。笑</p>
-                  
-                  <p>けどおもしろいねってなって開発。</p>
-                  
-                  <p>僕は基本的に裏側ーAPI使って情報引っ張ってきて整形するインターフェースをひたすら書いてました。</p>
-                  
-                  <p>APIの使用がGETリクエストとパラメータを送るとJSONが返ってくるって感じだったので、まぁ下みたいな感じに。</p>
-                  
-                  <pre class="brush: php; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  
-                  /* 商品の検索情報を返す */
-                    public function getProductInfo($product) {
-                      $url = &quot;指定されたURL&quot;;
-                  
-                      /* Request Paramater */
-                      $fw = &quot;?fw=&quot;.urlencode($product);
-                      $url = $url.$fw.$this-&gt;request_id;
-                  
-                      /* GET */
-                      $response = file_get_contents($url);
-                      $json = json_decode($response);
-                  
-                      /* Response array */
-                      $name = array();
-                      $company = array();
-                      $img_url = array();
-                      $price = array();
-                      $capacity = array();
-                      $category_id = array();
-                      $brand_name = array();
-                      $product_id = array();
-                      $s = 0;
-                  
-                      for($i=0;$i&lt;10;$i++){
-                        $j_result = $json-&gt;result[$i];
-                  
-                        $name[] = $j_result-&gt;product_name;
-                        $company[] = $j_result-&gt;maker_name;
-                        $img_url[] = $j_result-&gt;image_url;
-                        /* parse */
-                        $list = explode(&quot;・&quot;,$j_result-&gt;volume_price_label);
-                        if($list){
-                          if(count($list) == 2) {
-                            $price[] = $list[1];
-                            $capacity[] = $list[0];
-                          } else if(strpos($list[0],&quot;ml&quot;) !== FALSE){
-                            $price[] = &quot;&quot;;
-                            $capacity[] = $list[0];
-                          } else {
-                            $price[] = $list[0];
-                            $capacity[] = &quot;&quot;;
-                          }
-                        }
-                        $category_id[] = $j_result-&gt;item_categories[0]-&gt;second_category_name;
-                        $brand_name[] = $j_result-&gt;brand_name;
-                        $product_id[] = $j_result-&gt;product_id;
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * ハッカソンに行ってきた
+            </h2>
+            <p class='post-date'>
+              Feb 19 2014
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <h2 id="ハッカソンに行ってきました。">ハッカソンに行ってきました。</h2>
+              
+              <p>ある企業の選考の一貫で、２日間のハッカソンに行ってきました。</p>
+              
+              <p>情報を公開していいのかわからない(というか内容漏らすなみたいなやつ書いた)ので詳細は話しませんが、優勝することができました。</p>
+              
+              <p>とはいえ技術力が他チームより勝っていたというよりはアイディアでウケを取ったという感じになると思います。</p>
+              
+              <p>賞品がトロフィーと好きな技術書２冊という素晴らしすぎるものでした。感謝。</p>
+              
+              <p>人生で初トロフィーというね。</p>
+              
+              <p>一緒に開発した相方やコミュ障の僕にも仲良くしてくれた参加者各位の皆様、本当にありがとうございましたm(_ _*)m</p>
+              
+              <p><br /></p>
+              
+              <h2 id="何作ったん？">何作ったん？</h2>
+              
+              <p>ハッカソンのテーマは、社内オンリーのAPIを使って何か開発しろ！というかなりフリーなテーマ。</p>
+              
+              <p>APIを使う縛りもないし特にテーマもなし。</p>
+              
+              <p>ただ、「なぜそのサービスを作ったのか」が発表要項に入っていたのでサービスであるという前提はありますね(当たり前か)。</p>
+              
+              <p>最初の２時間でうだうだ考えて出てきたのが</p>
+              
+              <p>”使ってる化粧品からその女性が１ヶ月にかけてる化粧代、また、その女の子とデートに行く時にかけるべきデート代を計算します”</p>
+              
+              <p>なんという性格の悪い。笑</p>
+              
+              <p>けどおもしろいねってなって開発。</p>
+              
+              <p>僕は基本的に裏側ーAPI使って情報引っ張ってきて整形するインターフェースをひたすら書いてました。</p>
+              
+              <p>APIの使用がGETリクエストとパラメータを送るとJSONが返ってくるって感じだったので、まぁ下みたいな感じに。</p>
+              
+              <pre class="brush: php; gutter: true; first-line: 1; highlight: []; html-script: false">
+              
+              /* 商品の検索情報を返す */
+                public function getProductInfo($product) {
+                  $url = &quot;指定されたURL&quot;;
+              
+                  /* Request Paramater */
+                  $fw = &quot;?fw=&quot;.urlencode($product);
+                  $url = $url.$fw.$this-&gt;request_id;
+              
+                  /* GET */
+                  $response = file_get_contents($url);
+                  $json = json_decode($response);
+              
+                  /* Response array */
+                  $name = array();
+                  $company = array();
+                  $img_url = array();
+                  $price = array();
+                  $capacity = array();
+                  $category_id = array();
+                  $brand_name = array();
+                  $product_id = array();
+                  $s = 0;
+              
+                  for($i=0;$i&lt;10;$i++){
+                    $j_result = $json-&gt;result[$i];
+              
+                    $name[] = $j_result-&gt;product_name;
+                    $company[] = $j_result-&gt;maker_name;
+                    $img_url[] = $j_result-&gt;image_url;
+                    /* parse */
+                    $list = explode(&quot;・&quot;,$j_result-&gt;volume_price_label);
+                    if($list){
+                      if(count($list) == 2) {
+                        $price[] = $list[1];
+                        $capacity[] = $list[0];
+                      } else if(strpos($list[0],&quot;ml&quot;) !== FALSE){
+                        $price[] = &quot;&quot;;
+                        $capacity[] = $list[0];
+                      } else {
+                        $price[] = $list[0];
+                        $capacity[] = &quot;&quot;;
                       }
-                  
-                      $result = array($name, $company, $img_url, $price, $capacity, $category_id, $brand_name, $product_id);
-                      return $result;
                     }
-                  
-                  </pre>
-                  
-                  <p>こんな感じで指定された単語をパラメータにGETリクエストを飛ばし、返ってきたJSONを整形して返すだけの簡単なお仕事。</p>
-                  
-                  <p>を５個くらい作りました。笑</p>
-                  
-                  <p>楽しかった。</p>
-                  
-                  <p>ただ、<code>json_decode()</code>関数を使うと返ってくるのが<code>object(stdClass)</code>とかいうよくわからん型で最初苦労したのですが、終わった後にメンターの方にその話をしたら</p>
-                  
-                  <p>「え、確か引数でarray()型で返ってくるように指定できなかったっけ？」</p>
-                  
-                  <p>え、マジで。</p>
-                  
-                  <p>で、調べてみたらありました。</p>
-                  
-                  <p><a title="カサヒラボ" href="http://d.hatena.ne.jp/kasahi/20070806/1186419785">カサヒラボ</a></p>
-                  
-                  <p>どうやら第２引数にtrueを入れなきゃダメみたいですね。</p>
-                  
-                  <p><strong>json_decode($json) -&gt; ☓</strong></p>
-                  
-                  <p><strong>json_decode($json, true) -&gt; ◯</strong></p>
-                  
-                  <p><br /></p>
-                  
-                  <h2>教訓：ドキュメントはちゃんと読もう</h2>
-                  
-                  <p>時間ないと焦っておろそかになりがちだけど、やっぱりちゃんと仕様を確認することは大事ですね。</p>
-                  
-                  <p>動けばなんぼってのもあるけどなんで動いてるのか分からないとそれは進歩と言えるのかどうか。</p>
-                  
-                  <p><br /></p>
-                  
-                  <h2>まぁとにかく</h2>
-                  
-                  <p>とても楽しい２日間でした。</p>
-                  
-                  <p>ここの会社さんは次で最終面接なので頑張ります。頑張ります。</p>
-                  
-                  <p>ではまた。</p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+                    $category_id[] = $j_result-&gt;item_categories[0]-&gt;second_category_name;
+                    $brand_name[] = $j_result-&gt;brand_name;
+                    $product_id[] = $j_result-&gt;product_id;
+                  }
+              
+                  $result = array($name, $company, $img_url, $price, $capacity, $category_id, $brand_name, $product_id);
+                  return $result;
+                }
+              
+              </pre>
+              
+              <p>こんな感じで指定された単語をパラメータにGETリクエストを飛ばし、返ってきたJSONを整形して返すだけの簡単なお仕事。</p>
+              
+              <p>を５個くらい作りました。笑</p>
+              
+              <p>楽しかった。</p>
+              
+              <p>ただ、<code>json_decode()</code>関数を使うと返ってくるのが<code>object(stdClass)</code>とかいうよくわからん型で最初苦労したのですが、終わった後にメンターの方にその話をしたら</p>
+              
+              <p>「え、確か引数でarray()型で返ってくるように指定できなかったっけ？」</p>
+              
+              <p>え、マジで。</p>
+              
+              <p>で、調べてみたらありました。</p>
+              
+              <p><a title="カサヒラボ" href="http://d.hatena.ne.jp/kasahi/20070806/1186419785">カサヒラボ</a></p>
+              
+              <p>どうやら第２引数にtrueを入れなきゃダメみたいですね。</p>
+              
+              <p><strong>json_decode($json) -&gt; ☓</strong></p>
+              
+              <p><strong>json_decode($json, true) -&gt; ◯</strong></p>
+              
+              <p><br /></p>
+              
+              <h2 id="教訓：ドキュメントはちゃんと読もう">教訓：ドキュメントはちゃんと読もう</h2>
+              
+              <p>時間ないと焦っておろそかになりがちだけど、やっぱりちゃんと仕様を確認することは大事ですね。</p>
+              
+              <p>動けばなんぼってのもあるけどなんで動いてるのか分からないとそれは進歩と言えるのかどうか。</p>
+              
+              <p><br /></p>
+              
+              <h2 id="まぁとにかく">まぁとにかく</h2>
+              
+              <p>とても楽しい２日間でした。</p>
+              
+              <p>ここの会社さんは次で最終面接なので頑張ります。頑張ります。</p>
+              
+              <p>ではまた。</p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>

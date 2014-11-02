@@ -2374,20 +2374,23 @@ body {
 
 /* line 13, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 a {
-  text-decoration: none;
-  color: #3d92c9; }
+  color: #3D92C9;
+  text-decoration: none; }
+  /* line 16, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+  a:hover, a:focus {
+    text-decoration: underline; }
 
 /* LAYOUT CSS */
-/* line 19, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 21, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 #layout {
   padding: 0; }
 
-/* line 22, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 24, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 .sidebar {
   background: #1E327A;
   color: #fff; }
 
-/* line 26, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 28, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 .content-subhead {
   text-transform: uppercase;
   color: #aaa;
@@ -2397,22 +2400,22 @@ a {
   font-weight: 500;
   letter-spacing: 0.1em; }
 
-/* line 35, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+/* line 37, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
 .content {
   padding: 2em 1em 0; }
 
 @media (min-width: 48em) {
-  /* line 39, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+  /* line 41, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
   .content {
     padding: 2em 3em 0;
     margin-left: 25%; }
 
-  /* line 42, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+  /* line 44, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
   .header {
     margin: 80% 2em 0;
     text-align: right; }
 
-  /* line 45, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
+  /* line 47, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_layout.sass */
   .sidebar {
     position: fixed;
     top: 0;
@@ -2457,7 +2460,7 @@ a {
     position: absolute;
     top: 0;
     left: 1.4px;
-    color: #cdad63;
+    color: #3D92C9;
     font-size: 11.5px; }
 
 /* line 1, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
@@ -2521,14 +2524,17 @@ a.heading {
       color: #FFFFFF; }
     /* line 27, /Users/sota1235/Documents/sota1235/Now_Running/blog/vendor/bundle/ruby/2.1.0/gems/compass-core-1.0.1/stylesheets/compass/typography/links/_link-colors.scss */
     .menu-item a:active {
-      color: #cdad63; }
+      color: #3D92C9; }
+    /* line 42, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+    .menu-item a:hover, .menu-item a:focus {
+      text-decoration: none; }
   @media only screen and (max-width: 940px) {
     /* line 33, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
     .menu-item {
       display: inline-block;
       margin: 0 0.5em; } }
 
-/* line 46, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+/* line 48, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
 .menu-description {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -2538,34 +2544,34 @@ a.heading {
 
 /* Effect 1: Brackets */
 /* Thanks for http://tympanus.net/Development/CreativeLinkEffects/#cl-effect-1 */
-/* line 57, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+/* line 59, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
 .cl-effect-1 a::before, .cl-effect-1 a::after {
   display: inline-block;
   opacity: 0;
   -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
   -moz-transition: -moz-transform 0.3s, opacity 0.2s;
   transition: transform 0.3s, opacity 0.2s; }
-/* line 63, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+/* line 65, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
 .cl-effect-1 a::before {
   margin-right: 10px;
   content: "[";
   -webkit-transform: translateX(20px);
   -moz-transform: translateX(20px);
   transform: translateX(20px); }
-/* line 69, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+/* line 71, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
 .cl-effect-1 a::after {
   margin-left: 10px;
   content: "]";
   -webkit-transform: translateX(-20px);
   -moz-transform: translateX(-20px);
   transform: translateX(-20px); }
-/* line 76, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+/* line 78, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
 .cl-effect-1 a:hover::before, .cl-effect-1 a:hover::after {
   opacity: 1;
   -webkit-transform: translateX(0px);
   -moz-transform: translateX(0px);
   transform: translateX(0px); }
-/* line 82, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
+/* line 84, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_menu.sass */
 .cl-effect-1 a:focus::before, .cl-effect-1 a:focus::after {
   opacity: 1;
   -webkit-transform: translateX(0px);
@@ -2578,7 +2584,7 @@ a.heading {
 /* line 5, /Users/sota1235/Documents/sota1235/Now_Running/blog/source/stylesheets/_blog.sass */
 .blog .post-title {
   font-size: 20px;
-  color: #222;
+  color: #3D92C9;
   padding: 0.4em 0;
   margin-bottom: 0.2em;
   border-bottom: 1px solid #d1d1d1;

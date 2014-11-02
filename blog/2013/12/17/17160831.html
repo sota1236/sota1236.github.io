@@ -41,149 +41,145 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * 404ページをカスタマイズする
-                </h2>
-                <p class='post-meta'>
-                  Dec 17 2013
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <p>どうも、久しぶりの投稿です。</p>
-                  
-                  <p>VPSのリダイレクト設定等を全くしてなかったので、無効なURLにアクセスするとこんなページが表示されます。</p>
-                  
-                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.09.34.png"><img class="alignnone size-full wp-image-49" alt="404 Not Found" src="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.09.34.png" width="782" height="471" border="3px" /></a></p>
-                  
-                  <p>ApacheのデフォルトのNot Foundですね。</p>
-                  
-                  <p>ださい。</p>
-                  
-                  <p>ということでカスタマイズしたいー。</p>
-                  
-                  <p>で、ググって出てきたページを参考にして設定してみた。</p>
-                  
-                  <p><a title="はじめての自宅サーバ構築 - Federa/CentOS -" href="http://kajuhome.com/apache_err_custom.shtml">はじめての自宅サーバ構築 - Federa/CentOS -</a></p>
-                  
-                  <p>１．errorページの参照先を変更する</p>
-                  
-                  <p>/etc/httpd/conf/httpd.confを編集
-                  <pre class="brush: shell; gutter: true">&lt;IfModule mod<em>negotiation.c&gt;
-                  &lt;IfModule mod</em>include.c&gt;
-                      &lt;Directory &quot;/var/www/error&quot;&gt;
-                          AllowOverride None
-                          Options IncludesNoExec
-                          AddOutputFilter Includes html
-                          AddHandler type-map var
-                          Order allow,deny
-                          Allow from all
-                          LanguagePriority en es de fr
-                          ForceLanguagePriority Prefer Fallback
-                      &lt;/Directory&gt;</p>
-                  
-                  <h1>ErrorDocument 400 /error/HTTP<em>BAD</em>REQUEST.html.var</h1>
-                  
-                  <h1>ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var</h1>
-                  
-                  <h1>ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var</h1>
-                  
-                  <h1>ErrorDocument 404 /error/HTTP<em>NOT</em>FOUND.html.var</h1>
-                  
-                  <h1>ErrorDocument 405 /error/HTTP<em>METHOD</em>NOT_ALLOWED.html.var</h1>
-                  
-                  <h1>ErrorDocument 408 /error/HTTP<em>REQUEST</em>TIME_OUT.html.var</h1>
-                  
-                  <h1>ErrorDocument 410 /error/HTTP_GONE.html.var</h1>
-                  
-                  <h1>ErrorDocument 411 /error/HTTP<em>LENGTH</em>REQUIRED.html.var</h1>
-                  
-                  <h1>ErrorDocument 412 /error/HTTP<em>PRECONDITION</em>FAILED.html.var</h1>
-                  
-                  <h1>ErrorDocument 413 /error/HTTP<em>REQUEST</em>ENTITY<em>TOO</em>LARGE.html.var</h1>
-                  
-                  <h1>ErrorDocument 414 /error/HTTP<em>REQUEST</em>URI<em>TOO</em>LARGE.html.var</h1>
-                  
-                  <h1>ErrorDocument 415 /error/HTTP<em>UNSUPPORTED</em>MEDIA_TYPE.html.var</h1>
-                  
-                  <h1>ErrorDocument 500 /error/HTTP<em>INTERNAL</em>SERVER_ERROR.html.var</h1>
-                  
-                  <h1>ErrorDocument 501 /error/HTTP<em>NOT</em>IMPLEMENTED.html.var</h1>
-                  
-                  <h1>ErrorDocument 502 /error/HTTP<em>BAD</em>GATEWAY.html.var</h1>
-                  
-                  <h1>ErrorDocument 503 /error/HTTP<em>SERVICE</em>UNAVAILABLE.html.var</h1>
-                  
-                  <h1>ErrorDocument 506 /error/HTTP<em>VARIANT</em>ALSO_VARIES.html.var</pre></h1>
-                  
-                  <p>後ろに、以下の一行を追加</p>
-                  
-                  <pre>ErrorDocument 404 /error/404.html</pre>
-                  
-                  <p>これで完了。</p>
-                  
-                  <p>２．/var/www/error/404.htmlを作成</p>
-                  
-                  <p>簡単なHTMLを配置。</p>
-                  
-                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  
-                  &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-                  &lt;HTML&gt;
-                    &lt;HEAD&gt;
-                       &lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=EUC-JP&quot;&gt;
-                       &lt;META http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;
-                       &lt;TITLE&gt;Not found sota1235&lt;/TITLE&gt;
-                    &lt;/HEAD&gt;
-                    &lt;BODY&gt;
-                      &lt;CENTER&gt;&lt;H3&gt;指定されたページが見つかりませんでした。&lt;/H3&gt;
-                         &lt;H4&gt;Error Code 404(HTTP_NOT_FOUND)&lt;/H4&gt;
-                         &lt;p&gt;リンク切れ、もしくは無効なURLです&lt;/p&gt;&lt;/ br&gt;
-                         &lt;a href=&quot;sota1235.com&quot;&gt;sota1235.com&lt;/a&gt;
-                      &lt;/CENTER&gt;
-                    &lt;/BODY&gt;
-                  &lt;/HTML&gt;
-                  
-                  </pre>
-                  
-                  <p>３．完了！</p>
-                  
-                  <p>sota1235.com/hogeにアクセスしてみると…</p>
-                  
-                  <p><a href="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.29.04.png"><img src="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.29.04.png" alt="スクリーンショット 2013-12-13 18.29.04" width="420" height="270" class="alignnone size-full wp-image-52" border="2px" /></a></p>
-                  
-                  <p>できた！</p>
-                  
-                  <p>こんな感じでした。</p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * 404ページをカスタマイズする
+            </h2>
+            <p class='post-date'>
+              Dec 17 2013
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>どうも、久しぶりの投稿です。</p>
+              
+              <p>VPSのリダイレクト設定等を全くしてなかったので、無効なURLにアクセスするとこんなページが表示されます。</p>
+              
+              <p><a href="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.09.34.png"><img class="alignnone size-full wp-image-49" alt="404 Not Found" src="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.09.34.png" width="782" height="471" border="3px" /></a></p>
+              
+              <p>ApacheのデフォルトのNot Foundですね。</p>
+              
+              <p>ださい。</p>
+              
+              <p>ということでカスタマイズしたいー。</p>
+              
+              <p>で、ググって出てきたページを参考にして設定してみた。</p>
+              
+              <p><a title="はじめての自宅サーバ構築 - Federa/CentOS -" href="http://kajuhome.com/apache_err_custom.shtml">はじめての自宅サーバ構築 - Federa/CentOS -</a></p>
+              
+              <p>１．errorページの参照先を変更する</p>
+              
+              <p>/etc/httpd/conf/httpd.confを編集
+              <pre class="brush: shell; gutter: true">&lt;IfModule mod<em>negotiation.c&gt;
+              &lt;IfModule mod</em>include.c&gt;
+                  &lt;Directory &quot;/var/www/error&quot;&gt;
+                      AllowOverride None
+                      Options IncludesNoExec
+                      AddOutputFilter Includes html
+                      AddHandler type-map var
+                      Order allow,deny
+                      Allow from all
+                      LanguagePriority en es de fr
+                      ForceLanguagePriority Prefer Fallback
+                  &lt;/Directory&gt;</p>
+              
+              <h1 id="errordocument-400-/error/httpbadrequest.html.var">ErrorDocument 400 /error/HTTP<em>BAD</em>REQUEST.html.var</h1>
+              
+              <h1 id="errordocument-401-/error/http_unauthorized.html.var">ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var</h1>
+              
+              <h1 id="errordocument-403-/error/http_forbidden.html.var">ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var</h1>
+              
+              <h1 id="errordocument-404-/error/httpnotfound.html.var">ErrorDocument 404 /error/HTTP<em>NOT</em>FOUND.html.var</h1>
+              
+              <h1 id="errordocument-405-/error/httpmethodnot_allowed.html.var">ErrorDocument 405 /error/HTTP<em>METHOD</em>NOT_ALLOWED.html.var</h1>
+              
+              <h1 id="errordocument-408-/error/httprequesttime_out.html.var">ErrorDocument 408 /error/HTTP<em>REQUEST</em>TIME_OUT.html.var</h1>
+              
+              <h1 id="errordocument-410-/error/http_gone.html.var">ErrorDocument 410 /error/HTTP_GONE.html.var</h1>
+              
+              <h1 id="errordocument-411-/error/httplengthrequired.html.var">ErrorDocument 411 /error/HTTP<em>LENGTH</em>REQUIRED.html.var</h1>
+              
+              <h1 id="errordocument-412-/error/httppreconditionfailed.html.var">ErrorDocument 412 /error/HTTP<em>PRECONDITION</em>FAILED.html.var</h1>
+              
+              <h1 id="errordocument-413-/error/httprequestentitytoolarge.html.var">ErrorDocument 413 /error/HTTP<em>REQUEST</em>ENTITY<em>TOO</em>LARGE.html.var</h1>
+              
+              <h1 id="errordocument-414-/error/httprequesturitoolarge.html.var">ErrorDocument 414 /error/HTTP<em>REQUEST</em>URI<em>TOO</em>LARGE.html.var</h1>
+              
+              <h1 id="errordocument-415-/error/httpunsupportedmedia_type.html.var">ErrorDocument 415 /error/HTTP<em>UNSUPPORTED</em>MEDIA_TYPE.html.var</h1>
+              
+              <h1 id="errordocument-500-/error/httpinternalserver_error.html.var">ErrorDocument 500 /error/HTTP<em>INTERNAL</em>SERVER_ERROR.html.var</h1>
+              
+              <h1 id="errordocument-501-/error/httpnotimplemented.html.var">ErrorDocument 501 /error/HTTP<em>NOT</em>IMPLEMENTED.html.var</h1>
+              
+              <h1 id="errordocument-502-/error/httpbadgateway.html.var">ErrorDocument 502 /error/HTTP<em>BAD</em>GATEWAY.html.var</h1>
+              
+              <h1 id="errordocument-503-/error/httpserviceunavailable.html.var">ErrorDocument 503 /error/HTTP<em>SERVICE</em>UNAVAILABLE.html.var</h1>
+              
+              <h1 id="errordocument-506-/error/httpvariantalso_varies.html.var">ErrorDocument 506 /error/HTTP<em>VARIANT</em>ALSO_VARIES.html.var</pre></h1>
+              
+              <p>後ろに、以下の一行を追加</p>
+              
+              <pre>ErrorDocument 404 /error/404.html</pre>
+              
+              <p>これで完了。</p>
+              
+              <p>２．/var/www/error/404.htmlを作成</p>
+              
+              <p>簡単なHTMLを配置。</p>
+              
+              <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">
+              
+              &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+              &lt;HTML&gt;
+                &lt;HEAD&gt;
+                   &lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=EUC-JP&quot;&gt;
+                   &lt;META http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;
+                   &lt;TITLE&gt;Not found sota1235&lt;/TITLE&gt;
+                &lt;/HEAD&gt;
+                &lt;BODY&gt;
+                  &lt;CENTER&gt;&lt;H3&gt;指定されたページが見つかりませんでした。&lt;/H3&gt;
+                     &lt;H4&gt;Error Code 404(HTTP_NOT_FOUND)&lt;/H4&gt;
+                     &lt;p&gt;リンク切れ、もしくは無効なURLです&lt;/p&gt;&lt;/ br&gt;
+                     &lt;a href=&quot;sota1235.com&quot;&gt;sota1235.com&lt;/a&gt;
+                  &lt;/CENTER&gt;
+                &lt;/BODY&gt;
+              &lt;/HTML&gt;
+              
+              </pre>
+              
+              <p>３．完了！</p>
+              
+              <p>sota1235.com/hogeにアクセスしてみると…</p>
+              
+              <p><a href="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.29.04.png"><img src="http://blog.sota1235.com/wp-content/uploads/2013/12/スクリーンショット-2013-12-13-18.29.04.png" alt="スクリーンショット 2013-12-13 18.29.04" width="420" height="270" class="alignnone size-full wp-image-52" border="2px" /></a></p>
+              
+              <p>できた！</p>
+              
+              <p>こんな感じでした。</p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>

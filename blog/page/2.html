@@ -9,6 +9,8 @@
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
     <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src='https://www.google.com/jsapi' type='text/javascript'></script>
+    <script src="/javascripts/getRSS.js" type="text/javascript"></script>
   </head>
   <body>
     <div class='pure-g-r' id='layout'>
@@ -44,335 +46,172 @@
       <div class='content pure-u-1 pure-u-md-3-4'>
         <div class='blog blog_page blog_page_2' id='main'>
           <p>
-            Page 2 of 4
+            Page 2 of 7
           </p>
           <p><a href="/blog.html">Previous page</a></p>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/05/11/11174037.html">* Procmailを使ってメールを自動振り分けする</a>
+                <a href="/blog/2014/08/04/04050828.html">* Mouでシンタックスハイライトしたい</a>
               </h2>
               <p class='post-date'>
-                May 11 2014
+                Aug  4 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p><a title="CNS Printer Status" href="http://printer.sota1235.net">CNS Printer Status</a>を作る際、CNSサーバ側でメールが来るたびにjsonを生成するスクリプトを書いた。</p>
+              <p>課題で使いたいので探したらあった。</p>
               
-              <p>ただその時に厄介だったのが、Printerでないメールの中から毎回最新のPrinterメールを探しjsonを生成しなければならないことだった。</p>
+              <p><a title="Gist: gist:4286673" href="https://gist.github.com/davidmatas/4286673">Gist: gist:4286673</a></p>
               
-              <p>PHPで<code>scandir(hogehoge)</code>しようにも、cronでそんなん回して負荷かけて文句言われたらなぁー…と思って考えていたところ、ホームディレクトリに<code>procmaillog</code>という見慣れないファイルを発見した。</p>
+              <p>以下のを文章内に追加すればおｋ</p>
               
-              <p>ggって...</p>
+              <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;!-- Highlight syntax for Mou.app, insert at the bottom of the markdown document  --&gt;
+               
+              &lt;script src="http://yandex.st/highlightjs/7.3/highlight.min.js"&gt;&lt;/script&gt;
+              &lt;link rel="stylesheet" href="http...</pre>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/05/11/11174037.html">Read more...</a>
+              <a href="/blog/2014/08/04/04050828.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/04/24/24232047.html">* トイチスクリプト</a>
+                <a href="/blog/2014/07/27/27135037.html">* XSS Game Write-Up</a>
               </h2>
               <p class='post-date'>
-                Apr 24 2014
+                Jul 27 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p>おふざけ。</p>
+              <p>解けたの嬉しかったし初めてWrite-Upとやらを書いてみる。</p>
               
-              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"># -*- coding: utf-8 -*-
-              while True:
-                  print "借りる値段を入力してね٩(ˊᗜˋ*)و"
-                  n = input('&gt; ')
-                  month = n * (1.1 ** 3)
-                  year = n * (1.1 ** 36)
-                  five_month = n * (1.1 ** (36 * 5))
-                  print "１ヶ月で{}円, １年で{}円, ５年で{}円かかるよ(,,Ծ‸Ծ,, )\n".format(int...</pre>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/04/24/24232047.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/04/16/16123103.html">* Mobile Shellでリモートログインを快適に</a>
-              </h2>
-              <p class='post-date'>
-                Apr 16 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>先日ゼミでVPSセットアップ講座なるものをやらされ</p>
+              <p>ガチ勢には相当ゆるい内容らしいけどまぁいいよね。</p>
               
-              <p>sshのお話をしていたら先輩に「時代はmosh！！！」と言われたので使ってみた。</p>
+              <p><a title="XSS Game" href="https://xss-game.appspot.com/">XSS Game</a></p>
               
-              <h3>Mobile Shellとは</h3>
+              <p>以下ネタバレ注意</p>
               
-              <p>リモートログインの際、sshに替わってつないでくれる賢いソフト。</p>
-              
-              <p>ネットが切れてもきちんと繋ぎ直してくれたり、IPが変わっても平気だったりとても便利。</p>
-              
-              <p>認証周りは従来通りssh通信で行っており、そのうえ導入も簡単。</p>
-              
-              <p>詳しくはこちらの記事をどうぞ → <a title="mosh: MITからモバイル時代のSSH代替品" href="http://d.hatena.ne.jp/karasuyamatengu/20120411/1334092521">mosh: MITからモバイル時代のSSH代替品</a></p>
-              
-              <p>Mobile Shell...</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/04/16/16123103.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/04/14/14151429.html">* 素数判定を頑張って高速化してみる -エラトステネスの篩編-</a>
-              </h2>
-              <p class='post-date'>
-                Apr 14 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>まずはこの問題を見ていただきたい。</p>
-              
-              <p><em>「6 桁以下の正の整数 n を入力し、n 以下の素数がいくつあるかを出力するプログラムを作成して下さい。ただし、素数とは 1 と自分自身でしか割り切れない正の整数のうち 1 をのぞいたものをいいます。例えば 10 以下の素数は、2, 3, 5, 7 です。」</em>
-              <a title="引用：AOJ0009" href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009&amp;lang=jp">引用：AOJ0009</a></p>
-              
-              <p>なんてことはない、ただの素数判定です。</p>
-              
-              <p>とはいえきちんとした素数判定のアルゴリズムをggってみるとどうやら『<a title="エラトステネスの篩" href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>』とやらがシンプルな方法らしい</p>
-              
-              <p>(他にもも...</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/04/14/14151429.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/03/18/18200717.html">* Python楽しい</a>
-              </h2>
-              <p class='post-date'>
-                Mar 18 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>一週間前くらいからAOJを始めました。</p>
-              
-              <p><a title="AIZU ONLINE JUDGE" href="http://judge.u-aizu.ac.jp/onlinejudge/index.jsp">AIZU ONLINE JUDGE</a></p>
-              
-              <p>競技プログラミングのサイトで問題があってそれを解くと難易度に応じてポイントがもらえるーって感じなのですが、</p>
-              
-              <p>他のサイトと比べて</p>
+              <p>問題の流れとしては</p>
               
               <ul>
-              <li>日本語の問題が多い(序盤のみ)</li>
-              <li>序盤の難易度が優しい</li>
+              <li>全６問</li>
+              <li>iframe内の擬似ブラウザでalert出せればオッケー</li>
+              <li>全部解けたらケーキあげるヨ！</li>
               </ul>
               
-              <p>ってとこからとりあえず暇な時にカリカリ解いてます。</p>
+              <p>って感じですかね。</p>
               
-              <p>まだ序盤の消化試合なのでさくさく解けてる。</p>
+              <p><br></p>
               
-              <p>最初、<code>C</code>、<code>C++</code>、<code>C#</code>、<code>Java</code>縛りなのかと思ったらだいたいの言語使えたのでPythonを使ってます。<del datetime="2014-03-18T11:00:05+00:00">楽だから</del></p>
+              <h2 id="level-1:-hello,-world-of-xss">Level 1: Hello, world of XSS</h2>
               
-              <p>例えば「...</p>
+              <p>こんな感じのフォームが表示される</p>
+              
+              <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.17.00.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.17.00.png" alt="Level1-1" width="703" height="365" class="alignnone size-full wp-image-280"></a></p>
+              
+              <p>試しに“a"ってうつとこんな感じ</p>
+              
+              <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.19.24.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2014-07-01-17.19.24.png" alt="Level1-2" width="702" height="364" class="alignnone size-full wp-image-282"></a></p>
+              
+              <p>タグで囲まれて入力内容が出力されてますね。</p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/03/18/18200717.html">Read more...</a>
+              <a href="/blog/2014/07/27/27135037.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/03/10/10010303.html">* 今週のお題：7セグメントコードの反転 @CodeIQ</a>
+                <a href="/blog/2014/07/01/01165552.html">* ブログが落ちてた話</a>
               </h2>
               <p class='post-date'>
-                Mar 10 2014
+                Jul  1 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p>最近CodeIQでちょこちょこ問題を解いています。</p>
+              <p>ここ一ヶ月ほど、このブログにアクセスすると真っ白なページにアクセスされたと思う。</p>
               
-              <p>その中でこの問題を解いてみた。</p>
+              <p>原因が分からず放置してたのだが、重い腰をあげていろいろといじくりなおしたらとりあえず表示された。</p>
               
-              <p><a title="今週のお題：7セグメントコードの反転" href="https://codeiq.jp/ace/thisweek_masuipeo/q755">今週のお題：7セグメントコードの反転</a></p>
+              <p>けど、原因よくわかんないしWordpressの更新うまくできないしかといってリプレースもめんどくさすぎてどうしようかなって感じ。</p>
               
-              <h2>7セグメントディスプレイ</h2>
+              <p>Tumblerとかどうなんでしょう、何かおすすめあったら教えてください…</p>
               
-              <p>詳しくはこちら参照→<a title="Wikipedia: 7セグメントディスプレイ" href="http://ja.wikipedia.org/wiki/7%E3%82%BB%E3%82%B0%E3%83%A1%E3%83%B3%E3%83%88%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4">Wikipedia: 7セグメントディスプレイ</a></p>
+              <hr>
               
-              <p>７桁の２進数を使って０〜９の数字を表現することができるディスプレイのこと。</p>
-              
-              <p>原理はこんな感じ↓(CodeIQ様より引用)</p>
-              
-              <p><a href="http://gyazo.com/15fccc48ffe1b681007b7420018867ac.png"></a></p>
-              
-              <h2>問題</h2>
-              
-              <p>肝心の課題は要約すると</p>
-              
-              <p><strong>「7セグメントディスプレイで1,0の切り替え回数を最も少なく0から9を表現するとき、切り替え回数は何回か...</strong></p>
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れ...</p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/03/10/10010303.html">Read more...</a>
+              <a href="/blog/2014/07/01/01165552.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/03/09/09192043.html">* 順列を実装する @ Python</a>
+                <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
               </h2>
               <p class='post-date'>
-                Mar  9 2014
+                May 26 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p>お久しぶりです。</p>
+              <p>サークルの後輩にファイルを共有する際、自分のサイトにファイルを置いてURLを教えていたのですが、</p>
               
-              <p>今回は与えられた要素から考えうる順列を全て洗い出すスクリプトを書いてみようと思います。</p>
+              <p>ファイルの置き場所を変えたくなっちゃったので<code>.htaccess</code>を利用してやってみた。</p>
               
-              <p>できそうでできずにインターンで苦しんだのでゆっくり考えてみたのでメモがわりに。</p>
+              <p><code>/hoge/</code>をファイル公開ディレクトリとする。(<code>http://sota1235.net/files/*.zip</code>で<code>/hoge/&amp;#42;.zip</code>にアクセスできる。)</p>
               
-              <h2>順列とは</h2>
+              <ul>
+              <li>元のファイルの置き場所: <code>/hoge/*.zip</code>
+              </li>
+              <li>新しい置き場所: <code>/hoge/fuga/*.zip</code>
+              </li>
+              </ul>
               
-              <p><strong>異なる数個のものを順序づけて一列に並べる並べ方の一つ一つをいう。n個からr個とる順列（n個のものからr個選んで得られる順列）の数を(/n)P(/r)と書く。</strong></p>
-              
-              <p><a title="引用: kotobank.jp" href="http://kotobank.jp/word/%E9%A0%86%E5%88%97">引用: kotobank.jp</a></p>
-              
-              <p>だそうです。</p>
-              
-              <p>例えば</p>
-              
-              <p><code>list = ['a','b','c']</code></p>
-              
-              <p>から３つ取り出して並べる方...</p>
+              <p><code>.htaccess</code>ファイルの置き...</p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/03/09/09192043.html">Read more...</a>
+              <a href="/blog/2014/05/26/26104650.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/02/28/28021756.html">* +演算子だけで四則演算 @ Python</a>
+                <a href="/blog/2014/05/19/19181844.html">* 逆ポーランド記法の問題を大量生産する</a>
               </h2>
               <p class='post-date'>
-                Feb 28 2014
+                May 19 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <h2>元気ですか</h2>
+              <p>とある友人に頼まれたのでやっつけで作った。</p>
               
-              <p>どうも、お久しぶりです。</p>
+              <p>逆ポーランド記法に関してはこちらを参照。</p>
               
-              <p>実はまたまた企業さんのインターンに参加させていただいてまして</p>
+              <p><a title="Wikipedia: 逆ポーランド記法" href="http://ja.wikipedia.org/wiki/%E9%80%86%E3%83%9D%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E8%A8%98%E6%B3%95">Wikipedia: 逆ポーランド記法</a></p>
               
-              <p>昨日今日の２日間でやってます。</p>
+              <p>スタックの概念を理解するために逆ポーランド記法の問題を処理するプログラムを書いたりする(らしい)。</p>
               
-              <p>テーマが「アルゴリズムクイズをひたすら解く」という非常にシンプルなもの。</p>
+              <p>こいつの問題を大量生産したいってなったとき、考えなきゃいけないことは思いついたやつでこんな感じ。</p>
               
-              <p>わかりやすくてよいね。</p>
-              
-              <p>その中で１つ面白い問題があったので紹介します。</p>
-              
-              <del datetime="2014-02-27T17:02:45+00:00">一番乗りで解けたのが嬉しかったから紹介するわけではないからね。</del>
-              
-              <h2>+演算子だけで四則演算をするプログラム</h2>
-              
-              <p>まぁまんまその通りです。</p>
-              
-              <p>足し算はまぁそのままやるとして、引き算、掛け算、割り算を全部+演算...</p>
+              <ul>
+              <li>問題の先頭2つは必ず数字でなければならない</li>
+              <li>記号、数字の数を<code>x, y</code>とすると、先頭からそれぞれ数えた時に常に<code>x &amp;lt;= y - 1</code>でなければいけない</li>
+              </ul>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/02/28/28021756.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/02/19/19120726.html">* ハッカソンに行ってきた</a>
-              </h2>
-              <p class='post-date'>
-                Feb 19 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <h2>ハッカソンに行ってきました。</h2>
-              
-              <p>ある企業の選考の一貫で、２日間のハッカソンに行ってきました。</p>
-              
-              <p>情報を公開していいのかわからない(というか内容漏らすなみたいなやつ書いた)ので詳細は話しませんが、優勝することができました。</p>
-              
-              <p>とはいえ技術力が他チームより勝っていたというよりはアイディアでウケを取ったという感じになると思います。</p>
-              
-              <p>賞品がトロフィーと好きな技術書２冊という素晴らしすぎるものでした。感謝。</p>
-              
-              <p>人生で初トロフィーというね。</p>
-              
-              <p>一緒に開発した相方やコミュ障の僕にも仲良くしてくれた参加...</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/02/19/19120726.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/02/14/14033947.html">* タダコピの陰を消す(3/28)</a>
-              </h2>
-              <p class='post-date'>
-                Feb 14 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>こんばんわ。</p>
-              
-              <p>友人から楽譜をスキャンしてもらったのですがその裏にタダコピがうっすら写ってる…</p>
-              
-              <p><img src="http://gyazo.com/0def774b7e5e3231fd4b0115cdf1268b.png" alt="score"></p>
-              
-              <p>ダサい。</p>
-              
-              <p>ってことで習いたての画像処理でどうにかしてみた。</p>
-              
-              <p><strong>[twocolor_gene.pde]</strong></p>
-              
-              <pre class="brush: java; gutter: true; first-line: 1; highlight: []; html-script: false">
-              /* Created by sota1235
-               * Date:2014/02/14
-               */
-               
-              PImage img, img2;
-              img = loadImage("path/image");
-              int w = img.width, h = img.height;
-               
-              size(w, h...</pre>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/02/14/14033947.html">Read more...</a>
+              <a href="/blog/2014/05/19/19181844.html">Read more...</a>
             </div>
           </section>
           <p><a href="/blog/page/3.html">Next page</a></p>
@@ -422,6 +261,9 @@
             </ol>
             <h2>Tags</h2>
             <ol>
+              <li><a href="/blog/tags/daily.html">Daily (1)</a></li>
+              <li><a href="/blog/tags/server.html">Server (1)</a></li>
+              <li><a href="/blog/tags/c.html">C (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>

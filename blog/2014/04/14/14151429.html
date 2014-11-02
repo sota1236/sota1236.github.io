@@ -41,220 +41,216 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * 素数判定を頑張って高速化してみる -エラトステネスの篩編-
-                </h2>
-                <p class='post-meta'>
-                  Apr 14 2014
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <p>まずはこの問題を見ていただきたい。</p>
-                  
-                  <p><em>「6 桁以下の正の整数 n を入力し、n 以下の素数がいくつあるかを出力するプログラムを作成して下さい。ただし、素数とは 1 と自分自身でしか割り切れない正の整数のうち 1 をのぞいたものをいいます。例えば 10 以下の素数は、2, 3, 5, 7 です。」</em>
-                  <a title="引用：AOJ0009" href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009&amp;lang=jp">引用：AOJ0009</a></p>
-                  
-                  <p>なんてことはない、ただの素数判定です。</p>
-                  
-                  <p>とはいえきちんとした素数判定のアルゴリズムをggってみるとどうやら『<a title="エラトステネスの篩" href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>』とやらがシンプルな方法らしい</p>
-                  
-                  <p>(他にももっとあります)。</p>
-                  
-                  <p>その他にもいろいろこちらで見させていただきました。</p>
-                  
-                  <p><a title="Pashango's Blog：Pythonを使って高速判定してみる" href="http://d.hatena.ne.jp/pashango_p/20090704/1246692091">Pashango&rsquo;s Blog：Pythonを使って高速判定してみる</a></p>
-                  
-                  <p><a title="peria.jp：エラトステネスの篩" href="http://peria.jp/factor/prime/eratosthenes.html">peria.jp：エラトステネスの篩</a></p>
-                  
-                  <p>ってことで私もPythonで実装してみた。</p>
-                  
-                  <hr>
-                  
-                  <h2>バージョンその１</h2>
-                  
-                  <ul>
-                  <li>2 ~ nまでを順番にチェック</li>
-                  <li>気持ち早くするために、素数候補リストは奇数しか入れてない(これでチェックする量は半分で済む)</li>
-                  </ul>
-                  
-                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  #!/usr/bin/python
-                  
-                  def sieve(n):
-                      nums = [i+1 for i in range(2, n, 2)]
-                      ans = [2]
-                      while len(nums) != 0:
-                          for i in range(nums[0]*2, nums[-1]+1, nums[0]):
-                              if i in nums: nums.remove(i)
-                          ans.append(nums.pop(0))
-                      return len(ans)
-                  
-                  print sieve(10000)
-                  </pre>
-                  
-                  <h4>結果</h4>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.84s user 0.01s system 98% cpu 0.861 total</pre>
-                  
-                  <p>５桁の素数であれば１秒以内に処理できます。</p>
-                  
-                  <p>しかし６桁になると10分経っても結果が出ません。とてもじゃないけど使い物になりません。</p>
-                  
-                  <p>毎素数で与えられた数字全てを走査しているので巨大な数に滅法弱いです。</p>
-                  
-                  <p>ってことでちょっとずつ改良してみる。</p>
-                  
-                  <h2>バージョンその２</h2>
-                  
-                  <ul>
-                  <li>ある数 x で答え候補を篩にかける際、その前までの操作で x^2 以下の非素数は消されてるはず</li>
-                  <li><p>なので今までは x ~ n でチェックしていたのを x^2 ~ n まで範囲を縮める</p></li>
-                  <li><p>今までなら5の場合 : 10 ~ n をチェック</p></li>
-                  <li><p>今回 : 25 ~ n をチェック</p></li>
-                  <li><p>また、例えば120以下の素数をチェックする時、篩にかける数字が√120に達した時点で全ての素数を洗い出せているので</p></li>
-                  <li><p>今までなら5の場合 : 10 ~ n をチェック</p></li>
-                  <li><p>今回 : 25 ~ √n をチェック</p></li>
-                  </ul>
-                  
-                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  #!/usr/bin/python
-                  import math
-                  
-                  def sieve(n):
-                      nums = [i+1 for i in range(2, n, 2)]
-                      ans = [2]
-                      while nums[0] &lt;= math.sqrt(n): # ←ここが変わった
-                          for i in range(nums[0]**2, nums[-1]+1, nums[0]): # ←ここも変わった
-                              if i in nums: nums.remove(i)
-                          ans.append(nums.pop(0))
-                      ans += nums
-                      return ans
-                  
-                  print sieve(10000)
-                  </pre>
-                  
-                  <h4>結果</h4>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.58s user 0.01s system 99% cpu 0.589 total</pre>
-                  
-                  <p>うん。気持ち早くなりましたね。</p>
-                  
-                  <p>けど30000とか投げちゃうとまだまだ１，２秒かかる。</p>
-                  
-                  <h2>バージョン３</h2>
-                  
-                  <ul>
-                  <li>偶数だけでなく、3と5の倍数も除去！</li>
-                  <li>理論上、チェックする数が半分以上減るので高速化が期待できる…はず</li>
-                  </ul>
-                  
-                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  #!/usr/bin/python
-                  import math
-                  
-                  def sieve(n):
-                      nums = [i+1 for i in range(2, n, 2) if (i+1) % 3 != 0 and (i+1) % 5 !=0] # リスト内包表記で3,5の倍数をはじく
-                      ans = [2,3,5] # 3,5は素数なので加えてしまう
-                      while nums[0] &lt;= math.sqrt(n):
-                          for i in range(nums[0]**2, nums[-1]+1, nums[0]):
-                              if i in nums: nums.remove(i)
-                          ans.append(nums.pop(0))
-                      ans += nums
-                      return ans
-                  
-                  print sieve(10000)
-                  </pre>
-                  
-                  <h4>結果</h4>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.25s user 0.01s system 98% cpu 0.265 total</pre>
-                  
-                  <p>おおお！！</p>
-                  
-                  <p>時間が先ほどの半分になりましたね。</p>
-                  
-                  <p>もはや7とか11の倍数もはじけば早くなるのでは？と思ったけどそれだと素数判定 is 何となりかねないのでここらへんで。</p>
-                  
-                  <p>実は素数判定にエラトステネスの篩が使われることは少なく(僕はあまり見たこと無い)、プログラムだとミラー・ラビンテストという方法でやるのが定石っぽい。</p>
-                  
-                  <p>こっちもいつか記事にしたいなと思いつつ、先駆者の記事がすばらしいので多分書かないかも。</p>
-                  
-                  <p>それでは。</p>
-                  
-                  <h3>追記</h3>
-                  
-                  <p>AOJでいろいろコードを見てたらとても美しいエラトステネスの篩の実装を見つけたので、そのコードを参考にして組み直しました。</p>
-                  
-                  <p>そしたら激速…orz</p>
-                  
-                  <p>以下コード。</p>
-                  
-                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  #!/usr/bin/python
-                  
-                  def sieve(n):
-                      num = [True]*n
-                      num[0] = num[1] = False
-                      for i in xrange(2,int(n**0.5)+1):
-                          if num[i]:
-                              for j in xrange(i**2, n, i):
-                                  num[j] = False
-                      return [i for i in xrange(2,n) if num[i]]
-                  
-                  print sieve(10000)
-                  </pre>
-                  
-                  <h4>結果</h4>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.03s user 0.01s system 90% cpu 0.038 total</pre>
-                  
-                  <p>0.01秒！！</p>
-                  
-                  <p>素晴らしい。</p>
-                  
-                  <p>ポイントとしては、</p>
-                  
-                  <ul>
-                  <li>最初にフラグリストを生成する。</li>
-                  <li>i番目の数が素数ならTrue、素数じゃなければFalseというリストを最初に生成する。</li>
-                  <li>最後に、それを元にしてリストを生成する。</li>
-                  </ul>
-                  
-                  <p>なるほどなぁ。そりゃ1と0を処理したほうが早いですもんね。</p>
-                  
-                  <p>こういうことできるようになりたいですな。</p>
-                  
-                  <p>以上でした。</p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * 素数判定を頑張って高速化してみる -エラトステネスの篩編-
+            </h2>
+            <p class='post-date'>
+              Apr 14 2014
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>まずはこの問題を見ていただきたい。</p>
+              
+              <p><em>「6 桁以下の正の整数 n を入力し、n 以下の素数がいくつあるかを出力するプログラムを作成して下さい。ただし、素数とは 1 と自分自身でしか割り切れない正の整数のうち 1 をのぞいたものをいいます。例えば 10 以下の素数は、2, 3, 5, 7 です。」</em>
+              <a title="引用：AOJ0009" href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009&amp;lang=jp">引用：AOJ0009</a></p>
+              
+              <p>なんてことはない、ただの素数判定です。</p>
+              
+              <p>とはいえきちんとした素数判定のアルゴリズムをggってみるとどうやら『<a title="エラトステネスの篩" href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>』とやらがシンプルな方法らしい</p>
+              
+              <p>(他にももっとあります)。</p>
+              
+              <p>その他にもいろいろこちらで見させていただきました。</p>
+              
+              <p><a title="Pashango's Blog：Pythonを使って高速判定してみる" href="http://d.hatena.ne.jp/pashango_p/20090704/1246692091">Pashango&rsquo;s Blog：Pythonを使って高速判定してみる</a></p>
+              
+              <p><a title="peria.jp：エラトステネスの篩" href="http://peria.jp/factor/prime/eratosthenes.html">peria.jp：エラトステネスの篩</a></p>
+              
+              <p>ってことで私もPythonで実装してみた。</p>
+              
+              <hr>
+              
+              <h2 id="バージョンその１">バージョンその１</h2>
+              
+              <ul>
+              <li>2 ~ nまでを順番にチェック</li>
+              <li>気持ち早くするために、素数候補リストは奇数しか入れてない(これでチェックする量は半分で済む)</li>
+              </ul>
+              
+              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+              #!/usr/bin/python
+              
+              def sieve(n):
+                  nums = [i+1 for i in range(2, n, 2)]
+                  ans = [2]
+                  while len(nums) != 0:
+                      for i in range(nums[0]*2, nums[-1]+1, nums[0]):
+                          if i in nums: nums.remove(i)
+                      ans.append(nums.pop(0))
+                  return len(ans)
+              
+              print sieve(10000)
+              </pre>
+              
+              <h4 id="結果">結果</h4>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.84s user 0.01s system 98% cpu 0.861 total</pre>
+              
+              <p>５桁の素数であれば１秒以内に処理できます。</p>
+              
+              <p>しかし６桁になると10分経っても結果が出ません。とてもじゃないけど使い物になりません。</p>
+              
+              <p>毎素数で与えられた数字全てを走査しているので巨大な数に滅法弱いです。</p>
+              
+              <p>ってことでちょっとずつ改良してみる。</p>
+              
+              <h2 id="バージョンその２">バージョンその２</h2>
+              
+              <ul>
+              <li>ある数 x で答え候補を篩にかける際、その前までの操作で x^2 以下の非素数は消されてるはず</li>
+              <li><p>なので今までは x ~ n でチェックしていたのを x^2 ~ n まで範囲を縮める</p></li>
+              <li><p>今までなら5の場合 : 10 ~ n をチェック</p></li>
+              <li><p>今回 : 25 ~ n をチェック</p></li>
+              <li><p>また、例えば120以下の素数をチェックする時、篩にかける数字が√120に達した時点で全ての素数を洗い出せているので</p></li>
+              <li><p>今までなら5の場合 : 10 ~ n をチェック</p></li>
+              <li><p>今回 : 25 ~ √n をチェック</p></li>
+              </ul>
+              
+              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+              #!/usr/bin/python
+              import math
+              
+              def sieve(n):
+                  nums = [i+1 for i in range(2, n, 2)]
+                  ans = [2]
+                  while nums[0] &lt;= math.sqrt(n): # ←ここが変わった
+                      for i in range(nums[0]**2, nums[-1]+1, nums[0]): # ←ここも変わった
+                          if i in nums: nums.remove(i)
+                      ans.append(nums.pop(0))
+                  ans += nums
+                  return ans
+              
+              print sieve(10000)
+              </pre>
+              
+              <h4 id="結果">結果</h4>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.58s user 0.01s system 99% cpu 0.589 total</pre>
+              
+              <p>うん。気持ち早くなりましたね。</p>
+              
+              <p>けど30000とか投げちゃうとまだまだ１，２秒かかる。</p>
+              
+              <h2 id="バージョン３">バージョン３</h2>
+              
+              <ul>
+              <li>偶数だけでなく、3と5の倍数も除去！</li>
+              <li>理論上、チェックする数が半分以上減るので高速化が期待できる…はず</li>
+              </ul>
+              
+              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+              #!/usr/bin/python
+              import math
+              
+              def sieve(n):
+                  nums = [i+1 for i in range(2, n, 2) if (i+1) % 3 != 0 and (i+1) % 5 !=0] # リスト内包表記で3,5の倍数をはじく
+                  ans = [2,3,5] # 3,5は素数なので加えてしまう
+                  while nums[0] &lt;= math.sqrt(n):
+                      for i in range(nums[0]**2, nums[-1]+1, nums[0]):
+                          if i in nums: nums.remove(i)
+                      ans.append(nums.pop(0))
+                  ans += nums
+                  return ans
+              
+              print sieve(10000)
+              </pre>
+              
+              <h4 id="結果">結果</h4>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.25s user 0.01s system 98% cpu 0.265 total</pre>
+              
+              <p>おおお！！</p>
+              
+              <p>時間が先ほどの半分になりましたね。</p>
+              
+              <p>もはや7とか11の倍数もはじけば早くなるのでは？と思ったけどそれだと素数判定 is 何となりかねないのでここらへんで。</p>
+              
+              <p>実は素数判定にエラトステネスの篩が使われることは少なく(僕はあまり見たこと無い)、プログラムだとミラー・ラビンテストという方法でやるのが定石っぽい。</p>
+              
+              <p>こっちもいつか記事にしたいなと思いつつ、先駆者の記事がすばらしいので多分書かないかも。</p>
+              
+              <p>それでは。</p>
+              
+              <h3 id="追記">追記</h3>
+              
+              <p>AOJでいろいろコードを見てたらとても美しいエラトステネスの篩の実装を見つけたので、そのコードを参考にして組み直しました。</p>
+              
+              <p>そしたら激速…orz</p>
+              
+              <p>以下コード。</p>
+              
+              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+              #!/usr/bin/python
+              
+              def sieve(n):
+                  num = [True]*n
+                  num[0] = num[1] = False
+                  for i in xrange(2,int(n**0.5)+1):
+                      if num[i]:
+                          for j in xrange(i**2, n, i):
+                              num[j] = False
+                  return [i for i in xrange(2,n) if num[i]]
+              
+              print sieve(10000)
+              </pre>
+              
+              <h4 id="結果">結果</h4>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">python prime.py  0.03s user 0.01s system 90% cpu 0.038 total</pre>
+              
+              <p>0.01秒！！</p>
+              
+              <p>素晴らしい。</p>
+              
+              <p>ポイントとしては、</p>
+              
+              <ul>
+              <li>最初にフラグリストを生成する。</li>
+              <li>i番目の数が素数ならTrue、素数じゃなければFalseというリストを最初に生成する。</li>
+              <li>最後に、それを元にしてリストを生成する。</li>
+              </ul>
+              
+              <p>なるほどなぁ。そりゃ1と0を処理したほうが早いですもんね。</p>
+              
+              <p>こういうことできるようになりたいですな。</p>
+              
+              <p>以上でした。</p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>

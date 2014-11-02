@@ -44,193 +44,183 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='blog blog_page blog_page_4' id='main'>
+        <div class='blog blog_page blog_page_5' id='main'>
           <p>
-            Page 4 of 7
+            Page 5 of 7
           </p>
-          <p><a href="/blog/page/3.html">Previous page</a></p>
+          <p><a href="/blog/page/4.html">Previous page</a></p>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/03/10/10010303.html">* 今週のお題：7セグメントコードの反転 @CodeIQ</a>
+                <a href="/blog/2014/02/09/09010555.html">* ファイル取得@Ruby (2/28)</a>
               </h2>
               <p class='post-date'>
-                Mar 10 2014
+                Feb  9 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p>最近CodeIQでちょこちょこ問題を解いています。</p>
+              <h2 id="おい、お前１日１実装言うたやないか。"><em><strong>おい、お前１日１実装言うたやないか。</strong></em></h2>
               
-              <p>その中でこの問題を解いてみた。</p>
+              <p>ごめんて。</p>
               
-              <p><a title="今週のお題：7セグメントコードの反転" href="https://codeiq.jp/ace/thisweek_masuipeo/q755">今週のお題：7セグメントコードの反転</a></p>
+              <p>実は火曜日から４日間ほど熱でダウンしておりまして</p>
               
-              <h2 id="7セグメントディスプレイ">7セグメントディスプレイ</h2>
+              <p>今日やっと復活なんです。</p>
               
-              <p>詳しくはこちら参照→<a title="Wikipedia: 7セグメントディスプレイ" href="http://ja.wikipedia.org/wiki/7%E3%82%BB%E3%82%B0%E3%83%A1%E3%83%B3%E3%83%88%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4">Wikipedia: 7セグメントディスプレイ</a></p>
+              <p>だからおおめに見てちょ。</p>
               
-              <p>７桁の２進数を使って０〜９の数字を表現することができるディスプレイのこと。</p>
+              <p>(3月になっても終わってなかったらもちろんやるよ)</p>
               
-              <p>原理はこんな感じ↓(CodeIQ様より引用)</p>
+              <p>簡潔に。Web上のファイルを取得して保存するスクリプトをRubyで書きました。
+              </p><blockquote>
+              <h4>俺「先輩、Rubyって何が向いてるんですか？」
               
-              <p><a href="http://gyazo.com/15fccc48ffe1b681007b7420018867ac.png"></a></p>
+              </h4>
+              <p>先輩(ゼミ)「全部だよ全部」</p>
+              </blockquote>
+              らしいのでまぁなんとなくやりました。Ruby触ったことないですし。
               
-              <h2 id="問題">問題</h2>
+              <p>今回の要件</p>
               
-              <p>肝心の課題は要約すると</p>
-              
-              <p><strong>「7セグメントディスプレイで1,0の切り替え回数を最も少なく0から9を表現するとき、切り替え回数は何回か...</strong></p>
+              <p><strong>・Webページの<code>.png</code>画像を取...</strong></p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/03/10/10010303.html">Read more...</a>
+              <a href="/blog/2014/02/09/09010555.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/03/09/09192043.html">* 順列を実装する @ Python</a>
+                <a href="/blog/2014/02/02/02182154.html">* mailias (1/28)</a>
               </h2>
               <p class='post-date'>
-                Mar  9 2014
+                Feb  2 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p>お久しぶりです。</p>
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">alias hoge="ssh hoge@hoge.com"
+              alias t11460ss="ssh gonyogonyo@gonyogonyo.com"
+              alias sota1235="cd ~/Documents/sota1235"
+              alias score="cd ~/Desktop/KOE/Scores"
+              </pre>
               
-              <p>今回は与えられた要素から考えうる順列を全て洗い出すスクリプトを書いてみようと思います。</p>
+              <p>こんな感じで普段よく作業するフォルダとか、リモートログインとかをaliasで登録するのですが</p>
               
-              <p>できそうでできずにインターンで苦しんだのでゆっくり考えてみたのでメモがわりに。</p>
-              
-              <h2 id="順列とは">順列とは</h2>
-              
-              <p><strong>異なる数個のものを順序づけて一列に並べる並べ方の一つ一つをいう。n個からr個とる順列（n個のものからr個選んで得られる順列）の数を(/n)P(/r)と書く。</strong></p>
-              
-              <p><a title="引用: kotobank.jp" href="http://kotobank.jp/word/%E9%A0%86%E5%88%97">引用: kotobank.jp</a></p>
-              
-              <p>だそうです。</p>
-              
-              <p>例えば</p>
-              
-              <p><code>list = ['a','b','c']</code></p>
-              
-              <p>から３つ取り出して並べる方...</p>
+              <p>毎回、<code>.zshrc</code>をいじくり回すのがめんどいのでpythonでスパッとできるよう...</p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/03/09/09192043.html">Read more...</a>
+              <a href="/blog/2014/02/02/02182154.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/02/28/28021756.html">* +演算子だけで四則演算 @ Python</a>
+                <a href="/blog/2014/02/02/02175521.html">* February Hackathon</a>
               </h2>
               <p class='post-date'>
-                Feb 28 2014
+                Feb  2 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <h2 id="元気ですか">元気ですか</h2>
+              <p>就活中です。</p>
               
-              <p>どうも、お久しぶりです。</p>
+              <p>某はしゅから</p>
               
-              <p>実はまたまた企業さんのインターンに参加させていただいてまして</p>
+              <p><strong>「２月中、一日一実装しようぜー」</strong></p>
               
-              <p>昨日今日の２日間でやってます。</p>
+              <p>と言われ、いい機会かなと思いやることにしました。</p>
               
-              <p>テーマが「アルゴリズムクイズをひたすら解く」という非常にシンプルなもの。</p>
+              <p>とはいえ2/2なのですでに１日すっぽかした形となってしまいましたが…</p>
               
-              <p>わかりやすくてよいね。</p>
+              <p>けどまぁ今日２つ作って辻褄合わせればいいんだろ！！！ってことでやります。今日から。</p>
               
-              <p>その中で１つ面白い問題があったので紹介します。</p>
+              <p>なんとなく名前あった方がテンションあがるのでFebruary Hackathonと題してやります。</p>
               
-              <del datetime="2014-02-27T17:02:45+00:00">一番乗りで解けたのが嬉しかったから紹介するわけではないからね。</del>
+              <p>計28個、ゴミを量産するので適当に見守っててください。</p>
               
-              <h2 id="+演算子だけで四則演算をするプログラム">+演算子だけで四則演算をするプログラム</h2>
-              
-              <p>まぁまんまその通りです。</p>
-              
-              <p>足し算はまぁそのままやるとして、引き算、掛け算、割り算を全部+演算...</p>
+              <h1 id="カテゴリもfebruary-hackathonを追加しました。">カテゴリもFebruary Hackathonを追加しま...</h1>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/02/28/28021756.html">Read more...</a>
+              <a href="/blog/2014/02/02/02175521.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/02/19/19120726.html">* ハッカソンに行ってきた</a>
+                <a href="/blog/2014/01/25/25115358.html">* zshのEDITOR設定</a>
               </h2>
               <p class='post-date'>
-                Feb 19 2014
+                Jan 25 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <h2 id="ハッカソンに行ってきました。">ハッカソンに行ってきました。</h2>
+              <p>今、TwitterBotを作っていて、その関係でcronの設定をしたのですが (botはまた別に記事にします)</p>
               
-              <p>ある企業の選考の一貫で、２日間のハッカソンに行ってきました。</p>
+              <p><code>crontab -e</code>と打つと、vimじゃなくてviが起動しちゃうんですね。</p>
               
-              <p>情報を公開していいのかわからない(というか内容漏らすなみたいなやつ書いた)ので詳細は話しませんが、優勝することができました。</p>
+              <p>.vimrcでいれてるものがvi対応じゃないものが混じってるのでそれだとエラーになってとても困るので普段は</p>
               
-              <p>とはいえ技術力が他チームより勝っていたというよりはアイディアでウケを取ったという感じになると思います。</p>
+              <p><code>alias vi="vim"</code></p>
               
-              <p>賞品がトロフィーと好きな技術書２冊という素晴らしすぎるものでした。感謝。</p>
+              <p>することで回避してるのですが、</p>
               
-              <p>人生で初トロフィーというね。</p>
+              <p><code>crontab</code>コマンドだとviが起動されてしまう。</p>
               
-              <p>一緒に開発した相方やコミュ障の僕にも仲良くしてくれた参加...</p>
+              <p>んでちょっと調べてみるとどうやらシェルの環境変数のうち、EDITOR変数...</p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/02/19/19120726.html">Read more...</a>
+              <a href="/blog/2014/01/25/25115358.html">Read more...</a>
             </div>
           </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2014/02/14/14033947.html">* タダコピの陰を消す(3/28)</a>
+                <a href="/blog/2014/01/20/20165922.html">* tmuxの自動起動設定</a>
               </h2>
               <p class='post-date'>
-                Feb 14 2014
+                Jan 20 2014
                 <ul class='tags'>
                 </ul>
               </p>
             </header>
             <div class='post-description'>
-              <p>こんばんわ。</p>
+              <p>今日はtmuxのお話。</p>
               
-              <p>友人から楽譜をスキャンしてもらったのですがその裏にタダコピがうっすら写ってる…</p>
+              <p>私が普段使っているコンソールはターミナルではなく、</p>
               
-              <p><img src="http://gyazo.com/0def774b7e5e3231fd4b0115cdf1268b.png" alt="score"></p>
+              <p>iTerm2なるものを使っています。</p>
               
-              <p>ダサい。</p>
+              <p><a title="iTerm2" href="http://www.iterm2.com/#/section/home">iTerm2</a></p>
               
-              <p>ってことで習いたての画像処理でどうにかしてみた。</p>
+              <p>ターミナルと何が違うのかと言われると、まぁいろいろ違うのですがわかりやすい機能で私が一番好きな機能がこれです。</p>
               
-              <p><strong>[twocolor_gene.pde]</strong></p>
+              <p><img src="http://gyazo.com/4940a78784b61cfe5646a64b3da5ed7b.png" alt=""></p>
               
-              <pre class="brush: java; gutter: true; first-line: 1; highlight: []; html-script: false">
-              /* Created by sota1235
-               * Date:2014/02/14
-               */
-               
-              PImage img, img2;
-              img = loadImage("path/image");
-              int w = img.width, h = img.height;
-               
-              size(w, h...</pre>
+              <p>そう、シェルの切り分けができるのです。</p>
+              
+              <p>しかもショートカットキーが簡単で</p>
+              
+              <h3 id="[command-+-d]--&gt;-横に分割">[command + d] -&gt; 横に分割</h3>
+              
+              <h3 id="[command-+-d-+-shift]--&gt;-縦に分割">[command + d + shift] -&gt; 縦に分割</h3>
+              
+              <p>これがとってもとっても快適。</p>
+              
+              <p>と、前置きはここまでで</p>
             </div>
             <div class='post-more'>
-              <a href="/blog/2014/02/14/14033947.html">Read more...</a>
+              <a href="/blog/2014/01/20/20165922.html">Read more...</a>
             </div>
           </section>
-          <p><a href="/blog/page/5.html">Next page</a></p>
+          <p><a href="/blog/page/6.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
             <ol>

@@ -41,175 +41,171 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * 逆ポーランド記法の問題を大量生産する
-                </h2>
-                <p class='post-meta'>
-                  May 19 2014
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <p>とある友人に頼まれたのでやっつけで作った。</p>
-                  
-                  <p>逆ポーランド記法に関してはこちらを参照。</p>
-                  
-                  <p><a title="Wikipedia: 逆ポーランド記法" href="http://ja.wikipedia.org/wiki/%E9%80%86%E3%83%9D%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E8%A8%98%E6%B3%95">Wikipedia: 逆ポーランド記法</a></p>
-                  
-                  <p>スタックの概念を理解するために逆ポーランド記法の問題を処理するプログラムを書いたりする(らしい)。</p>
-                  
-                  <p>こいつの問題を大量生産したいってなったとき、考えなきゃいけないことは思いついたやつでこんな感じ。</p>
-                  
-                  <ul>
-                  <li>問題の先頭2つは必ず数字でなければならない</li>
-                  <li>記号、数字の数を<code>x, y</code>とすると、先頭からそれぞれ数えた時に常に<code>x &amp;lt;= y - 1</code>でなければいけない</li>
-                  </ul>
-                  
-                  <p>… アキュムレータに2つ以上数字が無いと記号が積まれた時に処理が行えないため
-                  - 無理数などが生まれてはいけない</p>
-                  
-                  <p>… 今回はランダム生成する数に0を入れないことで対処
-                  - いい感じにランダムにできたらオサレ</p>
-                  
-                  <p>こんな感じでしょうか。</p>
-                  
-                  <p>これに加えて負の数、浮動小数点を加えるかどうかを選択するようにしました。</p>
-                  
-                  <p>コードが以下の感じ。</p>
-                  
-                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  #!/usr/bin/python
-                  # -*- coding: utf-8 -*-
-                  import random
-                   
-                  DECIMEL, MINUS = 10, 4 # 小数点/負の数の出現頻度 1/variable name
-                   
-                  def randnum(d, m):
-                      num = random.randint(1, 9)
-                      if d: num = randdecimel(num)
-                      if m: num = randminus(num)
-                      return num
-                   
-                  def randdecimel(num):
-                      return num if random.randint(0, DECIMEL) != 0 else float(format(random.random(), &#039;.1f&#039;)) + float(num)
-                   
-                  def randminus(num):
-                      return num if random.randint(0, MINUS) != 0 else num * -1
-                   
-                  ans = []
-                   
-                  m = eval(input(&#039;生成する問題数を入力してください (1 &lt;= M &lt;= 10000)&#039;))
-                  n = eval(input(&#039;問題の最大桁数を入力してください (3 &lt;= N &lt;= 100)&#039;))
-                  decimel = True if input(&quot;小数点は入れます？ Y/n&quot;) == &quot;Y&quot; else False
-                  minus = True if input(&quot;負の数は入れます？ Y/n&quot;) == &quot;Y&quot; else False
-                   
-                  for i in range(m):
-                      f = random.randint(3, n) # 問題桁数の決定
-                      while f % 2 == 0:
-                          f = random.randint(3, n)
-                      q = [] # 問題
-                      num = [randnum(decimel, minus) for j in range(int(f / 2 + 1))]
-                      obj = [[&#039;+&#039;, &#039;-&#039;, &#039;*&#039;, &#039;/&#039;][random.randint(0,3)] for j in range(int(f / 2))]
-                      n1, n2 = 0, 0 # 数字/符号の数
-                      while len(q) &lt; f:
-                          if len(num) == 0:
-                              q += obj # 数字が尽きた場合
-                              break
-                          if n1 - n2 &lt; 2:
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * 逆ポーランド記法の問題を大量生産する
+            </h2>
+            <p class='post-date'>
+              May 19 2014
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>とある友人に頼まれたのでやっつけで作った。</p>
+              
+              <p>逆ポーランド記法に関してはこちらを参照。</p>
+              
+              <p><a title="Wikipedia: 逆ポーランド記法" href="http://ja.wikipedia.org/wiki/%E9%80%86%E3%83%9D%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E8%A8%98%E6%B3%95">Wikipedia: 逆ポーランド記法</a></p>
+              
+              <p>スタックの概念を理解するために逆ポーランド記法の問題を処理するプログラムを書いたりする(らしい)。</p>
+              
+              <p>こいつの問題を大量生産したいってなったとき、考えなきゃいけないことは思いついたやつでこんな感じ。</p>
+              
+              <ul>
+              <li>問題の先頭2つは必ず数字でなければならない</li>
+              <li>記号、数字の数を<code>x, y</code>とすると、先頭からそれぞれ数えた時に常に<code>x &amp;lt;= y - 1</code>でなければいけない</li>
+              </ul>
+              
+              <p>… アキュムレータに2つ以上数字が無いと記号が積まれた時に処理が行えないため
+              - 無理数などが生まれてはいけない</p>
+              
+              <p>… 今回はランダム生成する数に0を入れないことで対処
+              - いい感じにランダムにできたらオサレ</p>
+              
+              <p>こんな感じでしょうか。</p>
+              
+              <p>これに加えて負の数、浮動小数点を加えるかどうかを選択するようにしました。</p>
+              
+              <p>コードが以下の感じ。</p>
+              
+              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+              #!/usr/bin/python
+              # -*- coding: utf-8 -*-
+              import random
+               
+              DECIMEL, MINUS = 10, 4 # 小数点/負の数の出現頻度 1/variable name
+               
+              def randnum(d, m):
+                  num = random.randint(1, 9)
+                  if d: num = randdecimel(num)
+                  if m: num = randminus(num)
+                  return num
+               
+              def randdecimel(num):
+                  return num if random.randint(0, DECIMEL) != 0 else float(format(random.random(), &#039;.1f&#039;)) + float(num)
+               
+              def randminus(num):
+                  return num if random.randint(0, MINUS) != 0 else num * -1
+               
+              ans = []
+               
+              m = eval(input(&#039;生成する問題数を入力してください (1 &lt;= M &lt;= 10000)&#039;))
+              n = eval(input(&#039;問題の最大桁数を入力してください (3 &lt;= N &lt;= 100)&#039;))
+              decimel = True if input(&quot;小数点は入れます？ Y/n&quot;) == &quot;Y&quot; else False
+              minus = True if input(&quot;負の数は入れます？ Y/n&quot;) == &quot;Y&quot; else False
+               
+              for i in range(m):
+                  f = random.randint(3, n) # 問題桁数の決定
+                  while f % 2 == 0:
+                      f = random.randint(3, n)
+                  q = [] # 問題
+                  num = [randnum(decimel, minus) for j in range(int(f / 2 + 1))]
+                  obj = [[&#039;+&#039;, &#039;-&#039;, &#039;*&#039;, &#039;/&#039;][random.randint(0,3)] for j in range(int(f / 2))]
+                  n1, n2 = 0, 0 # 数字/符号の数
+                  while len(q) &lt; f:
+                      if len(num) == 0:
+                          q += obj # 数字が尽きた場合
+                          break
+                      if n1 - n2 &lt; 2:
+                          q.append(num.pop())
+                          n1 += 1
+                      else:
+                          tmp = random.randint(0, 1)
+                          if tmp == 0:
                               q.append(num.pop())
                               n1 += 1
                           else:
-                              tmp = random.randint(0, 1)
-                              if tmp == 0:
-                                  q.append(num.pop())
-                                  n1 += 1
-                              else:
-                                  q.append(obj.pop())
-                                  n2 += 1
-                      print(&quot; &quot;.join(map(str, q)))
-                  </pre>
-                  
-                  <p>ついでにソルバーも載せておく。</p>
-                  
-                  <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  #!/usr/bin/python
-                   
-                  def rpn(stack, obj):
-                      if type(obj) == int:
-                          stack.append(obj)
-                      else:
-                          p = stack.pop()
-                          if obj == &#039;+&#039;:
-                              stack.append(stack.pop() + p)
-                          elif obj == &#039;-&#039;:
-                              stack.append(stack.pop() - p)
-                          elif obj == &#039;*&#039;:
-                              stack.append(stack.pop() * p)
-                          elif obj == &#039;/&#039;:
-                              stack.append(stack.pop() / p)
-                      return stack
-                   
-                  while True:
-                      stack = []
-                      print(&quot;半角スペース区切りで問題を入力してください&quot;)
-                      formula = input(&quot;-&gt; &quot;).split()
-                      try:
-                          for f in formula:
-                              stack = rpn(stack, int(f) if f.isdigit() else f)
-                          print(stack[0])
-                      except:
-                          print(&#039;Error: invalid input&#039;)
-                          break
-                  </pre>
-                  
-                  <p>実行すると以下のようにやりとりできる</p>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  
-                  % python3 rpn_gene.py
-                  生成する問題数を入力してください (1 &lt;= N &lt;= 10000) 10000
-                  問題の最大桁数を入力してください (3 &lt;= N &lt;= 100) 100 
-                  小数点は入れます？ Y/n Y
-                  負の数は入れます？ Y/n Y
-                  ~ ここ以下で問題生成 ~
-                  </pre>
-                  
-                  <p>以上！</p>
-                  
-                  <p><strong>【追記】</strong></p>
-                  
-                  <p>関数化して少しだけ改良した。</p>
-                  
-                  <p>https://gist.github.com/sota1235/906d56098b9da9815913</p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+                              q.append(obj.pop())
+                              n2 += 1
+                  print(&quot; &quot;.join(map(str, q)))
+              </pre>
+              
+              <p>ついでにソルバーも載せておく。</p>
+              
+              <pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false">
+              #!/usr/bin/python
+               
+              def rpn(stack, obj):
+                  if type(obj) == int:
+                      stack.append(obj)
+                  else:
+                      p = stack.pop()
+                      if obj == &#039;+&#039;:
+                          stack.append(stack.pop() + p)
+                      elif obj == &#039;-&#039;:
+                          stack.append(stack.pop() - p)
+                      elif obj == &#039;*&#039;:
+                          stack.append(stack.pop() * p)
+                      elif obj == &#039;/&#039;:
+                          stack.append(stack.pop() / p)
+                  return stack
+               
+              while True:
+                  stack = []
+                  print(&quot;半角スペース区切りで問題を入力してください&quot;)
+                  formula = input(&quot;-&gt; &quot;).split()
+                  try:
+                      for f in formula:
+                          stack = rpn(stack, int(f) if f.isdigit() else f)
+                      print(stack[0])
+                  except:
+                      print(&#039;Error: invalid input&#039;)
+                      break
+              </pre>
+              
+              <p>実行すると以下のようにやりとりできる</p>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+              
+              % python3 rpn_gene.py
+              生成する問題数を入力してください (1 &lt;= N &lt;= 10000) 10000
+              問題の最大桁数を入力してください (3 &lt;= N &lt;= 100) 100 
+              小数点は入れます？ Y/n Y
+              負の数は入れます？ Y/n Y
+              ~ ここ以下で問題生成 ~
+              </pre>
+              
+              <p>以上！</p>
+              
+              <p><strong>【追記】</strong></p>
+              
+              <p>関数化して少しだけ改良した。</p>
+              
+              <p><a href="https://gist.github.com/sota1235/906d56098b9da9815913">https://gist.github.com/sota1235/906d56098b9da9815913</a></p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>

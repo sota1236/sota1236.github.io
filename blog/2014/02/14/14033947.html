@@ -41,123 +41,119 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * タダコピの陰を消す(3/28)
-                </h2>
-                <p class='post-meta'>
-                  Feb 14 2014
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <p>こんばんわ。</p>
-                  
-                  <p>友人から楽譜をスキャンしてもらったのですがその裏にタダコピがうっすら写ってる…</p>
-                  
-                  <p><img src="http://gyazo.com/0def774b7e5e3231fd4b0115cdf1268b.png" alt="score" /></p>
-                  
-                  <p>ダサい。</p>
-                  
-                  <p>ってことで習いたての画像処理でどうにかしてみた。</p>
-                  
-                  <p><strong>[twocolor_gene.pde]</strong></p>
-                  
-                  <pre class="brush: java; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  /* Created by sota1235
-                   * Date:2014/02/14
-                   */
-                   
-                  PImage img, img2;
-                  img = loadImage(&quot;path/image&quot;);
-                  int w = img.width, h = img.height;
-                   
-                  size(w, h);
-                  img2 = createImage(w,h,RGB);
-                   
-                  img.loadPixels();
-                  img2.loadPixels();
-                   
-                  for(int i=0;i&lt;w*h;i++){
-                    if(brightness(img.pixels[i]) &gt; 180) {
-                      img2.pixels[i] = color(255);
-                    } else {
-                      img2.pixels[i] = color(0);
-                    }
-                  }
-                   
-                  img.updatePixels();
-                  img2.updatePixels();
-                   
-                  image(img2, 0, 0);
-                  save(&quot;path/&quot;);
-                  </pre>
-                  
-                  <p><a title="Gist : twocolor_gene.pde" href="https://gist.github.com/sota1235/8980916">Gist : twocolor_gene.pde</a></p>
-                  
-                  <h2>1.画像を読み込む</h2>
-                  
-                  <p>PImageを使って<code>img</code>に画像を読み込み。</p>
-                  
-                  <p>保存用の変数として<code>img2</code>を用意。</p>
-                  
-                  <h2>2.ピクセル走査</h2>
-                  
-                  <p>15~21行目のfor文で<code>img</code>のピクセルを順番にチェック。</p>
-                  
-                  <p>輝度が180を超えるものを白塗り、その他を黒塗りにする。</p>
-                  
-                  <p>※ 輝度はMaxで255</p>
-                  
-                  <h2>3.保存</h2>
-                  
-                  <p>save()関数で一発。</p>
-                  
-                  <p>んでできあがったのがこれ。</p>
-                  
-                  <p><img src="http://gyazo.com/557722ab2a7371c60c1789566625bde8.png" alt="" /></p>
-                  
-                  <p>うん、荒いけど綺麗！</p>
-                  
-                  <p>もっと詰めればきれいになりそうだけどとりあえずこんな感じで。</p>
-                  
-                  <p>Processingは簡単に扱えるからいいけどパラメータの調整が難しいですね。</p>
-                  
-                  <p>それではまた。</p>
-                  
-                  <p>P.S.</p>
-                  
-                  <p>Markdownプラグインを入れました。</p>
-                  
-                  <p>これでMarkdownで記事が書ける。快適。</p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * タダコピの陰を消す(3/28)
+            </h2>
+            <p class='post-date'>
+              Feb 14 2014
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>こんばんわ。</p>
+              
+              <p>友人から楽譜をスキャンしてもらったのですがその裏にタダコピがうっすら写ってる…</p>
+              
+              <p><img src="http://gyazo.com/0def774b7e5e3231fd4b0115cdf1268b.png" alt="score" /></p>
+              
+              <p>ダサい。</p>
+              
+              <p>ってことで習いたての画像処理でどうにかしてみた。</p>
+              
+              <p><strong>[twocolor_gene.pde]</strong></p>
+              
+              <pre class="brush: java; gutter: true; first-line: 1; highlight: []; html-script: false">
+              /* Created by sota1235
+               * Date:2014/02/14
+               */
+               
+              PImage img, img2;
+              img = loadImage(&quot;path/image&quot;);
+              int w = img.width, h = img.height;
+               
+              size(w, h);
+              img2 = createImage(w,h,RGB);
+               
+              img.loadPixels();
+              img2.loadPixels();
+               
+              for(int i=0;i&lt;w*h;i++){
+                if(brightness(img.pixels[i]) &gt; 180) {
+                  img2.pixels[i] = color(255);
+                } else {
+                  img2.pixels[i] = color(0);
+                }
+              }
+               
+              img.updatePixels();
+              img2.updatePixels();
+               
+              image(img2, 0, 0);
+              save(&quot;path/&quot;);
+              </pre>
+              
+              <p><a title="Gist : twocolor_gene.pde" href="https://gist.github.com/sota1235/8980916">Gist : twocolor_gene.pde</a></p>
+              
+              <h2 id="1.画像を読み込む">1.画像を読み込む</h2>
+              
+              <p>PImageを使って<code>img</code>に画像を読み込み。</p>
+              
+              <p>保存用の変数として<code>img2</code>を用意。</p>
+              
+              <h2 id="2.ピクセル走査">2.ピクセル走査</h2>
+              
+              <p>15~21行目のfor文で<code>img</code>のピクセルを順番にチェック。</p>
+              
+              <p>輝度が180を超えるものを白塗り、その他を黒塗りにする。</p>
+              
+              <p>※ 輝度はMaxで255</p>
+              
+              <h2 id="3.保存">3.保存</h2>
+              
+              <p>save()関数で一発。</p>
+              
+              <p>んでできあがったのがこれ。</p>
+              
+              <p><img src="http://gyazo.com/557722ab2a7371c60c1789566625bde8.png" alt="" /></p>
+              
+              <p>うん、荒いけど綺麗！</p>
+              
+              <p>もっと詰めればきれいになりそうだけどとりあえずこんな感じで。</p>
+              
+              <p>Processingは簡単に扱えるからいいけどパラメータの調整が難しいですね。</p>
+              
+              <p>それではまた。</p>
+              
+              <p>P.S.</p>
+              
+              <p>Markdownプラグインを入れました。</p>
+              
+              <p>これでMarkdownで記事が書ける。快適。</p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>

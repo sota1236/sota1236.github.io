@@ -41,95 +41,91 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * gistコマンド - アカウント設定
-                </h2>
-                <p class='post-meta'>
-                  Jan 20 2014
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <p>gistをコマンドラインから投稿できるように設定した。</p>
-                  
-                  <p>前からやろうと思ってたけど、めんどくてやってなかったがやったら簡単だった。</p>
-                  
-                  <p>とりあえずメモメモ。</p>
-                  
-                  <p>&nbsp;</p>
-                  
-                  <h2><strong>１．gistコマンドをインストール</strong></h2>
-                  
-                  <p>みんなだいすきHomebrew.
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">brew install gist</pre></p>
-                  
-                  <p>&nbsp;</p>
-                  
-                  <h2><strong>２．ユーザ登録</strong></h2>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist --login</pre>
-                  
-                  <p>上記のようにコマンドを打つとアカウント名とパスワードを聞かれるので入力。
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">GitHub username: sota1235
-                  GitHub password: password
-                  Success! https://github.com/settings/applications</pre>
-                  これだけ。簡単！</p>
-                  
-                  <p>試しに投稿。
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">% gist -f hello.js
-                  (type a gist.  to cancel,  when done)
-                  document.write(&quot;hello gist&quot;);
-                  [ctrl+d]</pre></p>
-                  
-                  <p><code>-f</code>オプションでファイル名を指定できる。</p>
-                  
-                  <p>gistページに行ったら見れたよ！</p>
-                  
-                  <p><a title="https://gist.github.com/8513912" href="https://gist.github.com/8513912">https://gist.github.com/8513912</a></p>
-                  
-                  <p>ちなみにファイルをそのままアップロードしたかったらこう。
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist hello.js</pre>
-                  ファイル名を変えたい場合はこう。
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist hello.js &lt; upload.js</pre>
-                  調べたらいろいろ出てきたけど結局こんだけで済むお話でした。</p>
-                  
-                  <p><strong>ちなみに。。。</strong></p>
-                  
-                  <p>アカウント設定しなくてもgistコマンドは使えますがanonymousで登録されます。</p>
-                  
-                  <p><a title="失敗したやつ" href="https://gist.github.com/anonymous/8513806" target="_blank">失敗したやつ</a></p>
-                  
-                  <p>あとはアカウント設定した後でも<code>-a</code>コマンドをつければanonymous投稿できます。
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist -a hello.js</pre></p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * gistコマンド - アカウント設定
+            </h2>
+            <p class='post-date'>
+              Jan 20 2014
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>gistをコマンドラインから投稿できるように設定した。</p>
+              
+              <p>前からやろうと思ってたけど、めんどくてやってなかったがやったら簡単だった。</p>
+              
+              <p>とりあえずメモメモ。</p>
+              
+              <p>&nbsp;</p>
+              
+              <h2 id="１．gistコマンドをインストール"><strong>１．gistコマンドをインストール</strong></h2>
+              
+              <p>みんなだいすきHomebrew.
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">brew install gist</pre></p>
+              
+              <p>&nbsp;</p>
+              
+              <h2 id="２．ユーザ登録"><strong>２．ユーザ登録</strong></h2>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist --login</pre>
+              
+              <p>上記のようにコマンドを打つとアカウント名とパスワードを聞かれるので入力。
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">GitHub username: sota1235
+              GitHub password: password
+              Success! <a href="https://github.com/settings/applications">https://github.com/settings/applications</a></pre>
+              これだけ。簡単！</p>
+              
+              <p>試しに投稿。
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">% gist -f hello.js
+              (type a gist.  to cancel,  when done)
+              document.write(&quot;hello gist&quot;);
+              [ctrl+d]</pre></p>
+              
+              <p><code>-f</code>オプションでファイル名を指定できる。</p>
+              
+              <p>gistページに行ったら見れたよ！</p>
+              
+              <p><a title="https://gist.github.com/8513912" href="https://gist.github.com/8513912"><a href="https://gist.github.com/8513912">https://gist.github.com/8513912</a></a></p>
+              
+              <p>ちなみにファイルをそのままアップロードしたかったらこう。
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist hello.js</pre>
+              ファイル名を変えたい場合はこう。
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist hello.js &lt; upload.js</pre>
+              調べたらいろいろ出てきたけど結局こんだけで済むお話でした。</p>
+              
+              <p><strong>ちなみに。。。</strong></p>
+              
+              <p>アカウント設定しなくてもgistコマンドは使えますがanonymousで登録されます。</p>
+              
+              <p><a title="失敗したやつ" href="https://gist.github.com/anonymous/8513806" target="_blank">失敗したやつ</a></p>
+              
+              <p>あとはアカウント設定した後でも<code>-a</code>コマンドをつければanonymous投稿できます。
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist -a hello.js</pre></p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>

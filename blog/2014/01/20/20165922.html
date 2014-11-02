@@ -41,123 +41,119 @@
         </div>
       </div>
       <div class='content pure-u-1 pure-u-md-3-4'>
-        <div class='posts'>
-          <div id='main' role='main'>
-            <section class='post'>
-              <header class='post-header'>
-                <h2 class='post-title'>
-                  * tmuxの自動起動設定
-                </h2>
-                <p class='post-meta'>
-                  Jan 20 2014
-                  <ul class='tags'>
-                  </ul>
-                </p>
-              </header>
-              <div class='post-description'>
-                <p>
-                  <p>今日はtmuxのお話。</p>
-                  
-                  <p>私が普段使っているコンソールはターミナルではなく、</p>
-                  
-                  <p>iTerm2なるものを使っています。</p>
-                  
-                  <p><a title="iTerm2" href="http://www.iterm2.com/#/section/home">iTerm2</a></p>
-                  
-                  <p>ターミナルと何が違うのかと言われると、まぁいろいろ違うのですがわかりやすい機能で私が一番好きな機能がこれです。</p>
-                  
-                  <p><img src="http://gyazo.com/4940a78784b61cfe5646a64b3da5ed7b.png" alt="" /></p>
-                  
-                  <p>そう、シェルの切り分けができるのです。</p>
-                  
-                  <p>しかもショートカットキーが簡単で</p>
-                  
-                  <h3>[command + d] -&gt; 横に分割</h3>
-                  
-                  <h3>[command + d + shift] -&gt; 縦に分割</h3>
-                  
-                  <p>これがとってもとっても快適。</p>
-                  
-                  <p>と、前置きはここまでで</p>
-                  
-                  <p>ローカルではこのiTerm2を使えばいいのですが</p>
-                  
-                  <p>リモートの作業ではそういう訳には行きません。</p>
-                  
-                  <p>そこで活躍するのが<strong>tmux</strong>。</p>
-                  
-                  <p>インストールしてしまえばコマンドを打つことで複数画面作ることができます。</p>
-                  
-                  <p>このtmuxをログインした時に常に起動したいというのが今日の本題。</p>
-                  
-                  <p>ってことで<code>.zshrc</code>に以下を書き加え</p>
-                  
-                  <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
-                  # tmux (auto start)
-                  is_screen_running() {
-                    [ ! -z &quot;$WINDOW&quot; ]
-                  }
-                  is_tmux_runnning() {
-                    [ ! -z &quot;$TMUX&quot; ]
-                  }
-                  is_screen_or_tmux_running() {
-                    is_screen_running || is_tmux_runnning
-                  }
-                  shell_has_started_interactively() {
-                    [ ! -z &quot;$PS1&quot; ]
-                  }
-                  resolve_alias() {
-                    cmd=&quot;$1&quot;
-                    while \
-                      whence &quot;$cmd&quot; &gt;/dev/null 2&gt;/dev/null \
-                      &amp;&amp; [ &quot;$(whence &quot;$cmd&quot;)&quot; != &quot;$cmd&quot; ]
-                    do
-                      cmd=$(whence &quot;$cmd&quot;)
-                    done
-                    echo &quot;$cmd&quot;
-                  }
-                  
-                  if ! is_screen_or_tmux_running &amp;&amp; shell_has_started_interactively; then
-                    for cmd in tmux ; do
-                      if whence $cmd &gt;/dev/null 2&gt;/dev/null; then
-                        $(resolve_alias &quot;$cmd&quot;)
-                        break
-                      fi
-                    done
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              * tmuxの自動起動設定
+            </h2>
+            <p class='post-date'>
+              Jan 20 2014
+              <ul class='tags'>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>今日はtmuxのお話。</p>
+              
+              <p>私が普段使っているコンソールはターミナルではなく、</p>
+              
+              <p>iTerm2なるものを使っています。</p>
+              
+              <p><a title="iTerm2" href="http://www.iterm2.com/#/section/home">iTerm2</a></p>
+              
+              <p>ターミナルと何が違うのかと言われると、まぁいろいろ違うのですがわかりやすい機能で私が一番好きな機能がこれです。</p>
+              
+              <p><img src="http://gyazo.com/4940a78784b61cfe5646a64b3da5ed7b.png" alt="" /></p>
+              
+              <p>そう、シェルの切り分けができるのです。</p>
+              
+              <p>しかもショートカットキーが簡単で</p>
+              
+              <h3 id="[command-+-d]--&gt;-横に分割">[command + d] -&gt; 横に分割</h3>
+              
+              <h3 id="[command-+-d-+-shift]--&gt;-縦に分割">[command + d + shift] -&gt; 縦に分割</h3>
+              
+              <p>これがとってもとっても快適。</p>
+              
+              <p>と、前置きはここまでで</p>
+              
+              <p>ローカルではこのiTerm2を使えばいいのですが</p>
+              
+              <p>リモートの作業ではそういう訳には行きません。</p>
+              
+              <p>そこで活躍するのが<strong>tmux</strong>。</p>
+              
+              <p>インストールしてしまえばコマンドを打つことで複数画面作ることができます。</p>
+              
+              <p>このtmuxをログインした時に常に起動したいというのが今日の本題。</p>
+              
+              <p>ってことで<code>.zshrc</code>に以下を書き加え</p>
+              
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">
+              # tmux (auto start)
+              is_screen_running() {
+                [ ! -z &quot;$WINDOW&quot; ]
+              }
+              is_tmux_runnning() {
+                [ ! -z &quot;$TMUX&quot; ]
+              }
+              is_screen_or_tmux_running() {
+                is_screen_running || is_tmux_runnning
+              }
+              shell_has_started_interactively() {
+                [ ! -z &quot;$PS1&quot; ]
+              }
+              resolve_alias() {
+                cmd=&quot;$1&quot;
+                while \
+                  whence &quot;$cmd&quot; &gt;/dev/null 2&gt;/dev/null \
+                  &amp;&amp; [ &quot;$(whence &quot;$cmd&quot;)&quot; != &quot;$cmd&quot; ]
+                do
+                  cmd=$(whence &quot;$cmd&quot;)
+                done
+                echo &quot;$cmd&quot;
+              }
+              
+              if ! is_screen_or_tmux_running &amp;&amp; shell_has_started_interactively; then
+                for cmd in tmux ; do
+                  if whence $cmd &gt;/dev/null 2&gt;/dev/null; then
+                    $(resolve_alias &quot;$cmd&quot;)
+                    break
                   fi
-                  </pre>
-                  
-                  <p>コードはこちらを参考にしました。</p>
-                  
-                  <ul>
-                  <li><a title="MBA-HACK - tmux" href="http://mba-hack.blogspot.jp/2013/05/tmux.html#c07">MBA-HACK - tmux</a></li>
-                  </ul>
-                  
-                  <p>&lt;/ br&gt;
-                  これで<code>source ~/.zshrc</code>して快適。</p>
-                  
-                  <hr>
-                  
-                  <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
-                </p>
-              </div>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-              //<![CDATA[
-                                var disqus_shortname = 'haraheri';
-                        
-                  (function() {
-                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
-              //]]>
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </section>
+                done
+              fi
+              </pre>
+              
+              <p>コードはこちらを参考にしました。</p>
+              
+              <ul>
+              <li><a title="MBA-HACK - tmux" href="http://mba-hack.blogspot.jp/2013/05/tmux.html#c07">MBA-HACK - tmux</a></li>
+              </ul>
+              
+              <p>&lt;/ br&gt;
+              これで<code>source ~/.zshrc</code>して快適。</p>
+              
+              <hr>
+              
+              <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
+            </p>
           </div>
-        </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
       </div>
     </div>
   </body>
