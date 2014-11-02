@@ -7,7 +7,7 @@
       はらへり日記 - * mtコマンド
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/aeon.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
   </head>
   <body class='blog blog_2013 blog_2013_12 blog_2013_12_27 blog_2013_12_27_27222020'>
     <div class='pure-g-r' id='layout'>
@@ -77,7 +77,7 @@
                   <p>って感じで実装しました。</p>
                   
                   <p>例えばこんな階層構造でフォルダを作りたいとしましょう。
-                  &lt;pre class="brush: shell; gutter: true"&gt;Current 
+                  <pre class="brush: shell; gutter: true">Current 
                   　- Movie 
                   　- Music 
                   　　- J-POP 
@@ -86,9 +86,9 @@
                   　- Picture 
                   　　- 2013 
                   　　　- Spring 
-                  　　- 2012&lt;/pre&gt;
+                  　　- 2012</pre>
                   そしたら、こんなファイル(folder.md)を作って
-                  &lt;pre class="brush: shell; gutter: true"&gt;Current 
+                  <pre class="brush: shell; gutter: true">Current 
                   　Movie 
                   　Music 
                   　　J-POP 
@@ -97,21 +97,36 @@
                   　Picture 
                   　　2013 
                   　　　Spring 
-                  　　2012&lt;/pre&gt;
+                  　　2012</pre>
                   こんな感じで実行すれば
-                  &lt;pre class="brush: shell; gutter: true"&gt;mt folder.md&lt;/pre&gt;
+                  <pre class="brush: shell; gutter: true">mt folder.md</pre>
                   あら不思議！</p>
                   
                   <p>思い通りのフォルダー構造のできあがり！って感じです。</p>
                   
                   <p>まぁ練習がてらに作っただけですが自分のために機能付けたそうと思っていまする。</p>
                   
-                  <p><del datetime="2013-12-27T13:04:27+00:00">現状だとzshにしか対応してないし…</del></p>
+                  <del datetime="2013-12-27T13:04:27+00:00">現状だとzshにしか対応してないし…</del>
                   
-                  <hr />
+                  <hr>
+                  
                   <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
                 </p>
               </div>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+              //<![CDATA[
+                                var disqus_shortname = 'haraheri';
+                        
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              //]]>
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </section>
           </div>
         </div>

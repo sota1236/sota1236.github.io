@@ -7,7 +7,7 @@
       はらへり日記 - * 逆ポーランド記法の問題を大量生産する
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/aeon.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
   </head>
   <body class='blog blog_2014 blog_2014_05 blog_2014_05_19 blog_2014_05_19_19181844'>
     <div class='pure-g-r' id='layout'>
@@ -67,8 +67,8 @@
                   <p>こいつの問題を大量生産したいってなったとき、考えなきゃいけないことは思いついたやつでこんな感じ。</p>
                   
                   <ul>
-                    <li>問題の先頭2つは必ず数字でなければならない</li>
-                    <li>記号、数字の数を<code>x, y</code>とすると、先頭からそれぞれ数えた時に常に<code>x &amp;lt;= y - 1</code>でなければいけない</li>
+                  <li>問題の先頭2つは必ず数字でなければならない</li>
+                  <li>記号、数字の数を<code>x, y</code>とすると、先頭からそれぞれ数えた時に常に<code>x &amp;lt;= y - 1</code>でなければいけない</li>
                   </ul>
                   
                   <p>… アキュムレータに2つ以上数字が無いと記号が積まれた時に処理が行えないため
@@ -188,10 +188,25 @@
                   
                   <p>https://gist.github.com/sota1235/906d56098b9da9815913</p>
                   
-                  <hr />
+                  <hr>
+                  
                   <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
                 </p>
               </div>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+              //<![CDATA[
+                                var disqus_shortname = 'haraheri';
+                        
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              //]]>
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </section>
           </div>
         </div>

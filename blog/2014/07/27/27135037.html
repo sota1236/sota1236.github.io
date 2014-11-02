@@ -7,7 +7,7 @@
       はらへり日記 - * XSS Game Write-Up
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/aeon.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
   </head>
   <body class='blog blog_2014 blog_2014_07 blog_2014_07_27 blog_2014_07_27_27135037'>
     <div class='pure-g-r' id='layout'>
@@ -67,22 +67,22 @@
                   <p>問題の流れとしては</p>
                   
                   <ul>
-                    <li>全６問</li>
-                    <li>iframe内の擬似ブラウザでalert出せればオッケー</li>
-                    <li>全部解けたらケーキあげるヨ！</li>
+                  <li>全６問</li>
+                  <li>iframe内の擬似ブラウザでalert出せればオッケー</li>
+                  <li>全部解けたらケーキあげるヨ！</li>
                   </ul>
                   
                   <p>って感じですかね。</p>
                   
                   <p><br /></p>
                   
-                  <h2 id="level-1-hello-world-of-xss">Level 1: Hello, world of XSS</h2>
+                  <h2>Level 1: Hello, world of XSS</h2>
                   
                   <p>こんな感じのフォームが表示される</p>
                   
                   <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.17.00.png" alt="Level1-1" width="703" height="365" class="alignnone size-full wp-image-280" /></a></p>
                   
-                  <p>試しに"a"ってうつとこんな感じ</p>
+                  <p>試しに&ldquo;a&quot;ってうつとこんな感じ</p>
                   
                   <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-01-17.19.24.png" alt="Level1-2" width="702" height="364" class="alignnone size-full wp-image-282" /></a></p>
                   
@@ -96,7 +96,7 @@
                   
                   <p><br /></p>
                   
-                  <h2 id="level-2-persistence-is-key">Level 2: Persistence is key</h2>
+                  <h2>Level 2: Persistence is key</h2>
                   
                   <p>こんな感じの画面</p>
                   
@@ -112,19 +112,19 @@
                   
                   <p>いろいろggったりしてみても分からんかったので友達のxss芸人に聞いたら「よくわからないけど動かない」らしいので別の方法を考える。</p>
                   
-                  <p>"&gt;"とか"&lt;"とか全然エスケープされてないので僕の知る数少ない定石を打ち込んだら成功。</p>
+                  <p>&rdquo;&gt;&ldquo;とか&rdquo;&lt;&ldquo;とか全然エスケープされてないので僕の知る数少ない定石を打ち込んだら成功。</p>
                   
                   <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">&lt;img src=&quot;x&quot; onerror=&quot;alert(&#039;xss&#039;)&quot;&gt;</pre>
                   
                   <p><br /></p>
                   
-                  <h2 id="level-3-that-sinking-feeling">Level 3: That sinking Feeling…</h2>
+                  <h2>Level 3: That sinking Feeling&hellip;</h2>
                   
                   <p>画面はこんな感じ。</p>
                   
                   <p><a href="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png"><img src="http://blog.sota1235.com/wp-content/uploads/2014/07/スクリーンショット-2014-07-26-18.20.35.png" alt="スクリーンショット 2014-07-26 18.20.35" width="702" height="363" class="alignnone size-full wp-image-292" /></a></p>
                   
-                  <p>"Image2"とかを選ぶとhashの値が"2"になって、画像も切り替わるみたいな感じ。</p>
+                  <p>&quot;Image2&quot;とかを選ぶとhashの値が&quot;2&quot;になって、画像も切り替わるみたいな感じ。</p>
                   
                   <p>コードを見てみるとlocation.hashの値をsubstr(1)してhtml内に出力している。</p>
                   
@@ -142,7 +142,7 @@
                   
                   <p><br /></p>
                   
-                  <h2 id="level-4-context-matters">Level 4: Context matters</h2>
+                  <h2>Level 4: Context matters</h2>
                   
                   <p>画面はこんな感じ。</p>
                   
@@ -154,14 +154,14 @@
                   
                   <p>てなわけでどこにどう出力してるか確認。</p>
                   
-                  <p>コードを見てみるとGETリクエストで受け取った"timer"の値をtimer.html内の{{timer}}に出力している。</p>
+                  <p>コードを見てみるとGETリクエストで受け取った&quot;timer&quot;の値をtimer.html内の{{timer}}に出力している。</p>
                   
                   <p>timer.html
-                  &lt;pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;    &lt;img src="/static/loading.gif" onload="startTimer('{{ timer }}');" /&gt;
+                  <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">    &lt;img src=&quot;/static/loading.gif&quot; onload=&quot;startTimer(&#039;{{ timer }}&#039;);&quot; /&gt;
                       &lt;br&gt;
-                      &lt;div id="message"&gt;Your timer will execute in {{ timer }} seconds.&lt;/div&gt;&lt;/pre&gt;</p>
+                      &lt;div id=&quot;message&quot;&gt;Your timer will execute in {{ timer }} seconds.&lt;/div&gt;</pre></p>
                   
-                  <p>しかしながら"X-XSS-Protection"ヘッダがついてるため、この場合divタグ内にscriptタグを挿入することはできない。</p>
+                  <p>しかしながら&quot;X-XSS-Protection&quot;ヘッダがついてるため、この場合divタグ内にscriptタグを挿入することはできない。</p>
                   
                   <p>のでstartTimer()関数内に着目し、以下をぶっこんで終わり。</p>
                   
@@ -169,7 +169,7 @@
                   
                   <p><br /></p>
                   
-                  <h2 id="level-5-breaking-protocol">Level 5: Breaking protocol</h2>
+                  <h2>Level 5: Breaking protocol</h2>
                   
                   <p>プロトコルを破壊せよ。</p>
                   
@@ -193,7 +193,7 @@
                   
                   <p><br /></p>
                   
-                  <h2 id="level6-follow-the">Level6: Follow the</h2>
+                  <h2>Level6: Follow the</h2>
                   
                   <p>こんな感じの画面。</p>
                   
@@ -224,7 +224,7 @@
                   
                   <p>どうしたものかーと考えたところでdata URI スキームの存在を思い出す。</p>
                   
-                  <p>ので、alert("xss");をbase64エンコード。</p>
+                  <p>ので、alert(&quot;xss&rdquo;);をbase64エンコード。</p>
                   
                   <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">data:text/javascript;base64,YWxlcnQoInhzcyIpOw==</pre>
                   
@@ -234,7 +234,7 @@
                   
                   <p><br /></p>
                   
-                  <h2 id="cake">Cake!!</h2>
+                  <h2>Cake!!</h2>
                   
                   <p>ケーキはアスキーアートのケーキでしたとさ。</p>
                   
@@ -244,7 +244,7 @@
                   
                   <p><br /></p>
                   
-                  <h2 id="section">感想</h2>
+                  <h2>感想</h2>
                   
                   <p>初心者なりに楽しみました。</p>
                   
@@ -254,10 +254,25 @@
                   
                   <p>(Write-Up適当でごめんなさい)</p>
                   
-                  <hr />
+                  <hr>
+                  
                   <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
                 </p>
               </div>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+              //<![CDATA[
+                                var disqus_shortname = 'haraheri';
+                        
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              //]]>
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </section>
           </div>
         </div>

@@ -7,7 +7,7 @@
       はらへり日記 - * +演算子だけで四則演算 @ Python
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/aeon.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
   </head>
   <body class='blog blog_2014 blog_2014_02 blog_2014_02_28 blog_2014_02_28_28021756'>
     <div class='pure-g-r' id='layout'>
@@ -56,7 +56,7 @@
               </header>
               <div class='post-description'>
                 <p>
-                  <h2 id="section">元気ですか</h2>
+                  <h2>元気ですか</h2>
                   
                   <p>どうも、お久しぶりです。</p>
                   
@@ -70,9 +70,9 @@
                   
                   <p>その中で１つ面白い問題があったので紹介します。</p>
                   
-                  <p><del datetime="2014-02-27T17:02:45+00:00">一番乗りで解けたのが嬉しかったから紹介するわけではないからね。</del></p>
+                  <del datetime="2014-02-27T17:02:45+00:00">一番乗りで解けたのが嬉しかったから紹介するわけではないからね。</del>
                   
-                  <h2 id="section-1">+演算子だけで四則演算をするプログラム</h2>
+                  <h2>+演算子だけで四則演算をするプログラム</h2>
                   
                   <p>まぁまんまその通りです。</p>
                   
@@ -81,14 +81,14 @@
                   <p>その際の条件としては以下の感じ。</p>
                   
                   <ul>
-                    <li>割り算は整数で返しておｋ</li>
-                    <li>止む終えなかったら計算以外でなら-演算子使っていいよ</li>
-                    <li>ビット演算はなし</li>
+                  <li>割り算は整数で返しておｋ</li>
+                  <li>止む終えなかったら計算以外でなら-演算子使っていいよ</li>
+                  <li>ビット演算はなし</li>
                   </ul>
                   
                   <p>おもしろそう。解けた順に解説。</p>
                   
-                  <h3 id="section-2">掛け算</h3>
+                  <h3>掛け算</h3>
                   
                   <p>これは楽勝ですね。</p>
                   
@@ -108,7 +108,7 @@
                   
                   <p>もっと短く書けそう。</p>
                   
-                  <h3 id="section-3">割り算</h3>
+                  <h3>割り算</h3>
                   
                   <p>一瞬悩んだけど、引数a,bのうちaを超えるまでbを足し続ければ整数の答えは出せる。</p>
                   
@@ -146,7 +146,7 @@
                   
                   <p>※ multiply()は先ほどの掛け算の関数</p>
                   
-                  <h3 id="section-4">引き算</h3>
+                  <h3>引き算</h3>
                   
                   <p>周りの様子を見てるとみんなここで詰まってるっぽかった。</p>
                   
@@ -174,7 +174,7 @@
                   
                   <p>いい方法待ってます。</p>
                   
-                  <h2 id="section-5">インターン</h2>
+                  <h2>インターン</h2>
                   
                   <p>自己紹介のとき、周りがガチガチの理工学部ばっかで死にたくなったけどなんとか渡り合えてる感じがして楽しいです。</p>
                   
@@ -184,10 +184,25 @@
                   
                   <p>明日も頑張ってきますぜ。</p>
                   
-                  <hr />
+                  <hr>
+                  
                   <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
                 </p>
               </div>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+              //<![CDATA[
+                                var disqus_shortname = 'haraheri';
+                        
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              //]]>
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </section>
           </div>
         </div>

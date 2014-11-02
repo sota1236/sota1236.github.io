@@ -7,7 +7,7 @@
       はらへり日記 - * 404ページをカスタマイズする
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/aeon.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
   </head>
   <body class='blog blog_2013 blog_2013_12 blog_2013_12_17 blog_2013_12_17_17160831'>
     <div class='pure-g-r' id='layout'>
@@ -75,9 +75,9 @@
                   <p>１．errorページの参照先を変更する</p>
                   
                   <p>/etc/httpd/conf/httpd.confを編集
-                  &lt;pre class="brush: shell; gutter: true"&gt;&lt;IfModule mod_negotiation.c&gt;
-                  &lt;IfModule mod_include.c&gt;
-                      &lt;Directory "/var/www/error"&gt;
+                  <pre class="brush: shell; gutter: true">&lt;IfModule mod<em>negotiation.c&gt;
+                  &lt;IfModule mod</em>include.c&gt;
+                      &lt;Directory &quot;/var/www/error&quot;&gt;
                           AllowOverride None
                           Options IncludesNoExec
                           AddOutputFilter Includes html
@@ -88,23 +88,39 @@
                           ForceLanguagePriority Prefer Fallback
                       &lt;/Directory&gt;</p>
                   
-                  <h1 id="errordocument-400-errorhttpbadrequesthtmlvar">ErrorDocument 400 /error/HTTP_BAD_REQUEST.html.var</h1>
-                  <p>#    ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var
-                  #    ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var
-                  #    ErrorDocument 404 /error/HTTP_NOT_FOUND.html.var
-                  #    ErrorDocument 405 /error/HTTP_METHOD_NOT_ALLOWED.html.var
-                  #    ErrorDocument 408 /error/HTTP_REQUEST_TIME_OUT.html.var
-                  #    ErrorDocument 410 /error/HTTP_GONE.html.var
-                  #    ErrorDocument 411 /error/HTTP_LENGTH_REQUIRED.html.var
-                  #    ErrorDocument 412 /error/HTTP_PRECONDITION_FAILED.html.var
-                  #    ErrorDocument 413 /error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
-                  #    ErrorDocument 414 /error/HTTP_REQUEST_URI_TOO_LARGE.html.var
-                  #    ErrorDocument 415 /error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
-                  #    ErrorDocument 500 /error/HTTP_INTERNAL_SERVER_ERROR.html.var
-                  #    ErrorDocument 501 /error/HTTP_NOT_IMPLEMENTED.html.var
-                  #    ErrorDocument 502 /error/HTTP_BAD_GATEWAY.html.var
-                  #    ErrorDocument 503 /error/HTTP_SERVICE_UNAVAILABLE.html.var
-                  #    ErrorDocument 506 /error/HTTP_VARIANT_ALSO_VARIES.html.var&lt;/pre&gt;</p>
+                  <h1>ErrorDocument 400 /error/HTTP<em>BAD</em>REQUEST.html.var</h1>
+                  
+                  <h1>ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var</h1>
+                  
+                  <h1>ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var</h1>
+                  
+                  <h1>ErrorDocument 404 /error/HTTP<em>NOT</em>FOUND.html.var</h1>
+                  
+                  <h1>ErrorDocument 405 /error/HTTP<em>METHOD</em>NOT_ALLOWED.html.var</h1>
+                  
+                  <h1>ErrorDocument 408 /error/HTTP<em>REQUEST</em>TIME_OUT.html.var</h1>
+                  
+                  <h1>ErrorDocument 410 /error/HTTP_GONE.html.var</h1>
+                  
+                  <h1>ErrorDocument 411 /error/HTTP<em>LENGTH</em>REQUIRED.html.var</h1>
+                  
+                  <h1>ErrorDocument 412 /error/HTTP<em>PRECONDITION</em>FAILED.html.var</h1>
+                  
+                  <h1>ErrorDocument 413 /error/HTTP<em>REQUEST</em>ENTITY<em>TOO</em>LARGE.html.var</h1>
+                  
+                  <h1>ErrorDocument 414 /error/HTTP<em>REQUEST</em>URI<em>TOO</em>LARGE.html.var</h1>
+                  
+                  <h1>ErrorDocument 415 /error/HTTP<em>UNSUPPORTED</em>MEDIA_TYPE.html.var</h1>
+                  
+                  <h1>ErrorDocument 500 /error/HTTP<em>INTERNAL</em>SERVER_ERROR.html.var</h1>
+                  
+                  <h1>ErrorDocument 501 /error/HTTP<em>NOT</em>IMPLEMENTED.html.var</h1>
+                  
+                  <h1>ErrorDocument 502 /error/HTTP<em>BAD</em>GATEWAY.html.var</h1>
+                  
+                  <h1>ErrorDocument 503 /error/HTTP<em>SERVICE</em>UNAVAILABLE.html.var</h1>
+                  
+                  <h1>ErrorDocument 506 /error/HTTP<em>VARIANT</em>ALSO_VARIES.html.var</pre></h1>
                   
                   <p>後ろに、以下の一行を追加</p>
                   
@@ -146,10 +162,25 @@
                   
                   <p>こんな感じでした。</p>
                   
-                  <hr />
+                  <hr>
+                  
                   <p>※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。</p>
                 </p>
               </div>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+              //<![CDATA[
+                                var disqus_shortname = 'haraheri';
+                        
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              //]]>
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </section>
           </div>
         </div>

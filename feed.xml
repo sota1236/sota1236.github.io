@@ -38,7 +38,8 @@
 
 &lt;p&gt;&lt;a title="Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)" href="http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719"&gt;Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)&lt;/a&gt;&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
+
 &lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
@@ -60,51 +61,35 @@
 &lt;p&gt;愛用してた以下のアプリケーションをインストール&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;開発系&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Google Chrome(常用、Googleアカウント様々)&lt;/li&gt;
-  &lt;li&gt;Fire Fox (開発用)&lt;/li&gt;
-  &lt;li&gt;Mou(Markdownエディタ)&lt;/li&gt;
-  &lt;li&gt;Sublime Text 2(言わずと知れたエディタ)&lt;/li&gt;
-  &lt;li&gt;iTerm2(軽量シェル)&lt;/li&gt;
-  &lt;li&gt;Wireshark(パケットキャプチャ等)&lt;/li&gt;
-  &lt;li&gt;Dash(ドキュメントリーダー)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Xcode(ユーザではないがCommand line toolsが欲しい for Homebrew)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;日々充実系&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Alfred(Mac生活)&lt;/li&gt;
-  &lt;li&gt;Pocket(記事購読用)&lt;/li&gt;
-  &lt;li&gt;VLC(動画再生ソフト)&lt;/li&gt;
-  &lt;li&gt;Gyazo(スクショ用)&lt;/li&gt;
-  &lt;li&gt;Wake up time(目覚まし、寝坊するので・・・)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;AppCleaner&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;コミュニケーション系&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Slack(ゼミのチャット用)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;夜フクロウ(Twitter)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;音楽系&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;CocoaPiano(ピッチ違うけどまぁ参考程度に)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;MuseScore (無料楽譜作成ソフト)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;CUI環境を整備&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;開発系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Google Chrome(常用、Googleアカウント様々)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fire Fox (開発用)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mou(Markdownエディタ)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sublime Text 2(言わずと知れたエディタ)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;iTerm2(軽量シェル)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Wireshark(パケットキャプチャ等)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Dash(ドキュメントリーダー)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xcode(ユーザではないがCommand line toolsが欲しい for Homebrew)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;日々充実系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Alfred(Mac生活)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pocket(記事購読用)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;VLC(動画再生ソフト)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gyazo(スクショ用)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Wake up time(目覚まし、寝坊するので・・・)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;AppCleaner&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;コミュニケーション系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Slack(ゼミのチャット用)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;夜フクロウ(Twitter)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;音楽系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CocoaPiano(ピッチ違うけどまぁ参考程度に)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;MuseScore (無料楽譜作成ソフト)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CUI環境を整備&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;ここはかなり丁寧にやった(気がする)&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;bashの脆弱性、Shellshock対策&lt;/li&gt;
+&lt;li&gt;bashの脆弱性、Shellshock対策&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;テストコマンドを打ったところ、脆弱性があったので改善する(最新のイメージが修正されてないんか・・・)。&lt;/p&gt;
@@ -114,7 +99,7 @@
 &lt;p&gt;http://support.apple.com/kb/DL1769&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Colore Scheme&lt;/li&gt;
+&lt;li&gt;Colore Scheme&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;ちまたではSolarizedが流行ってるみたいだけど僕はSmyckを入れます&lt;/p&gt;
@@ -122,7 +107,7 @@
 &lt;p&gt;http://color.smyck.org/&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Homebrewを入れる&lt;/li&gt;
+&lt;li&gt;Homebrewを入れる&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;言わずと知れたパッケージマネージャ。&lt;/p&gt;
@@ -151,7 +136,7 @@ vim&lt;/p&gt;
 &lt;p&gt;さぁ、ここからいろいろと整えていきたい&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;zsh&lt;/li&gt;
+&lt;li&gt;zsh&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;ゼミの先輩のタレを分けていただくか、自分で書くかという選択肢もあったが今後ゆっくりやろうってことで無難にOh-my-zsh&lt;/p&gt;
@@ -165,7 +150,7 @@ vim&lt;/p&gt;
 &lt;p&gt;&lt;a title="blog.paz-para.com:シェルスクリプトで外部ファイルを読み込む" href="http://blog.paz-para.com/?p=1881"&gt;blog.paz-para.com:シェルスクリプトで外部ファイルを読み込む&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;ssh&lt;/li&gt;
+&lt;li&gt;ssh&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;VPSとかGitHubのためにssh周りの設定&lt;/p&gt;
@@ -179,7 +164,7 @@ vim&lt;/p&gt;
 &lt;p&gt;ほかのはバックアップからコピーでおk&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Vim&lt;/li&gt;
+&lt;li&gt;Vim&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;emacsを触ったことがないので戦争はしないけどVimずっと触ってたのでVim好きです&lt;/p&gt;
@@ -191,7 +176,7 @@ vim&lt;/p&gt;
 &lt;p&gt;&lt;a title="GitHub:amix/vimrc" href="https://github.com/amix/vimrc"&gt;GitHub:amix/vimrc&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;ホームディレクトリに.gitconfigを作成&lt;/p&gt;
@@ -202,7 +187,7 @@ vim&lt;/p&gt;
 &lt;a title="GitHub:geta6/dotfiles" href="https://github.com/geta6/dotfiles"&gt;GitHub:geta6/dotfiles&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Node.js&lt;/li&gt;
+&lt;li&gt;Node.js&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;前回はbrewで入れてたけど、今回はバージョン管理できるnvmを使ってみる&lt;/p&gt;
@@ -234,7 +219,7 @@ vim&lt;/p&gt;
 &lt;p&gt;&lt;a title="もろず blog:nvm を利用したnode.js のインストール" href="http://moro-archive.hatenablog.com/entry/2014/03/01/213314"&gt;もろず blog:nvm を利用したnode.js のインストール&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Ruby&lt;/li&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;問題のRuby&lt;/p&gt;
@@ -251,14 +236,14 @@ vim&lt;/p&gt;
 rbenv global 2.1.2
 rbenv rehash&lt;/pre&gt;
 
-&lt;p&gt;これでおk&lt;/p&gt;
+これでおk
 
 &lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;ruby -v
 ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin13]
 &lt;/pre&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Python&lt;/li&gt;
+&lt;li&gt;Python&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;とくにPythonを使って大層なプログラムを書くこともなかったのでbrewに甘んじてたのだが、せっかくなのでバージョン管理する&lt;/p&gt;
@@ -285,7 +270,8 @@ pyenv global 3.4.1&lt;/pre&gt;
 
 &lt;p&gt;とりあえず今回はこれでおしまい。&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
+
 &lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
@@ -308,27 +294,27 @@ pyenv global 3.4.1&lt;/pre&gt;
 
 &lt;p&gt;まぁ具体的に何が起きたのかというと、例えばインタラクティブシェルで以下のコードを実行する。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://i.gyazo.com/1dc63ea8a3776faa9901efd7767ad158.png" /&gt;&amp;lt;/img&amp;gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.gyazo.com/1dc63ea8a3776faa9901efd7767ad158.png"&gt;&lt;/img&gt;&lt;/p&gt;
 
-&lt;p&gt;"1 / 3"は無限小数なので省略されてこう表記されてるのだろう。&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;1 / 3&amp;quot;は無限小数なので省略されてこう表記されてるのだろう。&lt;/p&gt;
 
 &lt;p&gt;しかし、ここでこんなことしてみる。&lt;/p&gt;
 
 &lt;pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;print(&amp;#039;%.f100&amp;#039; % (1 / 3))&lt;/pre&gt;
 
-&lt;p&gt;'1 / 3'の結果を小数点以下100桁までprintしろって意味。&lt;/p&gt;
+&lt;p&gt;&amp;lsquo;1 / 3&amp;#39;の結果を小数点以下100桁までprintしろって意味。&lt;/p&gt;
 
 &lt;p&gt;するとこうなってる。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://i.gyazo.com/ef03829c704e094a096402943a1df00d.png" /&gt;&amp;lt;/img&amp;gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.gyazo.com/ef03829c704e094a096402943a1df00d.png"&gt;&lt;/img&gt;&lt;/p&gt;
 
 &lt;p&gt;完全に闇wwww&lt;/p&gt;
 
-&lt;p&gt;この仕様のせいで、'== 0'がいつまでたっても通らなくて詰んだ。&lt;/p&gt;
+&lt;p&gt;この仕様のせいで、&amp;rsquo;== 0&amp;#39;がいつまでたっても通らなくて詰んだ。&lt;/p&gt;
 
 &lt;p&gt;int型は大丈夫なんだけど、floatだとこうなることがある。&lt;/p&gt;
 
-&lt;p&gt;ので、floatに対して'== 0'を実現したかったらこう書けば良い。&lt;/p&gt;
+&lt;p&gt;ので、floatに対して&amp;rsquo;== 0&amp;#39;を実現したかったらこう書けば良い。&lt;/p&gt;
 
 &lt;pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;hoge &amp;lt; 1.e-10&lt;/pre&gt;
 
@@ -336,7 +322,8 @@ pyenv global 3.4.1&lt;/pre&gt;
 
 &lt;p&gt;以上！&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
+
 &lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
@@ -355,7 +342,7 @@ pyenv global 3.4.1&lt;/pre&gt;
 
 &lt;p&gt;ので私が好きなWebマンガの一つの&lt;code&gt;堀さんと宮村くん&lt;/code&gt;が更新されたらYoがくるアカウントを作った&lt;/p&gt;
 
-&lt;h2 id="horimiyarss"&gt;HORIMIYARSS&lt;/h2&gt;
+&lt;h2&gt;HORIMIYARSS&lt;/h2&gt;
 
 &lt;p&gt;もし通知が欲しかったら&lt;code&gt;HORIMIYARSS&lt;/code&gt;に一回Yoしてくれれば更新されたときにYoが来ます。&lt;/p&gt;
 
@@ -404,7 +391,7 @@ puts &amp;quot;最新話は&amp;quot; + title
 
 &lt;p&gt;おしまい&lt;/p&gt;
 
-&lt;h4 id="ps"&gt;P.S.&lt;/h4&gt;
+&lt;h4&gt;P.S.&lt;/h4&gt;
 
 &lt;p&gt;nohupコマンド、友人から聞いて知ったのだけど(情弱でさーせん…)&lt;/p&gt;
 
@@ -412,7 +399,8 @@ puts &amp;quot;最新話は&amp;quot; + title
 
 &lt;p&gt;サーバの再起動と合わせてプロセス復活するようないい方法あったら知りたい〜&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
+
 &lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
@@ -425,21 +413,21 @@ puts &amp;quot;最新話は&amp;quot; + title
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h3 id="yo"&gt;流行りに乗り遅れたYO&lt;/h3&gt;
+    <content type="html">&lt;h3&gt;流行りに乗り遅れたYO&lt;/h3&gt;
 
 &lt;p&gt;ちまたで噂のYoのAPIを触ってみた&lt;/p&gt;
 
 &lt;p&gt;とりあえず&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;特定のユーザにYoを送る&lt;/li&gt;
-  &lt;li&gt;自身を登録してるユーザ全てにYoを送る&lt;/li&gt;
-  &lt;li&gt;Yoを送ってきた時のログを取る&lt;/li&gt;
+&lt;li&gt;特定のユーザにYoを送る&lt;/li&gt;
+&lt;li&gt;自身を登録してるユーザ全てにYoを送る&lt;/li&gt;
+&lt;li&gt;Yoを送ってきた時のログを取る&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;ところまでやってみた。&lt;/p&gt;
 
-&lt;h3 id="api-key"&gt;API Keyを取得する&lt;/h3&gt;
+&lt;h3&gt;API Keyを取得する&lt;/h3&gt;
 
 &lt;p&gt;YoのAPIを使いたい場合、API専用のアカウントを作成する必要がある。(2014/08/06現在)&lt;/p&gt;
 
@@ -455,13 +443,13 @@ puts &amp;quot;最新話は&amp;quot; + title
 
 &lt;p&gt;&lt;a href="http://blog.sota1235.com/wp-content/uploads/2014/08/スクリーンショット-2014-08-06-17.27.38.png"&gt;&lt;img src="http://blog.sota1235.com/wp-content/uploads/2014/08/スクリーンショット-2014-08-06-17.27.38.png" alt="スクリーンショット 2014-08-06 17.27.38" width="1046" height="495" class="alignnone size-full wp-image-312" /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;ここの"見せられないよ！"の部分にAPI Keyが表示される。&lt;/p&gt;
+&lt;p&gt;ここの&amp;ldquo;見せられないよ！&amp;quot;の部分にAPI Keyが表示される。&lt;/p&gt;
 
-&lt;h3 id="yo-1"&gt;Yoを送る&lt;/h3&gt;
+&lt;h3&gt;Yoを送る&lt;/h3&gt;
 
 &lt;p&gt;Yoの送り方は非常にシンプルで、決められたURLにPOSTリクエストを送るだけである。&lt;/p&gt;
 
-&lt;h4 id="section"&gt;全員に送る&lt;/h4&gt;
+&lt;h4&gt;全員に送る&lt;/h4&gt;
 
 &lt;p&gt;自分を登録してるユーザ全てにYoを送る&lt;/p&gt;
 
@@ -470,7 +458,7 @@ puts &amp;quot;最新話は&amp;quot; + title
 POST Paramater: api_token={{発行されたAPI Key}}&amp;amp;username={{送りたい相手のユーザ名}}
 `&lt;/pre&gt;
 
-&lt;h4 id="section-1"&gt;個人に送る&lt;/h4&gt;
+&lt;h4&gt;個人に送る&lt;/h4&gt;
 
 &lt;p&gt;個人宛てにYoを送る。&lt;/p&gt;
 
@@ -479,11 +467,11 @@ POST Paramater: api_token={{発行されたAPI Key}}&amp;amp;username={{送り�
 POST Paramater: api_token={{発行されたAPI Key}}&amp;amp;username={{送りたい相手のユーザ名}}
 `&lt;/pre&gt;
 
-&lt;h4 id="yo-2"&gt;Yoを受け取る&lt;/h4&gt;
+&lt;h4&gt;Yoを受け取る&lt;/h4&gt;
 
 &lt;p&gt;DeveloperページでCallback URLを登録すると、Yoが来るたびにそのURLがリクエストされる。&lt;/p&gt;
 
-&lt;p&gt;その際、GETパラメータでusernameがくっついてくるので、PHPとかなら&lt;code&gt;$_GET["username"]&lt;/code&gt;で誰からYoが来たのかが分かる。&lt;/p&gt;
+&lt;p&gt;その際、GETパラメータでusernameがくっついてくるので、PHPとかなら&lt;code&gt;$_GET[&amp;quot;username&amp;quot;]&lt;/code&gt;で誰からYoが来たのかが分かる。&lt;/p&gt;
 
 &lt;p&gt;自分でテストするために書いたスクリプトが以下の感じ(必要最低限)。&lt;/p&gt;
 
@@ -503,7 +491,7 @@ fclose($fp);
 
 &lt;p&gt;ここらへんいじくり回せばいろいろと作れそう&lt;/p&gt;
 
-&lt;h3 id="section-2"&gt;感想&lt;/h3&gt;
+&lt;h3&gt;感想&lt;/h3&gt;
 
 &lt;p&gt;とても簡単。少なくともTwitterより簡単。&lt;/p&gt;
 
@@ -513,7 +501,8 @@ fclose($fp);
 
 &lt;p&gt;それではこれにて&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
+
 &lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
@@ -542,7 +531,8 @@ fclose($fp);
 
 &lt;p&gt;楽しかった。&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
+
 &lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
