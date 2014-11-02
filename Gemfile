@@ -22,5 +22,6 @@ gem "middleman-disqus"
 # Others
 gem "nokogiri"
 gem "erb2haml"
+gem "coffee-script"
 
 gem "middleman-deploy", "~> 0.0.11"

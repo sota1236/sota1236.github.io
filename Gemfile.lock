@@ -152,6 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder (~> 3.0)
+  coffee-script
   erb2haml
   font-awesome-middleman
   middleman (~> 3.3.6)

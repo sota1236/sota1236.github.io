@@ -124,6 +124,9 @@ set :markdown, :layout_engine => :haml, :tables => true, :autolink => true, :gh_
 
 activate :rouge_syntax
 
+# Use CoffeeScript
+set :coffee, { :ugly => true }
+
 # Use disqus
 activate :disqus do |d|
   d.shortname = "haraheri"
