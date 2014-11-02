@@ -39,6 +39,8 @@ a.heading
   text-decoration: none
   a
     +link-colors($o-white, $white, $accent-color, $o-white, $o-white)
+    &:hover, &:focus
+      text-decoration: none
   @media #{$small}
     display: inline-block
     margin: 0 0.5em
