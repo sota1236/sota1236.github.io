@@ -1,23 +1,18 @@
 ---
 layout: post
-title: ! '* stat関数'
-published: true
+title: ! 'stat関数'
 date: 2013-12-07 15:50
-comments: true
-categories:
+tags:
 - C
-- 授業
-tags: []
-keywords:
-- C
-- 授業
 ---
 こんばんわ。
 
 突然ですがこのコードは何でしょう。
-<pre class="brush: c; gutter: true">#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;time.h&gt;
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 #include&lt;dirent.h&gt;
 #include&lt;sys/types.h&gt;
 #include&lt;sys/stat.h&gt;
@@ -80,7 +75,8 @@ void tab_writer(int num){
   for(i=0;i&lt;num;i++){
     fprintf(stdout,&quot;  &quot;);
   }
-}</pre>
+}
+```
 
 きったないですね。初のブログでのコード公開です。
 
@@ -92,19 +88,19 @@ void tab_writer(int num){
 
 つまり、
 
-[html]
+```HTML
 a.out /
-[/html]
+```
 
 と実行すると
 
-[html]
+```HTML
 var
   sys
   etc
     apache
     cups
-[/html]
+```
 
 みたいな感じで表示されるプログラムを作れという課題。
 
@@ -132,14 +128,17 @@ var
 そこでこちらを参考にしてフォルダチェックを関数化。
 
 [にたまごほうれんそう](http://d.hatena.ne.jp/emergent/20080412/1208024023 "にたまごほうれんそう")
-<pre class="brush: c; gutter: true">void check_stat(struct stat *st){
+
+```C
+void check_stat(struct stat *st){
     mode_t m = st-&gt;st_mode;
-    if (S_ISDIR(m))  { 
-    return 1; 
+    if (S_ISDIR(m))  {
+    return 1;
     } else {
     return 0;
     }
-}</pre>
+}
+```
 
 もしフォルダだったら1を、それ以外なら0を返すだけの関数。
 
@@ -157,7 +156,9 @@ mach_kernel
 とりあえず無理やりmach_kernelをif文の中から追い出して動かしてみる。
 
 以下を書き換え
-<pre class="brush: c; gutter: true">while((dp = readdir(dirp)) != NULL){
+
+```C
+while((dp = readdir(dirp)) != NULL){
     if(check_stat(&amp;amp;stat_buf)){
       path = dp-&amp;gt;d_name;
       if(strncmp(path,&quot;.&quot;,1)!=0 &amp;amp;&amp;amp; strncmp(path,&quot;..&quot;,2)!=0 &amp;&amp; strncmp(path,&quot;mach_kernel&quot;,11)){
@@ -173,7 +174,9 @@ mach_kernel
         ls_r(r_path,tab_num+1);
       }
     }
-  }</pre>
+  }
+```
+
 実行すると。。。
 
 動いた！！
@@ -189,6 +192,3 @@ mach_kernel
 もしggってこのページ見つけた人いたらごめんなさい。
 
 まだまだですね。。。
-
----
-※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。
