@@ -16,6 +16,9 @@ gem "builder", "~> 3.0"
 gem "middleman-rouge"
 gem "redcarpet"
 
+# Use desqus
+gem "middleman-disqus"
+
 # Others
 gem "nokogiri"
 gem "erb2haml"

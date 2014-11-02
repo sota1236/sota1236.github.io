@@ -123,3 +123,8 @@ set :markdown, :fenced_code_blocks => true, :smartypants => true
 ####
 
 activate :rouge_syntax
+
+# Use disqus
+activate :disqus do |d|
+  d.shortname = "haraheri"
+end
