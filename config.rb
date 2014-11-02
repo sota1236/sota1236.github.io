@@ -116,7 +116,7 @@ end
 # Markdown
 ##
 set :markdown_engine, :redcarpet
-set :markdown, :fenced_code_blocks => true, :smartypants => true
+set :markdown, :layout_engine => :haml, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true, :with_toc_data => true, :smartypants => true
 
 ###
 ## Code highlighting
