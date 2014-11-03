@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Blog Name</title>
-  <subtitle>Blog subtitle</subtitle>
-  <id>http://blog.url.com/blog</id>
-  <link href="http://blog.url.com/blog"/>
-  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <title>はらへり日記</title>
+  <subtitle>@sota1235によるプログラミング片思い日記</subtitle>
+  <id>http://sota1235.com/blog</id>
+  <link href="http://sota1235.com/blog"/>
+  <link href="http://sota1235.com/feed.xml" rel="self"/>
   <updated>2014-10-23T22:43:00+09:00</updated>
   <author>
-    <name>Blog Author</name>
+    <name>@sota1235</name>
   </author>
   <entry>
     <title>* node.jsで標準出力に色をつける</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/10/23/23224314.html"/>
-    <id>http://blog.url.com/blog/2014/10/23/23224314.html</id>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/10/23/23224314.html"/>
+    <id>http://sota1235.com/blog/2014/10/23/23224314.html</id>
     <published>2014-10-23T22:43:00+09:00</published>
     <updated>2014-10-29T17:57:26+09:00</updated>
     <author>
@@ -45,8 +45,8 @@
   </entry>
   <entry>
     <title>* OS X 10.9をクリーンインストールした後に行ったこと</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/10/07/07094511.html"/>
-    <id>http://blog.url.com/blog/2014/10/07/07094511.html</id>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/10/07/07094511.html"/>
+    <id>http://sota1235.com/blog/2014/10/07/07094511.html</id>
     <published>2014-10-07T09:45:00+09:00</published>
     <updated>2014-10-29T17:57:26+09:00</updated>
     <author>
@@ -277,8 +277,8 @@ pyenv global 3.4.1&lt;/pre&gt;
   </entry>
   <entry>
     <title>* 【Python】floatの闇</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/08/25/25171246.html"/>
-    <id>http://blog.url.com/blog/2014/08/25/25171246.html</id>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/08/25/25171246.html"/>
+    <id>http://sota1235.com/blog/2014/08/25/25171246.html</id>
     <published>2014-08-25T17:12:00+09:00</published>
     <updated>2014-10-29T17:57:26+09:00</updated>
     <author>
@@ -329,8 +329,8 @@ pyenv global 3.4.1&lt;/pre&gt;
   </entry>
   <entry>
     <title>* 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/08/13/13021030.html"/>
-    <id>http://blog.url.com/blog/2014/08/13/13021030.html</id>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/08/13/13021030.html"/>
+    <id>http://sota1235.com/blog/2014/08/13/13021030.html</id>
     <published>2014-08-13T02:10:00+09:00</published>
     <updated>2014-10-29T17:57:26+09:00</updated>
     <author>
@@ -406,8 +406,8 @@ puts &amp;quot;最新話は&amp;quot; + title
   </entry>
   <entry>
     <title>* YoのAPIを触ってみる(その１)</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/08/06/06173532.html"/>
-    <id>http://blog.url.com/blog/2014/08/06/06173532.html</id>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/08/06/06173532.html"/>
+    <id>http://sota1235.com/blog/2014/08/06/06173532.html</id>
     <published>2014-08-06T17:35:00+09:00</published>
     <updated>2014-10-29T17:57:26+09:00</updated>
     <author>
@@ -508,8 +508,8 @@ fclose($fp);
   </entry>
   <entry>
     <title>* Mouでシンタックスハイライトしたい</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/08/04/04050828.html"/>
-    <id>http://blog.url.com/blog/2014/08/04/04050828.html</id>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/08/04/04050828.html"/>
+    <id>http://sota1235.com/blog/2014/08/04/04050828.html</id>
     <published>2014-08-04T05:08:00+09:00</published>
     <updated>2014-10-29T17:57:26+09:00</updated>
     <author>

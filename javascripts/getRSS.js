@@ -1,40 +1,72 @@
 (function() {
-  var feeds, init, urls;
+  var init, makeActivity, urls;
 
   google.load("feeds", 1);
 
-  urls = ["http://sota1235.com/feed.xml", "https://github.com/sota1235.atom"];
+  urls = {
+    "github": "https://github.com/sota1235.atom",
+    "blog": "http://sota1235.com/feed.xml"
+  };
 
-  feeds = [];
-
-  init = function() {
-    var feed, url, _i, _len, _results;
-    _results = [];
-    for (_i = 0, _len = urls.length; _i < _len; _i++) {
-      url = urls[_i];
+  init = function(url) {
+    return new Promise(function(resolve, reject) {
+      var feed, feeds;
       feed = new google.feeds.Feed(url);
-      _results.push(feed.load(function(result) {
-        var entry, i, _j, _ref, _results1;
+      feeds = [];
+      return feed.load(function(result) {
+        var entry, i, _i;
         if (result.error) {
-          console.log(error);
+          reject(error);
         }
-        _results1 = [];
-        for (i = _j = 0, _ref = result.feed.entries.length - 1; 0 <= _ref ? _j <= _ref : _j >= _ref; i = 0 <= _ref ? ++_j : --_j) {
+        for (i = _i = 0; _i <= 5; i = ++_i) {
           entry = result.feed.entries[i];
-          _results1.push(feeds.push({
-            'site': result.feed.title,
-            'title': entry.title,
+          if (!entry) {
+            break;
+          }
+          feeds.push({
             'link': entry.link,
-            'content': entry.contentSnippet.substr(0, 20),
+            'title': entry.title,
+            'content': entry.contentSnippet,
             'date': entry.publishedDate
-          }));
+          });
         }
-        return _results1;
-      }));
+        return resolve(feeds);
+      });
+    });
+  };
+
+  makeActivity = function(class_name, feeds) {
+    var content, feed, root, span, title, _i, _len, _results;
+    $(class_name + " .loader").fadeOut(1000);
+    $(class_name).append($('<div class="activity"></div>'));
+    _results = [];
+    for (_i = 0, _len = feeds.length; _i < _len; _i++) {
+      feed = feeds[_i];
+      root = $(class_name + " .activity");
+      root.hide();
+      title = $('<a class="activity_title"></div>').attr('href', feed.link).text(feed.title);
+      span = $('<span class="activity_date"></div>').text(feed.date);
+      content = $('<div class="activity_content"></div>').text(feed.content);
+      root.append(title).append(span).append(content);
+      _results.push(setTimeout(function() {
+        return root.show();
+      }, 1000));
     }
     return _results;
   };
 
-  google.setOnLoadCallback(init);
+  google.setOnLoadCallback(function() {
+    return init(urls["github"]).then(function(result) {
+      console.log("Get feed from github is completed");
+      makeActivity(".github_activity", result);
+    }).then(function(result) {
+      return init(urls["blog"]);
+    }).then(function(result) {
+      console.log("Get feed from blog is copmleted");
+      makeActivity(".blog_activity", result);
+    })["catch"](function(error) {
+      return console.error(error);
+    });
+  });
 
 }).call(this);
