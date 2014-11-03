@@ -43,4 +43,3 @@ per_page: 5
   %ol
     - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
       %li= link_to "#{year} (#{articles.size})", blog_year_path(year)
-
