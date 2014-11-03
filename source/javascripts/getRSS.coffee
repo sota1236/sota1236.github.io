@@ -1,26 +1,56 @@
 google.load "feeds", 1
 
-urls = [
-  "http://sota1235.com/feed.xml"
-  "https://github.com/sota1235.atom"
-]
-feeds = []
+urls =
+  "github": "https://github.com/sota1235.atom"
+  "blog"  : "http://sota1235.com/feed.xml"
 
-init = () ->
-  for url in urls
+init = (url) ->
+  return new Promise (resolve, reject) ->
     feed = new google.feeds.Feed url
+    feeds = []
     feed.load (result) ->
       if result.error
-        console.log error
-      for i in [0..result.feed.entries.length - 1]
+        reject error
+      for i in [0..5]
         entry = result.feed.entries[i]
         if !entry
           break
         feeds.push
-          'site'   : result.feed.title
-          'title'  : entry.title
           'link'   : entry.link
-          'content': entry.contentSnippet.substr 0, 20
+          'title'  : entry.title
+          'content': entry.contentSnippet
           'date'   : entry.publishedDate
+      resolve feeds
 
-google.setOnLoadCallback init
+makeActivity = (class_name, feeds) ->
+  $(class_name + " .loader").fadeOut 1000
+  $(class_name)
+    .append $('<div class="activity"></div>')
+  for feed in feeds
+    root = $(class_name + " .activity")
+    title = $('<a class="activity_title"></div>')
+      .attr 'href', feed.link
+      .text feed.title
+    span = $('<span class="activity_date"></div>')
+      .text feed.date
+    content = $('<div class="activity_content"></div>')
+      .text feed.content
+    root
+      .append title
+      .append span
+      .append content
+
+google.setOnLoadCallback () ->
+  init urls["github"]
+    .then (result) ->
+      console.log "Get feed from github is completed"
+      makeActivity ".github_activity", result
+      return
+    .then (result) ->
+      init urls["blog"]
+    .then (result) ->
+      console.log "Get feed from blog is copmleted"
+      makeActivity ".blog_activity", result
+      return
+    .catch (error) ->
+      console.error error
