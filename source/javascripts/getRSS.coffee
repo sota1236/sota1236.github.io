@@ -14,6 +14,8 @@ init = () ->
         console.log error
       for i in [0..result.feed.entries.length - 1]
         entry = result.feed.entries[i]
+        if !entry
+          break
         feeds.push
           'site'   : result.feed.title
           'title'  : entry.title
