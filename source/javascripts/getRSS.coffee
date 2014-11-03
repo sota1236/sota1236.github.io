@@ -28,6 +28,7 @@ makeActivity = (class_name, feeds) ->
     .append $('<div class="activity"></div>')
   for feed in feeds
     root = $(class_name + " .activity")
+    root.hide()
     title = $('<a class="activity_title"></div>')
       .attr 'href', feed.link
       .text feed.title
@@ -39,6 +40,9 @@ makeActivity = (class_name, feeds) ->
       .append title
       .append span
       .append content
+    setTimeout () ->
+      root.show()
+    , 1000
 
 google.setOnLoadCallback () ->
   init urls["github"]
