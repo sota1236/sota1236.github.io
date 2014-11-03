@@ -6,7 +6,7 @@
     %meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0", :name => "viewport"}
     %title
       はらへり日記#{' - ' + current_article.title unless current_article.nil?}
-    = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
+    = feed_tag :atom, "/feed.xml", title: "Atom Feed"
     = stylesheet_link_tag "normalize", "all", "http://yui.yahooapis.com/pure/0.5.0/pure-min.css", "http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css", "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     %script(type="text/javascript" src="https://www.google.com/jsapi")
     = javascript_include_tag "getRSS"
