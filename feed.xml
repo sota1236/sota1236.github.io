@@ -5,10 +5,50 @@
   <id>http://sota1235.com/blog</id>
   <link href="http://sota1235.com/blog"/>
   <link href="http://sota1235.com/feed.xml" rel="self"/>
-  <updated>2014-10-23T22:43:00+09:00</updated>
+  <updated>2014-11-03T18:09:00+09:00</updated>
   <author>
     <name>@sota1235</name>
   </author>
+  <entry>
+    <title>renewal</title>
+    <link rel="alternate" href="http://sota1235.com/blog/2014/11/03/renewal.html"/>
+    <id>http://sota1235.com/blog/2014/11/03/renewal.html</id>
+    <published>2014-11-03T18:09:00+09:00</published>
+    <updated>2014-11-03T18:17:33+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2 id="ブログを移行した"&gt;ブログを移行した&lt;/h2&gt;
+
+&lt;p&gt;もとの&lt;a href="http://blog.sota1235.com"&gt;ブログ&lt;/a&gt;は&lt;code&gt;Wordpress&lt;/code&gt;で運用していたのだが、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;いちいちWebで記事を投稿するのが馬鹿らしい&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Markdownで書きたい&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;プラグインいれてたけどいろいろ競合してカオス&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;デザインの融通をきかせたい&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ってことで&lt;code&gt;middleman-blog&lt;/code&gt; + &lt;code&gt;GitHub Pages&lt;/code&gt;という構成に変えました。&lt;/p&gt;
+
+&lt;p&gt;以下の記事を参考にさせていただきました。&lt;/p&gt;
+
+&lt;p&gt;(というよりコードをめちゃくちゃ参考にしました。ありがとうございます)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://camuro.org/blog/2013/09/renewal.html"&gt;WordPressからmiddlemanに移行してGithub Pagesで運用する方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;もともとCSSとHTMLにはかなりの苦手意識があったのですが、SASS + Hamlで書いたら克服できた気がしました(たぶん気のせい)&lt;/p&gt;
+
+&lt;p&gt;今後もコリコリ書いておしゃんてぃーブログを目指そうと思います。&lt;/p&gt;
+
+&lt;p&gt;では&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>* node.jsで標準出力に色をつける</title>
     <link rel="alternate" href="http://sota1235.com/blog/2014/10/23/23224314.html"/>
@@ -500,36 +540,6 @@ fclose($fp);
 &lt;p&gt;のでまた記事にしようかな〜&lt;/p&gt;
 
 &lt;p&gt;それではこれにて&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>* Mouでシンタックスハイライトしたい</title>
-    <link rel="alternate" href="http://sota1235.com/blog/2014/08/04/04050828.html"/>
-    <id>http://sota1235.com/blog/2014/08/04/04050828.html</id>
-    <published>2014-08-04T05:08:00+09:00</published>
-    <updated>2014-10-29T17:57:26+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;課題で使いたいので探したらあった。&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="Gist: gist:4286673" href="https://gist.github.com/davidmatas/4286673"&gt;Gist: gist:4286673&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;以下のを文章内に追加すればおｋ&lt;/p&gt;
-
-&lt;pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;&amp;lt;!-- Highlight syntax for Mou.app, insert at the bottom of the markdown document  --&amp;gt;
- 
-&amp;lt;script src=&amp;quot;http://yandex.st/highlightjs/7.3/highlight.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;http://yandex.st/highlightjs/7.3/styles/github.min.css&amp;quot;&amp;gt;
-&amp;lt;script&amp;gt;
-  hljs.initHighlightingOnLoad();
-&amp;lt;/script&amp;gt;&lt;/pre&gt;
-
-&lt;p&gt;楽しかった。&lt;/p&gt;
 
 &lt;hr&gt;
 

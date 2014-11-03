@@ -54,6 +54,45 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
+                <a href="/blog/2014/02/14/14033947.html">* タダコピの陰を消す(3/28)</a>
+              </h2>
+              <p class='post-date'>
+                Feb 14 2014
+                <ul class='tags'>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>こんばんわ。</p>
+              
+              <p>友人から楽譜をスキャンしてもらったのですがその裏にタダコピがうっすら写ってる…</p>
+              
+              <p><img src="http://gyazo.com/0def774b7e5e3231fd4b0115cdf1268b.png" alt="score"></p>
+              
+              <p>ダサい。</p>
+              
+              <p>ってことで習いたての画像処理でどうにかしてみた。</p>
+              
+              <p><strong>[twocolor_gene.pde]</strong></p>
+              
+              <pre class="brush: java; gutter: true; first-line: 1; highlight: []; html-script: false">
+              /* Created by sota1235
+               * Date:2014/02/14
+               */
+               
+              PImage img, img2;
+              img = loadImage("path/image");
+              int w = img.width, h = img.height;
+               
+              size(w, h...</pre>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2014/02/14/14033947.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
                 <a href="/blog/2014/02/09/09010555.html">* ファイル取得@Ruby (2/28)</a>
               </h2>
               <p class='post-date'>
@@ -182,50 +221,14 @@
               <a href="/blog/2014/01/25/25115358.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/01/20/20165922.html">* tmuxの自動起動設定</a>
-              </h2>
-              <p class='post-date'>
-                Jan 20 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>今日はtmuxのお話。</p>
-              
-              <p>私が普段使っているコンソールはターミナルではなく、</p>
-              
-              <p>iTerm2なるものを使っています。</p>
-              
-              <p><a title="iTerm2" href="http://www.iterm2.com/#/section/home">iTerm2</a></p>
-              
-              <p>ターミナルと何が違うのかと言われると、まぁいろいろ違うのですがわかりやすい機能で私が一番好きな機能がこれです。</p>
-              
-              <p><img src="http://gyazo.com/4940a78784b61cfe5646a64b3da5ed7b.png" alt=""></p>
-              
-              <p>そう、シェルの切り分けができるのです。</p>
-              
-              <p>しかもショートカットキーが簡単で</p>
-              
-              <h3 id="[command-+-d]--&gt;-横に分割">[command + d] -&gt; 横に分割</h3>
-              
-              <h3 id="[command-+-d-+-shift]--&gt;-縦に分割">[command + d + shift] -&gt; 縦に分割</h3>
-              
-              <p>これがとってもとっても快適。</p>
-              
-              <p>と、前置きはここまでで</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/01/20/20165922.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/6.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
             <ol>
+              <li>
+                <a href="/blog/2014/11/03/renewal.html">renewal</a>
+                <span>Nov  3</span>
+              </li>
               <li>
                 <a href="/blog/2014/10/23/23224314.html">* node.jsで標準出力に色をつける</a>
                 <span>Oct 23</span>
@@ -262,20 +265,17 @@
                 <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
                 <span>May 26</span>
               </li>
-              <li>
-                <a href="/blog/2014/05/19/19181844.html">* 逆ポーランド記法の問題を大量生産する</a>
-                <span>May 19</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
               <li><a href="/blog/tags/daily.html">Daily (1)</a></li>
               <li><a href="/blog/tags/server.html">Server (1)</a></li>
               <li><a href="/blog/tags/c.html">C (1)</a></li>
+              <li><a href="/blog/tags/日常.html">日常 (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2014.html">2014 (28)</a></li>
+              <li><a href="/blog/2014.html">2014 (29)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>
           </aside>
