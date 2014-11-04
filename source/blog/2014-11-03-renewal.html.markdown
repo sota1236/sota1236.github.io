@@ -1,11 +1,11 @@
 ---
-title: renewal
+title: ブログを移行しました
 date: 2014-11-03 18:09 JST
 tags:
 - 日常
 ---
 
-## ブログを移行した
+### ブログを移行した
 
 もとの[ブログ](http://blog.sota1235.com)は```Wordpress```で運用していたのだが、
 
