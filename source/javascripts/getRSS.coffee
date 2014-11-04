@@ -5,22 +5,23 @@ urls =
   "blog"  : "http://sota1235.com/feed.xml"
 
 init = (url) ->
-  return new Promise (resolve, reject) ->
-    feed = new google.feeds.Feed url
-    feeds = []
-    feed.load (result) ->
-      if result.error
-        reject error
-      for i in [0..5]
-        entry = result.feed.entries[i]
-        if !entry
-          break
-        feeds.push
-          'link'   : entry.link
-          'title'  : entry.title
-          'content': entry.contentSnippet + '...'
-          'date'   : entry.publishedDate
-      resolve feeds
+  dfd = $.Deferred()
+  feed = new google.feeds.Feed url
+  feeds = []
+  feed.load (result) ->
+    if result.error
+      dfd.reject error
+    for i in [0..5]
+      entry = result.feed.entries[i]
+      if !entry
+        break
+      feeds.push
+        'link'   : entry.link
+        'title'  : entry.title
+        'content': entry.contentSnippet + '...'
+        'date'   : entry.publishedDate
+    dfd.resolve feeds
+  return dfd.promise()
 
 makeActivity = (class_name, feeds) ->
   $(class_name + " .loader").fadeOut 1000
@@ -56,5 +57,5 @@ google.setOnLoadCallback () ->
       console.log "Get feed from blog is copmleted"
       makeActivity ".blog_activity", result
       return
-    .catch (error) ->
+    .fail (error) ->
       console.error error
