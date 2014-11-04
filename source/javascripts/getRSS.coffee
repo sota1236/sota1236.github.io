@@ -18,7 +18,7 @@ init = (url) ->
         feeds.push
           'link'   : entry.link
           'title'  : entry.title
-          'content': entry.contentSnippet
+          'content': entry.contentSnippet + '...'
           'date'   : entry.publishedDate
       resolve feeds
 
