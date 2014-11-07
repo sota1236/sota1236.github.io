@@ -7,6 +7,11 @@ urls =
 
 init = (url) ->
   dfd = $.Deferred()
+  # Time limit
+  setTimeout () ->
+    dfd.resolve false
+    return dfd.promise()
+  , 3000
   feed = new google.feeds.Feed url
   feeds = []
   feed.load (result) ->
@@ -26,6 +31,11 @@ init = (url) ->
 
 makeActivity = (class_name, feeds) ->
   $(class_name + " .loader").fadeOut 1000
+  # If feed request time out
+  if !feeds
+    $(class_name)
+      .text "Gettting feeds failed..."
+      return
   $(class_name)
     .append $('<div class="activity"></div>')
   for feed in feeds
