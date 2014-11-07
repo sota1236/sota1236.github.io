@@ -3,6 +3,7 @@ google.load "feeds", 1
 urls =
   "github": "https://github.com/sota1235.atom"
   "blog"  : "http://sota1235.com/feed.xml"
+  "gyazz" : "http://gyazz.masuilab.org/rss.xml"
 
 init = (url) ->
   dfd = $.Deferred()
@@ -48,14 +49,20 @@ makeActivity = (class_name, feeds) ->
 google.setOnLoadCallback () ->
   init urls["github"]
     .then (result) ->
-      console.log "Get feed from github is completed"
+      console.log "Get feed from github completed"
       makeActivity ".github_activity", result
       return
     .then (result) ->
       init urls["blog"]
     .then (result) ->
-      console.log "Get feed from blog is copmleted"
+      console.log "Get feed from blog copmleted"
       makeActivity ".blog_activity", result
+      return
+    .then (result) ->
+      init urls["gyazz"]
+    .then (result) ->
+      console.log "Get feed from gyazz/sota1235 completed"
+      makeActivity ".gyazz_activity", result
       return
     .fail (error) ->
       console.error error
