@@ -3,7 +3,7 @@ google.load "feeds", 1
 urls =
   "github": "https://github.com/sota1235.atom"
   "blog"  : "http://sota1235.com/feed.xml"
-  "gyazz" : "http://gyazz.masuilab.org/rss.xml"
+  "gyazz" : "http://gyazz.masuilab.org/sota1235/rss.xml"
 
 init = (url) ->
   dfd = $.Deferred()
