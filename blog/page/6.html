@@ -54,6 +54,36 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
+                <a href="/blog/2014/01/25/25115358.html">* zshのEDITOR設定</a>
+              </h2>
+              <p class='post-date'>
+                Jan 25 2014
+                <ul class='tags'>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>今、TwitterBotを作っていて、その関係でcronの設定をしたのですが (botはまた別に記事にします)</p>
+              
+              <p><code>crontab -e</code>と打つと、vimじゃなくてviが起動しちゃうんですね。</p>
+              
+              <p>.vimrcでいれてるものがvi対応じゃないものが混じってるのでそれだとエラーになってとても困るので普段は</p>
+              
+              <p><code>alias vi="vim"</code></p>
+              
+              <p>することで回避してるのですが、</p>
+              
+              <p><code>crontab</code>コマンドだとviが起動されてしまう。</p>
+              
+              <p>んでちょっと調べてみるとどうやらシェルの環境変数のうち、EDITOR変数...</p>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2014/01/25/25115358.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
                 <a href="/blog/2014/01/20/20165922.html">* tmuxの自動起動設定</a>
               </h2>
               <p class='post-date'>
@@ -199,34 +229,14 @@
               <a href="/blog/2014/01/02/02131604.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2013/12/27/27222020.html">* mtコマンド</a>
-              </h2>
-              <p class='post-date'>
-                Dec 27 2013
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>私の大学では11月にOpen Research Forumなるものを六本木のかっちょいーところで開催していて、私の研究室もブースを出しました。</p>
-              
-              <p>その時に情弱な僕は何かを実装できるわけではなく、先輩のお手伝い(≒雑用）をしていました。</p>
-              
-              <p>その内容というのがjsonファイルをパースして階層に応じたフォルダを作るというまぁ要するにモックアップの準備だったわけで、その時はPythonを使って書いてました。</p>
-              
-              <p>ただ、毎回毎回同じようなものを何回も書くのは効率が悪すぎたのでいろいろと練習を兼ねてmt...</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2013/12/27/27222020.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/7.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
             <ol>
+              <li>
+                <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
+                <span>Dec  2</span>
+              </li>
               <li>
                 <a href="/blog/2014/11/03/renewal.html">ブログを移行しました</a>
                 <span>Nov  3</span>
@@ -263,10 +273,6 @@
                 <a href="/blog/2014/07/01/01165552.html">* ブログが落ちてた話</a>
                 <span>Jul  1</span>
               </li>
-              <li>
-                <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
-                <span>May 26</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -274,10 +280,11 @@
               <li><a href="/blog/tags/server.html">Server (1)</a></li>
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (1)</a></li>
+              <li><a href="/blog/tags/css.html">CSS (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2014.html">2014 (29)</a></li>
+              <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>
           </aside>

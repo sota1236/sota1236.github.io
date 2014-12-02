@@ -54,6 +54,37 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
+                <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
+              </h2>
+              <p class='post-date'>
+                May 26 2014
+                <ul class='tags'>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>サークルの後輩にファイルを共有する際、自分のサイトにファイルを置いてURLを教えていたのですが、</p>
+              
+              <p>ファイルの置き場所を変えたくなっちゃったので<code>.htaccess</code>を利用してやってみた。</p>
+              
+              <p><code>/hoge/</code>をファイル公開ディレクトリとする。(<code>http://sota1235.net/files/*.zip</code>で<code>/hoge/&amp;#42;.zip</code>にアクセスできる。)</p>
+              
+              <ul>
+              <li>元のファイルの置き場所: <code>/hoge/*.zip</code>
+              </li>
+              <li>新しい置き場所: <code>/hoge/fuga/*.zip</code>
+              </li>
+              </ul>
+              
+              <p><code>.htaccess</code>ファイルの置き...</p>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2014/05/26/26104650.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
                 <a href="/blog/2014/05/19/19181844.html">* 逆ポーランド記法の問題を大量生産する</a>
               </h2>
               <p class='post-date'>
@@ -165,37 +196,14 @@
               <a href="/blog/2014/04/16/16123103.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/04/14/14151429.html">* 素数判定を頑張って高速化してみる -エラトステネスの篩編-</a>
-              </h2>
-              <p class='post-date'>
-                Apr 14 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>まずはこの問題を見ていただきたい。</p>
-              
-              <p><em>「6 桁以下の正の整数 n を入力し、n 以下の素数がいくつあるかを出力するプログラムを作成して下さい。ただし、素数とは 1 と自分自身でしか割り切れない正の整数のうち 1 をのぞいたものをいいます。例えば 10 以下の素数は、2, 3, 5, 7 です。」</em>
-              <a title="引用：AOJ0009" href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009&amp;lang=jp">引用：AOJ0009</a></p>
-              
-              <p>なんてことはない、ただの素数判定です。</p>
-              
-              <p>とはいえきちんとした素数判定のアルゴリズムをggってみるとどうやら『<a title="エラトステネスの篩" href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>』とやらがシンプルな方法らしい</p>
-              
-              <p>(他にもも...</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/04/14/14151429.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/4.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
             <ol>
+              <li>
+                <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
+                <span>Dec  2</span>
+              </li>
               <li>
                 <a href="/blog/2014/11/03/renewal.html">ブログを移行しました</a>
                 <span>Nov  3</span>
@@ -232,10 +240,6 @@
                 <a href="/blog/2014/07/01/01165552.html">* ブログが落ちてた話</a>
                 <span>Jul  1</span>
               </li>
-              <li>
-                <a href="/blog/2014/05/26/26104650.html">* URLを変更せずにファイル単位でリダイレクトする</a>
-                <span>May 26</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -243,10 +247,11 @@
               <li><a href="/blog/tags/server.html">Server (1)</a></li>
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (1)</a></li>
+              <li><a href="/blog/tags/css.html">CSS (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2014.html">2014 (29)</a></li>
+              <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>
           </aside>
