@@ -101,6 +101,7 @@ youtube-dl
 nicovideo-dl
 sl
 vim
+mobile-shell
 
 `brew doctor`するとエラーが出る
 
