@@ -45,7 +45,7 @@ Git開発を行っていると、こんなことありませんか。
 
 となります。
 
-![](/2015/03/19/git-rebase/rebase01.png)
+![](/blog/2015/03/19/git-rebase/rebase01.png)
 
 しかしrebaseコマンドを使うことでこの2回のコミットを1回に減らすことができます
 
@@ -56,17 +56,17 @@ Git開発を行っていると、こんなことありませんか。
 
 図で言うならば下図の状態が
 
-![](/2015/03/19/git-rebase/rebase02.png)
+![](/blog/2015/03/19/git-rebase/rebase02.png)
 
 こうなります。
 
-![](/2015/03/19/git-rebase/rebase03.png)
+![](/blog/2015/03/19/git-rebase/rebase03.png)
 
 この際、コミットは1回も増えていません。
 
 ここからプルリクを出し、mergeされると下図のようになります。
 
-![](/2015/03/19/git-rebase/rebase04.png)
+![](/blog/2015/03/19/git-rebase/rebase04.png)
 
 mergeコミットはこの1回で済み、履歴を綺麗に残すことができました！YATTA！
 
@@ -116,7 +116,7 @@ rebaseを途中でやめて、rebase直前の状態に戻す場合は`git rebase
 
 % git add conflictFile1.txt
 
-% git --continue
+% git rebase --continue
 
 (ここでまたコンフリクトが出たら同じことを繰り返す)
 
