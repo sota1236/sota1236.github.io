@@ -15,11 +15,13 @@ Pure CSSでは`divタグ`にclassを付与することでレイアウトを作�
 
 生成されたページのCSSを見ると以下のようになっている。
 
-```CSS
+```css
+
 @media screen and (min-width: 48em)
 .pure-u-md-1-4, .pure-u-md-6-24 {
   width: 25%;
 }
+
 ```
 
 `min-width: 48em`の部分で基準のサイズを決めており、このような記法をMedia Queriesという。
@@ -28,8 +30,10 @@ Pure CSSでは`divタグ`にclassを付与することでレイアウトを作�
 
 sota1235.comでは以下のように設定してある。
 
-```HTML
+```html
+
 <meta content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+
 ```
 
 contentの内容は
