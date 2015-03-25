@@ -122,7 +122,6 @@ set :markdown, :layout_engine => :haml, :tables => true, :autolink => true, :gh_
 ## Code highlighting
 ####
 
-activate :syntax
 activate :rouge_syntax
 
 # Use CoffeeScript
