@@ -79,9 +79,11 @@ mergeコミットはこの1回で済み、履歴を綺麗に残すことがで�
 この際、ブランチがmasterに切り替わっていないと開発ブランチにmergeしようとしてしまうので注意してください。
 
 ```Shell
+
 % git checkout master
 
 % git pull origin master
+
 ```
 
 ### 2 rebaseコマンドを叩く
@@ -119,7 +121,9 @@ rebaseを途中でやめて、rebase直前の状態に戻す場合は`git rebase
 (ここでまたコンフリクトが出たら同じことを繰り返す)
 
 ※rebase直前の状態に戻す場合は
+
 % git rebase --abort
+
 ```
 
 # 注意点
@@ -129,7 +133,9 @@ rebaseを途中でやめて、rebase直前の状態に戻す場合は`git rebase
 ※ リモートの開発ブランチが変更される処理なので慎重に行ってください
 
 ```
+
 % git push -f origin hoge
+
 ```
 
 # 何が嬉しいか
