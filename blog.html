@@ -54,7 +54,54 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
-                <a href="/blog/2015/04/19/fix_gist_css.html">GistのCSSがおかしいので!importする</a>
+                <a href="/blog/2015/04/19/fix_image_size.html">ブログ記事の画像を環境に合わせてリサイズ</a>
+              </h2>
+              <p class='post-date'>
+                Apr 19 2015
+                <ul class='tags'>
+                  <li>
+                    <a href="/blog/tags/css.html">CSS</a>
+                  </li>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>ブログの画像サイズがそのままのサイズで表示されているため、修正した</p>
+              
+              <ul>
+              <li>1回めのチャレンジ</li>
+              </ul>
+              <pre class="highlight sass"><code>
+              <span class="nc">.post-description</span>
+                <span class="nt">img</span>
+                  <span class="nl">width</span><span class="p">:</span><span class="m">100%</span>
+              
+              </code></pre>
+              
+              <p>これだと大きすぎる画像はしっかり縮小されるが、小さい画像が環境によって不必要に拡大される</p>
+              
+              <ul>
+              <li>2回めのチャレンジ</li>
+              </ul>
+              <pre class="highlight sass"><code>
+              <span class="nc">.post-description</span>
+                <span class="nt">img</span>
+                  <span class="nl">max-width</span><span class="p">:</span> <span class="m">100%</span>
+              
+              </code></pre>
+              
+              <p>こうすることで、小さい画像はそのまま、大きい画像は画面幅に合わせてリサイズされる</p>
+              
+              <p>長らく改修してない...</p>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2015/04/19/fix_image_size.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
+                <a href="/blog/2015/04/19/fix_gist_css.html">GistのCSSがおかしいので修正する</a>
               </h2>
               <p class='post-date'>
                 Apr 19 2015
@@ -188,43 +235,16 @@
               <a href="/blog/2015/03/19/git-rebase.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
-              </h2>
-              <p class='post-date'>
-                Dec  2 2014
-                <ul class='tags'>
-                  <li>
-                    <a href="/blog/tags/css.html">CSS</a>
-                  </li>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>このsota1235.comは静的サイトジェネレータである<a href="http://middlemanapp.com/jp/basics/blogging/">Middleman blog</a>とCSSフレームワークである<a href="http://purecss.io/">Pure</a>を用いて作成されている。</p>
-              
-              <p>これは<a href="http://camuro.org">camuro.org</a>をリスペクトしての構成であるが、レスポンシブ対応を試みた時につまづいたのでメモする。</p>
-              
-              <h3 id="media-queriesとviewport">Media Queriesとviewport</h3>
-              
-              <p>Pure CSSでは<code>divタグ</code>にclassを付与することでレイアウトを作成することができる。</p>
-              
-              <p>生成されたページのCSSを見ると以下のようになっている。</p>
-              <pre class="highlight css"><code>
-              <span class="k">@media</span> <span class="n">screen</span></code></pre>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/12/02/responsive.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/2.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
             <ol>
               <li>
-                <a href="/blog/2015/04/19/fix_gist_css.html">GistのCSSがおかしいので!importする</a>
+                <a href="/blog/2015/04/19/fix_image_size.html">ブログ記事の画像を環境に合わせてリサイズ</a>
+                <span>Apr 19</span>
+              </li>
+              <li>
+                <a href="/blog/2015/04/19/fix_gist_css.html">GistのCSSがおかしいので修正する</a>
                 <span>Apr 19</span>
               </li>
               <li>
@@ -259,10 +279,6 @@
                 <a href="/blog/2014/08/25/25171246.html">* 【Python】floatの闇</a>
                 <span>Aug 25</span>
               </li>
-              <li>
-                <a href="/blog/2014/08/13/13021030.html">* 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)</a>
-                <span>Aug 13</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -270,14 +286,14 @@
               <li><a href="/blog/tags/server.html">Server (1)</a></li>
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (2)</a></li>
-              <li><a href="/blog/tags/css.html">CSS (2)</a></li>
+              <li><a href="/blog/tags/css.html">CSS (3)</a></li>
               <li><a href="/blog/tags/git.html">git (1)</a></li>
               <li><a href="/blog/tags/github.html">GitHub (1)</a></li>
               <li><a href="/blog/tags/python3.html">Python3 (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2015.html">2015 (4)</a></li>
+              <li><a href="/blog/2015.html">2015 (5)</a></li>
               <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>
