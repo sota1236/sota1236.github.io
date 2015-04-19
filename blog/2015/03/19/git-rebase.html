@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' name='viewport'>
+    <title>
+      はらへり日記 - Git開発でmasterの内容を開発ブランチに反映させる方法
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
+  </head>
+  <body class='blog blog_2015 blog_2015_03 blog_2015_03_19 blog_2015_03_19_git-rebase'>
+    <div class='pure-g-r' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='menu-box'>
+          <a class='heading' href='/'>
+            はらへり日記
+          </a>
+          <div class='menu-description'>
+            プログラムに片思い中
+          </div>
+          <nav>
+            <ul class='menu cl-effect-1'>
+              <li class='menu-item'>
+                <a href='/'>
+                  Home
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/about.html'>
+                  About
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/blog.html'>
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              Git開発でmasterの内容を開発ブランチに反映させる方法
+            </h2>
+            <p class='post-date'>
+              Mar 19 2015
+              <ul class='tags'>
+                <li>
+                  <a href="/blog/tags/git.html">git</a>
+                </li>
+                <li>
+                  <a href="/blog/tags/github.html">GitHub</a>
+                </li>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>Git開発を行っていると、こんなことありませんか。</p>
+              
+              <ul>
+              <li><p><code>origin/master</code>ブランチから<code>hoge</code>ブランチを切る</p></li>
+              <li><p><code>hoge</code>の実装をゴリゴリ行ってる間に<code>origin/master</code>ブランチがどんどん更新されていく</p></li>
+              <li><p>自分が編集してたファイルが<code>master</code>で更新されてた＼(^o^)／</p></li>
+              <li><p><code>origin/master</code>を一回merge、コンフリクトを直してPull Requestを送る</p></li>
+              </ul>
+              
+              <p>あるあるですよね。</p>
+              
+              <p>そしてrebaseを知らない頃の僕は以下の方法で解決していました。</p>
+              <pre class="highlight plaintext"><code>% git checkout master
+              
+              % git pull origin master
+              
+              % git checkout hoge
+              
+              % git merge master
+              
+              (ここでコンフリクトが出て怒られる)
+              (bot modifiedステータスのファイルを修正、コミット)
+              
+              % git push origin hoge
+              </code></pre>
+              
+              <p>ここでやっとPull Requestを送ることができます</p>
+              
+              <p>下の図で言うと</p>
+              
+              <ul>
+              <li><p>CからGへmergeコミット(この際、コンフリクトを解消)</p></li>
+              <li><p>GからFへmergeコミット(プルリクエスト)</p></li>
+              </ul>
+              
+              <p>となります。</p>
+              
+              <p><img src="/blog/2015/03/19/git-rebase/rebase01.png" /></p>
+              
+              <p>しかしrebaseコマンドを使うことでこの2回のコミットを1回に減らすことができます</p>
+              
+              <h1 id="rebaseコマンド">rebaseコマンド</h1>
+              
+              <p><code>rebase</code>コマンドを使うことで、現在のブランチが生えているポイントをmasterの最新のコミットに変更することができます。</p>
+              
+              <p>図で言うならば下図の状態が</p>
+              
+              <p><img src="/blog/2015/03/19/git-rebase/rebase02.png" /></p>
+              
+              <p>こうなります。</p>
+              
+              <p><img src="/blog/2015/03/19/git-rebase/rebase03.png" /></p>
+              
+              <p>この際、コミットは1回も増えていません。</p>
+              
+              <p>ここからプルリクを出し、mergeされると下図のようになります。</p>
+              
+              <p><img src="/blog/2015/03/19/git-rebase/rebase04.png" /></p>
+              
+              <p>mergeコミットはこの1回で済み、履歴を綺麗に残すことができました！YATTA！</p>
+              
+              <h1 id="使い方">使い方</h1>
+              
+              <h3 id="1-ローカルのmasterを最新の状態にする">1 ローカルのmasterを最新の状態にする</h3>
+              
+              <p>まずはrebaseするmasterブランチを最新の状態にします。</p>
+              
+              <p>この際、ブランチがmasterに切り替わっていないと開発ブランチにmergeしようとしてしまうので注意してください。</p>
+              <pre class="highlight plaintext"><code>
+              % git checkout master
+              
+              % git pull origin master
+              
+              </code></pre>
+              
+              <h3 id="2-rebaseコマンドを叩く">2 rebaseコマンドを叩く</h3>
+              
+              <p>開発ブランチに戻り、rebaseコマンドを叩きます。</p>
+              
+              <p>この際、コンフリクトが発生しなければ手順は終了です。<code>git log</code>あたりで履歴を見て見てください！</p>
+              
+              <p>当然、コンフリクトが起こることもあるので、その場合を次で説明します。</p>
+              <pre class="highlight plaintext"><code>
+              % git checkout hoge
+              
+              % git rebase master
+              
+              </code></pre>
+              
+              <h3 id="3-コンフリクトを解消する">3 コンフリクトを解消する</h3>
+              
+              <p>コンフリクトが発生した場合は、ファイルを修正、<code>add</code>して<code>rebase --continue</code>します。これをコンフリクトが消えるまで繰り返します。</p>
+              
+              <p>ここで<code>commit</code>してしまうとやり直しになってしまうので気をつけてください。</p>
+              
+              <p>rebaseを途中でやめて、rebase直前の状態に戻す場合は<code>git rebase --abort</code>を叩けばオッケーです。</p>
+              <pre class="highlight plaintext"><code>
+              % vi conflictFile1.txt
+              
+              % git add conflictFile1.txt
+              
+              % git rebase --continue
+              
+              (ここでまたコンフリクトが出たら同じことを繰り返す)
+              
+              ※rebase直前の状態に戻す場合は
+              
+              % git rebase --abort
+              
+              </code></pre>
+              
+              <h1 id="注意点">注意点</h1>
+              
+              <p>もし、すでに開発ブランチをリモートにpushしている場合、rebaseを行った後にpushすると怒られてしまうので<code>force</code>オプションをつけてください</p>
+              
+              <p>※ リモートの開発ブランチが変更される処理なので慎重に行ってください</p>
+              <pre class="highlight plaintext"><code>
+              % git push -f origin hoge
+              
+              </code></pre>
+              
+              <h1 id="何が嬉しいか">何が嬉しいか</h1>
+              
+              <ul>
+              <li><p>コミット2回が1回で済むので履歴が綺麗</p></li>
+              <li><p>作業途中で一旦<code>master</code>を反映したいとき、commitを増やすことなくmergeすることができる</p></li>
+              </ul>
+              
+              <h1 id="その他">その他</h1>
+              
+              <p>ここ間違ってるよーとか読みづれーよーとかあったらコメントなり編集なりしてくださいm(_ _)m</p>
+              
+              <h1 id="参考">参考</h1>
+              
+              <p><a href="http://blog.seasons.cc/entry/20090329/1238351273">Seasons.NETgit rebaseって超便利じゃね？</a></p>
+              
+              <p><a href="http://kik.xii.jp/archives/117">git rebasetips</a>#</p>
+            </p>
+          </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

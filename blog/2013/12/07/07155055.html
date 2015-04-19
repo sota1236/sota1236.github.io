@@ -9,6 +9,7 @@
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
     <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
     <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
   </head>
   <body class='blog blog_2013 blog_2013_12 blog_2013_12_07 blog_2013_12_07_07155055'>
@@ -62,7 +63,7 @@
               <p>こんばんわ。</p>
               
               <p>突然ですがこのコードは何でしょう。</p>
-              <pre><code class="highlight c"><span class="cp">#include&lt;stdio.h&gt;
+              <pre class="highlight c"><code><span class="cp">#include&lt;stdio.h&gt;
               #include&lt;stdlib.h&gt;
               #include&lt;time.h&gt;
               #include&amp;lt;dirent.h&amp;gt;
@@ -139,11 +140,11 @@
               <p>&ldquo;プログラム実行の際の引数にフォルダを入力すると、その中のフォルダを再帰的に表示するプログラムを作成せよ。&rdquo;</p>
               
               <p>つまり、</p>
-              <pre><code class="highlight plaintext">a.out /
+              <pre class="highlight plaintext"><code>a.out /
               </code></pre>
               
               <p>と実行すると</p>
-              <pre><code class="highlight plaintext">var
+              <pre class="highlight plaintext"><code>var
                 sys
                 etc
                   apache
@@ -176,7 +177,7 @@
               <p>そこでこちらを参考にしてフォルダチェックを関数化。</p>
               
               <p><a title="にたまごほうれんそう" href="http://d.hatena.ne.jp/emergent/20080412/1208024023">にたまごほうれんそう</a></p>
-              <pre><code class="highlight plaintext">void check_stat(struct stat *st){
+              <pre class="highlight plaintext"><code>void check_stat(struct stat *st){
                   mode_t m = st-&amp;gt;st_mode;
                   if (S_ISDIR(m))  {
                   return 1;
@@ -202,7 +203,7 @@
               <p>とりあえず無理やりmach_kernelをif文の中から追い出して動かしてみる。</p>
               
               <p>以下を書き換え</p>
-              <pre><code class="highlight plaintext">while((dp = readdir(dirp)) != NULL){
+              <pre class="highlight plaintext"><code>while((dp = readdir(dirp)) != NULL){
                   if(check_stat(&amp;amp;amp;stat_buf)){
                     path = dp-&amp;amp;gt;d_name;
                     if(strncmp(path,&amp;quot;.&amp;quot;,1)!=0 &amp;amp;amp;&amp;amp;amp; strncmp(path,&amp;quot;..&amp;quot;,2)!=0 &amp;amp;&amp;amp; strncmp(path,&amp;quot;mach_kernel&amp;quot;,11)){

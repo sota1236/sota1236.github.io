@@ -9,6 +9,7 @@
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
     <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
     <script src='https://www.google.com/jsapi' type='text/javascript'></script>
     <script src="/javascripts/libs/jquery-1.11.1.min.js" type="text/javascript"></script><script src="/javascripts/libs/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
     <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
@@ -54,6 +55,93 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
+                <a href="/blog/2013/12/07/07155055.html">stat関数</a>
+              </h2>
+              <p class='post-date'>
+                Dec  7 2013
+                <ul class='tags'>
+                  <li>
+                    <a href="/blog/tags/c.html">C</a>
+                  </li>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>こんばんわ。</p>
+              
+              <p>突然ですがこのコードは何でしょう。</p>
+              <pre class="highlight c"><code><span class="cp">#include&lt;stdio.h&gt;
+              #include&lt;stdlib.h&gt;
+              #include&lt;time.h&gt;
+              #include&amp;lt;dirent.h&amp;gt;
+              #include&amp;lt;sys/types.h&amp;gt;
+              #include&amp;lt;sys/stat.h&amp;gt;
+              #include&amp;lt;string.h&amp;gt;
+              </span><span class="cm">/* Created by sota1235
+               * Date : 2013/12/6
+               * for SystemProgramming...</span></code></pre>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2013/12/07/07155055.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
+                <a href="/blog/2013/11/26/26185049.html">MySQLを導入</a>
+              </h2>
+              <p class='post-date'>
+                Nov 26 2013
+                <ul class='tags'>
+                  <li>
+                    <a href="/blog/tags/server.html">Server</a>
+                  </li>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>以下を参考にしました</p>
+              
+              <p><a title="さくらのvps-を使いはじめる-5" href="http://akabeko.me/blog/2010/09/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AEvps-%E3%82%92%E4%BD%BF%E3%81%84%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B-5-%E2%80%93-mysql-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8/#vps05_lang_ja">さくらのvps-を使いはじめる-5</a></p>
+              
+              <ul>
+              <li>CentOS日本語化</li>
+              </ul>
+              
+              <p>しようと思ったのですが…</p>
+              
+              <p>うまく反映されない。</p>
+              
+              <p>/etc/sysconfig/i18n</p>
+              <pre class="highlight html"><code>
+              LANG=<span class="ni">&amp;quot;</span>ja_JP.UTF-8<span class="ni">&amp;quot;</span>
+              
+              </code></pre>
+              
+              <p>これで日本語になるらしいがならぬ。</p>
+              
+              <p>誰か教えてください…</p>
+              
+              <p><strong>追記</strong></p>
+              
+              <p>rootの.zshrcをいじっていたらなぜか日本語化できました。</p>
+              
+              <p>謎…</p>
+              
+              <ul>
+              <li>MySQL導入</li>
+              </ul>
+              <pre class="highlight plaintext"><code>
+              sudo yum -y install mysql-server
+              /etc/my...</code></pre>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2013/11/26/26185049.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
                 <a href="/blog/2013/11/25/25185247.html">はじめました</a>
               </h2>
               <p class='post-date'>
@@ -88,6 +176,14 @@
                 <span>Mar 22</span>
               </li>
               <li>
+                <a href="/blog/2015/03/19/solve-cards-by-python3.html">solve-cards-by-python3</a>
+                <span>Mar 19</span>
+              </li>
+              <li>
+                <a href="/blog/2015/03/19/git-rebase.html">Git開発でmasterの内容を開発ブランチに反映させる方法</a>
+                <span>Mar 19</span>
+              </li>
+              <li>
                 <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
                 <span>Dec  2</span>
               </li>
@@ -115,14 +211,6 @@
                 <a href="/blog/2014/08/06/06173532.html">* YoのAPIを触ってみる(その１)</a>
                 <span>Aug  6</span>
               </li>
-              <li>
-                <a href="/blog/2014/08/04/04050828.html">* Mouでシンタックスハイライトしたい</a>
-                <span>Aug  4</span>
-              </li>
-              <li>
-                <a href="/blog/2014/07/27/27135037.html">* XSS Game Write-Up</a>
-                <span>Jul 27</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -131,10 +219,13 @@
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (2)</a></li>
               <li><a href="/blog/tags/css.html">CSS (1)</a></li>
+              <li><a href="/blog/tags/git.html">git (1)</a></li>
+              <li><a href="/blog/tags/github.html">GitHub (1)</a></li>
+              <li><a href="/blog/tags/python3.html">Python3 (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2015.html">2015 (1)</a></li>
+              <li><a href="/blog/2015.html">2015 (3)</a></li>
               <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>

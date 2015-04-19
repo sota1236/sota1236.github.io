@@ -9,6 +9,7 @@
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
     <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
     <script src='https://www.google.com/jsapi' type='text/javascript'></script>
     <script src="/javascripts/libs/jquery-1.11.1.min.js" type="text/javascript"></script><script src="/javascripts/libs/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
     <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
@@ -51,6 +52,73 @@
             Page 6 of 8
           </p>
           <p><a href="/blog/page/5.html">Previous page</a></p>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
+                <a href="/blog/2014/02/09/09010555.html">* ファイル取得@Ruby (2/28)</a>
+              </h2>
+              <p class='post-date'>
+                Feb  9 2014
+                <ul class='tags'>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <h2 id="おい、お前１日１実装言うたやないか。"><em><strong>おい、お前１日１実装言うたやないか。</strong></em></h2>
+              
+              <p>ごめんて。</p>
+              
+              <p>実は火曜日から４日間ほど熱でダウンしておりまして</p>
+              
+              <p>今日やっと復活なんです。</p>
+              
+              <p>だからおおめに見てちょ。</p>
+              
+              <p>(3月になっても終わってなかったらもちろんやるよ)</p>
+              
+              <p>簡潔に。Web上のファイルを取得して保存するスクリプトをRubyで書きました。
+              </p><blockquote>
+              <h4>俺「先輩、Rubyって何が向いてるんですか？」
+              
+              </h4>
+              <p>先輩(ゼミ)「全部だよ全部」</p>
+              </blockquote>
+              らしいのでまぁなんとなくやりました。Ruby触ったことないですし。
+              
+              <p>今回の要件</p>
+              
+              <p><strong>・Webページの<code>.png</code>画像を取...</strong></p>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2014/02/09/09010555.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
+                <a href="/blog/2014/02/02/02182154.html">* mailias (1/28)</a>
+              </h2>
+              <p class='post-date'>
+                Feb  2 2014
+                <ul class='tags'>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">alias hoge="ssh hoge@hoge.com"
+              alias t11460ss="ssh gonyogonyo@gonyogonyo.com"
+              alias sota1235="cd ~/Documents/sota1235"
+              alias score="cd ~/Desktop/KOE/Scores"
+              </pre>
+              
+              <p>こんな感じで普段よく作業するフォルダとか、リモートログインとかをaliasで登録するのですが</p>
+              
+              <p>毎回、<code>.zshrc</code>をいじくり回すのがめんどいのでpythonでスパッとできるよう...</p>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2014/02/02/02182154.html">Read more...</a>
+            </div>
+          </section>
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
@@ -155,80 +223,6 @@
               <a href="/blog/2014/01/20/20165922.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/01/20/20115529.html">* gistコマンド - アカウント設定</a>
-              </h2>
-              <p class='post-date'>
-                Jan 20 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>gistをコマンドラインから投稿できるように設定した。</p>
-              
-              <p>前からやろうと思ってたけど、めんどくてやってなかったがやったら簡単だった。</p>
-              
-              <p>とりあえずメモメモ。</p>
-              
-              <p> </p>
-              
-              <h2 id="１．gistコマンドをインストール"><strong>１．gistコマンドをインストール</strong></h2>
-              
-              <p>みんなだいすきHomebrew.
-              </p><pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">brew install gist</pre>
-              
-              <p> </p>
-              
-              <h2 id="２．ユーザ登録"><strong>２．ユーザ登録</strong></h2>
-              
-              <pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">gist --login</pre>
-              
-              <p>上記のようにコマンドを打つとアカウント名とパスワードを聞かれるので入力。
-              </p><pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false">GitHub username: sota1235
-              GitHub password: password...</pre>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/01/20/20115529.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/01/16/16172248.html">* sota1235.comを手直し</a>
-              </h2>
-              <p class='post-date'>
-                Jan 16 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>昨日、面接でコード見せてよと言われて焦ったので顔であるsota1235.comをいじいじ。</p>
-              
-              <p>とはいってもCSS苦手なので少しずついじいじ。</p>
-              
-              <p>日進月歩というじゃないですか。</p>
-              
-              <p>TwitterとFacebookとGithubのリンクをアイコン化しました。</p>
-              
-              <p>アイコンはこちらから頂いた → <a title="Simple Icons" href="http://simpleicons.org">Simple Icons</a></p>
-              
-              <p>こういうアイコンって意外とないのよね…</p>
-              
-              <p>HTMLのリンク部分にclassを追加</p>
-              
-              <p><strong>[index.html]</strong></p>
-              
-              <pre class="brush: html; gutter: true; first-line: 1; highlight: []; html-script: false">
-              &lt;a href="https://twitter.com/sota1235...</pre>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/01/16/16172248.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/7.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
@@ -236,6 +230,14 @@
               <li>
                 <a href="/blog/2015/03/22/graduation_diary.html">卒業式前夜に思うこと</a>
                 <span>Mar 22</span>
+              </li>
+              <li>
+                <a href="/blog/2015/03/19/solve-cards-by-python3.html">solve-cards-by-python3</a>
+                <span>Mar 19</span>
+              </li>
+              <li>
+                <a href="/blog/2015/03/19/git-rebase.html">Git開発でmasterの内容を開発ブランチに反映させる方法</a>
+                <span>Mar 19</span>
               </li>
               <li>
                 <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
@@ -265,14 +267,6 @@
                 <a href="/blog/2014/08/06/06173532.html">* YoのAPIを触ってみる(その１)</a>
                 <span>Aug  6</span>
               </li>
-              <li>
-                <a href="/blog/2014/08/04/04050828.html">* Mouでシンタックスハイライトしたい</a>
-                <span>Aug  4</span>
-              </li>
-              <li>
-                <a href="/blog/2014/07/27/27135037.html">* XSS Game Write-Up</a>
-                <span>Jul 27</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -281,10 +275,13 @@
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (2)</a></li>
               <li><a href="/blog/tags/css.html">CSS (1)</a></li>
+              <li><a href="/blog/tags/git.html">git (1)</a></li>
+              <li><a href="/blog/tags/github.html">GitHub (1)</a></li>
+              <li><a href="/blog/tags/python3.html">Python3 (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2015.html">2015 (1)</a></li>
+              <li><a href="/blog/2015.html">2015 (3)</a></li>
               <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>

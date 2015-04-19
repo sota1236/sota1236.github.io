@@ -9,6 +9,7 @@
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
     <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
     <script src='https://www.google.com/jsapi' type='text/javascript'></script>
     <script src="/javascripts/libs/jquery-1.11.1.min.js" type="text/javascript"></script><script src="/javascripts/libs/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
     <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
@@ -94,6 +95,71 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
+                <a href="/blog/2015/03/19/solve-cards-by-python3.html">solve-cards-by-python3</a>
+              </h2>
+              <p class='post-date'>
+                Mar 19 2015
+                <ul class='tags'>
+                  <li>
+                    <a href="/blog/tags/python3.html">Python3</a>
+                  </li>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>昼休みに休憩がてらやってみた。</p>
+              
+              <p>一応5分くらいでできた。</p>
+              
+              <p>Python楽しいです(^q^)</p>
+              
+              <p><a href="http://qiita.com/hisui@github/items/b47c411437d60440a605">Qiita:これが10分でできない人は自分がかなりプログラミングができないというつらい事実を認識しましょう。</a></p>
+              
+              <script src="https://gist.github.com/sota1235/2ec1e37021ff8c10b17d.js"></script>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2015/03/19/solve-cards-by-python3.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
+                <a href="/blog/2015/03/19/git-rebase.html">Git開発でmasterの内容を開発ブランチに反映させる方法</a>
+              </h2>
+              <p class='post-date'>
+                Mar 19 2015
+                <ul class='tags'>
+                  <li>
+                    <a href="/blog/tags/git.html">git</a>
+                  </li>
+                  <li>
+                    <a href="/blog/tags/github.html">GitHub</a>
+                  </li>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>Git開発を行っていると、こんなことありませんか。</p>
+              
+              <ul>
+              <li><p><code>origin/master</code>ブランチから<code>hoge</code>ブランチを切る</p></li>
+              <li><p><code>hoge</code>の実装をゴリゴリ行ってる間に<code>origin/master</code>ブランチがどんどん更新されていく</p></li>
+              <li><p>自分が編集してたファイルが<code>master</code>で更新されてた＼(^o^)／</p></li>
+              <li><p><code>origin/master</code>を一回merge、コンフリクトを直してPull Requestを送る</p></li>
+              </ul>
+              
+              <p>あるあるですよね。</p>
+              
+              <p>そしてrebaseを知らない頃の僕は以下の方法で解決していました。</p>
+              <pre class="highlight plaintext"><code>% git checkout...</code></pre>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2015/03/19/git-rebase.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
                 <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
               </h2>
               <p class='post-date'>
@@ -115,7 +181,8 @@
               <p>Pure CSSでは<code>divタグ</code>にclassを付与することでレイアウトを作成することができる。</p>
               
               <p>生成されたページのCSSを見ると以下のようになっている。</p>
-              <pre><code class="highlight plaintext">@media screen and...</code></pre>
+              <pre class="highlight css"><code>
+              <span class="k">@media</span> <span class="n">screen</span></code></pre>
             </div>
             <div class='post-more'>
               <a href="/blog/2014/12/02/responsive.html">Read more...</a>
@@ -166,76 +233,6 @@
               <a href="/blog/2014/11/03/renewal.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/10/23/23224314.html">* node.jsで標準出力に色をつける</a>
-              </h2>
-              <p class='post-date'>
-                Oct 23 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>最近、node.jsをひいひい言いながら書いてるのだがプログラムの実行過程が知りたくて<code>console.log</code>する時、色をつけたかったので調べた。</p>
-              
-              <p>すると、こんな便利な<code>npm</code>があるらしい。</p>
-              
-              <p><a title="npm - colors" href="https://www.npmjs.org/package/colors">npm - colors</a></p>
-              
-              <p>こう書くと</p>
-              
-              <p><img src="http://i.gyazo.com/a596b7f9f2c788243952593c5e8ff00f.png" alt="pic"></p>
-              
-              <p>こうなる</p>
-              
-              <p><img src="http://i.gyazo.com/a92e7010abd5a061e283460127fe9345.png" alt="pic"></p>
-              
-              <p>これでエラーの出力とか便利になった。</p>
-              
-              <p>ちなみに以下のサイトさんに教えていただきました。</p>
-              
-              <p><a title="Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)" href="http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719">Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)</a></p>
-              
-              <hr>
-              
-              <p>※この記事は WordPress に投稿した...</p>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/10/23/23224314.html">Read more...</a>
-            </div>
-          </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/10/07/07094511.html">* OS X 10.9をクリーンインストールした後に行ったこと</a>
-              </h2>
-              <p class='post-date'>
-                Oct  7 2014
-                <ul class='tags'>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <p>OS X 10.8から10.9にアップデートしたのだが、zshの一部の機能がエラーを吐いたり、brew doctorがいつまでたってもバグ吐いたりgemコマンドが使えなかったりとRuby周りがカオスだったりでめんどくさかったのでMavericksをクリーンインストールした。</p>
-              
-              <p>その後に行ったことを自分用にメモ</p>
-              
-              <p>1.アプリをインストール</p>
-              
-              <p>愛用してた以下のアプリケーションをインストール</p>
-              
-              <ul>
-              <li><p>開発系</p></li>
-              <li><p>Google Chrome(常用、Googleアカウント様々)</p></li>
-              <li><p>Fire Fox (開発用)</p></li>
-              </ul>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/10/07/07094511.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/2.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
@@ -243,6 +240,14 @@
               <li>
                 <a href="/blog/2015/03/22/graduation_diary.html">卒業式前夜に思うこと</a>
                 <span>Mar 22</span>
+              </li>
+              <li>
+                <a href="/blog/2015/03/19/solve-cards-by-python3.html">solve-cards-by-python3</a>
+                <span>Mar 19</span>
+              </li>
+              <li>
+                <a href="/blog/2015/03/19/git-rebase.html">Git開発でmasterの内容を開発ブランチに反映させる方法</a>
+                <span>Mar 19</span>
               </li>
               <li>
                 <a href="/blog/2014/12/02/responsive.html">レスポンシブ対応しようとした時に困ったこと</a>
@@ -272,14 +277,6 @@
                 <a href="/blog/2014/08/06/06173532.html">* YoのAPIを触ってみる(その１)</a>
                 <span>Aug  6</span>
               </li>
-              <li>
-                <a href="/blog/2014/08/04/04050828.html">* Mouでシンタックスハイライトしたい</a>
-                <span>Aug  4</span>
-              </li>
-              <li>
-                <a href="/blog/2014/07/27/27135037.html">* XSS Game Write-Up</a>
-                <span>Jul 27</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -288,10 +285,13 @@
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (2)</a></li>
               <li><a href="/blog/tags/css.html">CSS (1)</a></li>
+              <li><a href="/blog/tags/git.html">git (1)</a></li>
+              <li><a href="/blog/tags/github.html">GitHub (1)</a></li>
+              <li><a href="/blog/tags/python3.html">Python3 (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2015.html">2015 (1)</a></li>
+              <li><a href="/blog/2015.html">2015 (3)</a></li>
               <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>

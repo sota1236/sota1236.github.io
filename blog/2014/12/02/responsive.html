@@ -9,6 +9,7 @@
     </title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
     <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
     <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
   </head>
   <body class='blog blog_2014 blog_2014_12 blog_2014_12_02 blog_2014_12_02_responsive'>
@@ -68,10 +69,12 @@
               <p>Pure CSSでは<code>divタグ</code>にclassを付与することでレイアウトを作成することができる。</p>
               
               <p>生成されたページのCSSを見ると以下のようになっている。</p>
-              <pre><code class="highlight plaintext">@media screen and (min-width: 48em)
-              .pure-u-md-1-4, .pure-u-md-6-24 {
-                width: 25%;
-              }
+              <pre class="highlight css"><code>
+              <span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">48em</span><span class="p">)</span>
+              <span class="p">.</span><span class="n">pure-u-md-1-4</span><span class="p">,</span> <span class="p">.</span><span class="n">pure-u-md-6-24</span> <span class="p">{</span>
+                <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
+              <span class="p">}</span>
+              
               </code></pre>
               
               <p><code>min-width: 48em</code>の部分で基準のサイズを決めており、このような記法をMedia Queriesという。</p>
@@ -79,7 +82,9 @@
               <p>また、これを反映させるためには<code>metaタグ</code>でviewportを設定する必要がある。(ここでつまづいていた…)</p>
               
               <p>sota1235.comでは以下のように設定してある。</p>
-              <pre><code class="highlight plaintext">&lt;meta content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" name="viewport"&gt;
+              <pre class="highlight html"><code>
+              <span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"</span> <span class="na">name=</span><span class="s">"viewport"</span><span class="nt">&gt;</span>
+              
               </code></pre>
               
               <p>contentの内容は</p>

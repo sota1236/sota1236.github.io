@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://sota1235.com/blog/2015/03/22/graduation_diary.html"/>
     <id>http://sota1235.com/blog/2015/03/22/graduation_diary.html</id>
     <published>2015-03-22T23:02:00+09:00</published>
-    <updated>2015-03-23T10:17:58+09:00</updated>
+    <updated>2015-04-19T14:02:05+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -238,11 +238,179 @@
 </content>
   </entry>
   <entry>
+    <title>solve-cards-by-python3</title>
+    <link rel="alternate" href="http://sota1235.com/blog/2015/03/19/solve-cards-by-python3.html"/>
+    <id>http://sota1235.com/blog/2015/03/19/solve-cards-by-python3.html</id>
+    <published>2015-03-19T18:49:00+09:00</published>
+    <updated>2015-04-19T14:02:05+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;昼休みに休憩がてらやってみた。&lt;/p&gt;
+
+&lt;p&gt;一応5分くらいでできた。&lt;/p&gt;
+
+&lt;p&gt;Python楽しいです(^q^)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://qiita.com/hisui@github/items/b47c411437d60440a605"&gt;Qiita:これが10分でできない人は自分がかなりプログラミングができないというつらい事実を認識しましょう。&lt;/a&gt;&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/sota1235/2ec1e37021ff8c10b17d.js"&gt;&lt;/script&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Git開発でmasterの内容を開発ブランチに反映させる方法</title>
+    <link rel="alternate" href="http://sota1235.com/blog/2015/03/19/git-rebase.html"/>
+    <id>http://sota1235.com/blog/2015/03/19/git-rebase.html</id>
+    <published>2015-03-19T13:53:00+09:00</published>
+    <updated>2015-04-19T14:02:05+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Git開発を行っていると、こんなことありませんか。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;origin/master&lt;/code&gt;ブランチから&lt;code&gt;hoge&lt;/code&gt;ブランチを切る&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;hoge&lt;/code&gt;の実装をゴリゴリ行ってる間に&lt;code&gt;origin/master&lt;/code&gt;ブランチがどんどん更新されていく&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自分が編集してたファイルが&lt;code&gt;master&lt;/code&gt;で更新されてた＼(^o^)／&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;origin/master&lt;/code&gt;を一回merge、コンフリクトを直してPull Requestを送る&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あるあるですよね。&lt;/p&gt;
+
+&lt;p&gt;そしてrebaseを知らない頃の僕は以下の方法で解決していました。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;% git checkout master
+
+% git pull origin master
+
+% git checkout hoge
+
+% git merge master
+
+(ここでコンフリクトが出て怒られる)
+(bot modifiedステータスのファイルを修正、コミット)
+
+% git push origin hoge
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここでやっとPull Requestを送ることができます&lt;/p&gt;
+
+&lt;p&gt;下の図で言うと&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CからGへmergeコミット(この際、コンフリクトを解消)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;GからFへmergeコミット(プルリクエスト)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;となります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/blog/2015/03/19/git-rebase/rebase01.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;しかしrebaseコマンドを使うことでこの2回のコミットを1回に減らすことができます&lt;/p&gt;
+
+&lt;h1 id="rebaseコマンド"&gt;rebaseコマンド&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;rebase&lt;/code&gt;コマンドを使うことで、現在のブランチが生えているポイントをmasterの最新のコミットに変更することができます。&lt;/p&gt;
+
+&lt;p&gt;図で言うならば下図の状態が&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/blog/2015/03/19/git-rebase/rebase02.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;こうなります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/blog/2015/03/19/git-rebase/rebase03.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;この際、コミットは1回も増えていません。&lt;/p&gt;
+
+&lt;p&gt;ここからプルリクを出し、mergeされると下図のようになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/blog/2015/03/19/git-rebase/rebase04.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;mergeコミットはこの1回で済み、履歴を綺麗に残すことができました！YATTA！&lt;/p&gt;
+
+&lt;h1 id="使い方"&gt;使い方&lt;/h1&gt;
+
+&lt;h3 id="1-ローカルのmasterを最新の状態にする"&gt;1 ローカルのmasterを最新の状態にする&lt;/h3&gt;
+
+&lt;p&gt;まずはrebaseするmasterブランチを最新の状態にします。&lt;/p&gt;
+
+&lt;p&gt;この際、ブランチがmasterに切り替わっていないと開発ブランチにmergeしようとしてしまうので注意してください。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;
+% git checkout master
+
+% git pull origin master
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="2-rebaseコマンドを叩く"&gt;2 rebaseコマンドを叩く&lt;/h3&gt;
+
+&lt;p&gt;開発ブランチに戻り、rebaseコマンドを叩きます。&lt;/p&gt;
+
+&lt;p&gt;この際、コンフリクトが発生しなければ手順は終了です。&lt;code&gt;git log&lt;/code&gt;あたりで履歴を見て見てください！&lt;/p&gt;
+
+&lt;p&gt;当然、コンフリクトが起こることもあるので、その場合を次で説明します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;
+% git checkout hoge
+
+% git rebase master
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="3-コンフリクトを解消する"&gt;3 コンフリクトを解消する&lt;/h3&gt;
+
+&lt;p&gt;コンフリクトが発生した場合は、ファイルを修正、&lt;code&gt;add&lt;/code&gt;して&lt;code&gt;rebase --continue&lt;/code&gt;します。これをコンフリクトが消えるまで繰り返します。&lt;/p&gt;
+
+&lt;p&gt;ここで&lt;code&gt;commit&lt;/code&gt;してしまうとやり直しになってしまうので気をつけてください。&lt;/p&gt;
+
+&lt;p&gt;rebaseを途中でやめて、rebase直前の状態に戻す場合は&lt;code&gt;git rebase --abort&lt;/code&gt;を叩けばオッケーです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;
+% vi conflictFile1.txt
+
+% git add conflictFile1.txt
+
+% git rebase --continue
+
+(ここでまたコンフリクトが出たら同じことを繰り返す)
+
+※rebase直前の状態に戻す場合は
+
+% git rebase --abort
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="注意点"&gt;注意点&lt;/h1&gt;
+
+&lt;p&gt;もし、すでに開発ブランチをリモートにpushしている場合、rebaseを行った後にpushすると怒られてしまうので&lt;code&gt;force&lt;/code&gt;オプションをつけてください&lt;/p&gt;
+
+&lt;p&gt;※ リモートの開発ブランチが変更される処理なので慎重に行ってください&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;
+% git push -f origin hoge
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="何が嬉しいか"&gt;何が嬉しいか&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;コミット2回が1回で済むので履歴が綺麗&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;作業途中で一旦&lt;code&gt;master&lt;/code&gt;を反映したいとき、commitを増やすことなくmergeすることができる&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="その他"&gt;その他&lt;/h1&gt;
+
+&lt;p&gt;ここ間違ってるよーとか読みづれーよーとかあったらコメントなり編集なりしてくださいm(_ _)m&lt;/p&gt;
+
+&lt;h1 id="参考"&gt;参考&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="http://blog.seasons.cc/entry/20090329/1238351273"&gt;Seasons.NETgit rebaseって超便利じゃね？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://kik.xii.jp/archives/117"&gt;git rebasetips&lt;/a&gt;#&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>レスポンシブ対応しようとした時に困ったこと</title>
     <link rel="alternate" href="http://sota1235.com/blog/2014/12/02/responsive.html"/>
     <id>http://sota1235.com/blog/2014/12/02/responsive.html</id>
     <published>2014-12-02T15:15:00+09:00</published>
-    <updated>2015-03-22T23:01:41+09:00</updated>
+    <updated>2015-04-19T14:02:05+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -255,10 +423,12 @@
 &lt;p&gt;Pure CSSでは&lt;code&gt;divタグ&lt;/code&gt;にclassを付与することでレイアウトを作成することができる。&lt;/p&gt;
 
 &lt;p&gt;生成されたページのCSSを見ると以下のようになっている。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;@media screen and (min-width: 48em)
-.pure-u-md-1-4, .pure-u-md-6-24 {
-  width: 25%;
-}
+&lt;pre class="highlight css"&gt;&lt;code&gt;
+&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;48em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pure-u-md-1-4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pure-u-md-6-24&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;25%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;min-width: 48em&lt;/code&gt;の部分で基準のサイズを決めており、このような記法をMedia Queriesという。&lt;/p&gt;
@@ -266,7 +436,9 @@
 &lt;p&gt;また、これを反映させるためには&lt;code&gt;metaタグ&lt;/code&gt;でviewportを設定する必要がある。(ここでつまづいていた…)&lt;/p&gt;
 
 &lt;p&gt;sota1235.comでは以下のように設定してある。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight plaintext"&gt;&amp;lt;meta content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" name="viewport"&amp;gt;
+&lt;pre class="highlight html"&gt;&lt;code&gt;
+&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;"width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"viewport"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;contentの内容は&lt;/p&gt;
@@ -362,291 +534,6 @@
 &lt;p&gt;ちなみに以下のサイトさんに教えていただきました。&lt;/p&gt;
 
 &lt;p&gt;&lt;a title="Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)" href="http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719"&gt;Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>* OS X 10.9をクリーンインストールした後に行ったこと</title>
-    <link rel="alternate" href="http://sota1235.com/blog/2014/10/07/07094511.html"/>
-    <id>http://sota1235.com/blog/2014/10/07/07094511.html</id>
-    <published>2014-10-07T09:45:00+09:00</published>
-    <updated>2015-03-22T23:01:41+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;OS X 10.8から10.9にアップデートしたのだが、zshの一部の機能がエラーを吐いたり、brew doctorがいつまでたってもバグ吐いたりgemコマンドが使えなかったりとRuby周りがカオスだったりでめんどくさかったのでMavericksをクリーンインストールした。&lt;/p&gt;
-
-&lt;p&gt;その後に行ったことを自分用にメモ&lt;/p&gt;
-
-&lt;p&gt;1.アプリをインストール&lt;/p&gt;
-
-&lt;p&gt;愛用してた以下のアプリケーションをインストール&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;開発系&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Google Chrome(常用、Googleアカウント様々)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fire Fox (開発用)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Mou(Markdownエディタ)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Sublime Text 2(言わずと知れたエディタ)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;iTerm2(軽量シェル)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Wireshark(パケットキャプチャ等)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Dash(ドキュメントリーダー)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Xcode(ユーザではないがCommand line toolsが欲しい for Homebrew)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;日々充実系&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Alfred(Mac生活)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Pocket(記事購読用)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;VLC(動画再生ソフト)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Gyazo(スクショ用)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Wake up time(目覚まし、寝坊するので・・・)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;AppCleaner&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;コミュニケーション系&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Slack(ゼミのチャット用)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;夜フクロウ(Twitter)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;音楽系&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;CocoaPiano(ピッチ違うけどまぁ参考程度に)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;MuseScore (無料楽譜作成ソフト)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;CUI環境を整備&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ここはかなり丁寧にやった(気がする)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;bashの脆弱性、Shellshock対策&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;テストコマンドを打ったところ、脆弱性があったので改善する(最新のイメージが修正されてないんか・・・)。&lt;/p&gt;
-
-&lt;p&gt;以下のWebサイトで修正バッチをダウンロード、実行しておk&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://support.apple.com/kb/DL1769"&gt;http://support.apple.com/kb/DL1769&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Colore Scheme&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ちまたではSolarizedが流行ってるみたいだけど僕はSmyckを入れます&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://color.smyck.org/"&gt;http://color.smyck.org/&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Homebrewを入れる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;言わずと知れたパッケージマネージャ。&lt;/p&gt;
-
-&lt;p&gt;これなきゃ生きていけない&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://brew.sh/"&gt;http://brew.sh/&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”&lt;/pre&gt;
-
-&lt;p&gt;んで、思いつく限りの使ってたコマンドを入れた&lt;/p&gt;
-
-&lt;p&gt;wget
-zsh
-git
-gist
-youtube-dl
-nicovideo-dl
-sl
-vim
-mobile-shell&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;brew doctor&lt;/code&gt;するとエラーが出る&lt;/p&gt;
-
-&lt;p&gt;既存のモジュールが優先されるからインストールしたやつ使えねーよ！って感じらしいのでzsh入れた後にパスを追加する&lt;/p&gt;
-
-&lt;p&gt;さぁ、ここからいろいろと整えていきたい&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;zsh&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ゼミの先輩のタレを分けていただくか、自分で書くかという選択肢もあったが今後ゆっくりやろうってことで無難にOh-my-zsh&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="Oh-my-zsh" href="https://github.com/robbyrussell/oh-my-zsh"&gt;Oh-my-zsh&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;テーマは&lt;code&gt;wedisagree&lt;/code&gt;にした&lt;/p&gt;
-
-&lt;p&gt;あと前回はオレオレaliasを大量に.zshrcに書き込んでいたが、oh-my-zsh周りをいじるのはちょっとアレだなと思ったので外部ファイルにして、.zshrcで呼び出すことにした。&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="blog.paz-para.com:シェルスクリプトで外部ファイルを読み込む" href="http://blog.paz-para.com/?p=1881"&gt;blog.paz-para.com:シェルスクリプトで外部ファイルを読み込む&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ssh&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;VPSとかGitHubのためにssh周りの設定&lt;/p&gt;
-
-&lt;p&gt;案の定忘れてたのでggりながら…&lt;/p&gt;
-
-&lt;p&gt;クリーンインストールする前、GitHubだけつながらなくなってたのでそれだけ設定&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="Qiita:ターミナルからgithubのリポジトリにアクセスする設定(sshの設定)" href="http://qiita.com/pakiln/items/bd89ef5cc148a5349964"&gt;Qiita:ターミナルからgithubのリポジトリにアクセスする設定(sshの設定)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ほかのはバックアップからコピーでおk&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Vim&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;emacsを触ったことがないので戦争はしないけどVimずっと触ってたのでVim好きです&lt;/p&gt;
-
-&lt;p&gt;このままだとしごくコードが書きづらいので適当にvimrcを探す&lt;/p&gt;
-
-&lt;p&gt;リポジトリ検索をしてよさげなやつを導入&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="GitHub:amix/vimrc" href="https://github.com/amix/vimrc"&gt;GitHub:amix/vimrc&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Git&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ホームディレクトリに.gitconfigを作成&lt;/p&gt;
-
-&lt;p&gt;以下を参考にした&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="ゆるよろ日記:.gitconfigに設定してるaliasなどのまとめ" href="http://yuroyoro.hatenablog.com/entry/20101008/1286531851"&gt;ゆるよろ日記:.gitconfigに設定してるaliasなどのまとめ&lt;/a&gt;
-&lt;a title="GitHub:geta6/dotfiles" href="https://github.com/geta6/dotfiles"&gt;GitHub:geta6/dotfiles&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Node.js&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;前回はbrewで入れてたけど、今回はバージョン管理できるnvmを使ってみる&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="GitHub:creationix/nvm" href="https://github.com/creationix/nvm"&gt;GitHub:creationix/nvm&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ちょっと調べた感じ不具合はなさそうなので、問題なければこれで管理していくかなー&lt;/p&gt;
-
-&lt;p&gt;とりあえず以下のコマンドを実行&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;git clone https://github.com/creationix/nvm.git ~/.nvm &amp;amp;&amp;amp; cd ~/.nvm &amp;amp;&amp;amp; git checkout `git describe --abbrev=0 --tags`&lt;/pre&gt;
-
-&lt;p&gt;そして.zshrcに以下を追加&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;source ~/.nvm/nvm.sh&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;nvm ls-remote&lt;/code&gt;でダウンロードできるバージョンを指定できるので、とりあえず安定版v0.10.32をダウンロード&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;nvm install v0.10.32&lt;/pre&gt;
-
-&lt;p&gt;そして普段使うものもこのバージョンに指定&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;nvm alias default v0.10.32&lt;/pre&gt;
-
-&lt;p&gt;うん、快適&lt;/p&gt;
-
-&lt;p&gt;以下を参考にしました&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="もろず blog:nvm を利用したnode.js のインストール" href="http://moro-archive.hatenablog.com/entry/2014/03/01/213314"&gt;もろず blog:nvm を利用したnode.js のインストール&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Ruby&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;問題のRuby&lt;/p&gt;
-
-&lt;p&gt;前回と同じくrbenvを使います&lt;/p&gt;
-
-&lt;p&gt;brewを使ってrbenv, ruby-buildを入れる&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;brew install rbenv ruby-builde&lt;/pre&gt;
-
-&lt;p&gt;後にrbenvを使ってrubyをインストール&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;rbenv install 2.1.2
-rbenv global 2.1.2
-rbenv rehash&lt;/pre&gt;
-
-これでおk
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;ruby -v
-ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin13]
-&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Python&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;とくにPythonを使って大層なプログラムを書くこともなかったのでbrewに甘んじてたのだが、せっかくなのでバージョン管理する&lt;/p&gt;
-
-&lt;p&gt;どうやら&lt;code&gt;pyenv&lt;/code&gt;というものがあるらしい&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;brew install pyenv&lt;/pre&gt;
-
-&lt;p&gt;して.zshrcに以下を追記する&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;eval &amp;quot;$(pyenv init -)&amp;quot;&lt;/pre&gt;
-
-&lt;p&gt;あとはインストールしたいやつをインストール！&lt;/p&gt;
-
-&lt;pre class="brush: shell; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;pyenv install 3.4.1
-pyenv install 2.7.8
-pyenv global 3.4.1&lt;/pre&gt;
-
-&lt;p&gt;以下を参考にさせていただきました&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="pixyzehn blog:MavericksでPythonのバージョン管理pyenvの設定をしてシステムではなくpyenvのPythonを使う" href="http://rikei-webmemo.hateblo.jp/entry/2014/06/21/102331"&gt;pixyzehn blog:MavericksでPythonのバージョン管理pyenvの設定をしてシステムではなくpyenvのPythonを使う&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;めでたく動きましたとさ！&lt;/p&gt;
-
-&lt;p&gt;とりあえず今回はこれでおしまい。&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>* 【Python】floatの闇</title>
-    <link rel="alternate" href="http://sota1235.com/blog/2014/08/25/25171246.html"/>
-    <id>http://sota1235.com/blog/2014/08/25/25171246.html</id>
-    <published>2014-08-25T17:12:00+09:00</published>
-    <updated>2014-10-29T17:57:26+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;AOJの問題を解いてたら絶対に合ってるのに通らない問題があった。&lt;/p&gt;
-
-&lt;p&gt;正解者のコードを見ていろいろggってるとどうやらPythonのfloatの仕様にしてやられたらしい。&lt;/p&gt;
-
-&lt;p&gt;詳しくまとめてあるサイトがあるので難しい話はそちらでどぞ&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="Python で正確な小数の計算 (3) – float, Decimal の有効桁数" href="http://jutememo.blogspot.jp/2008/09/python-3-float-decimal.html"&gt;Python で正確な小数の計算 (3) – float, Decimal の有効桁数&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;まぁ具体的に何が起きたのかというと、例えばインタラクティブシェルで以下のコードを実行する。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://i.gyazo.com/1dc63ea8a3776faa9901efd7767ad158.png"&gt;&lt;/img&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;1 / 3&amp;quot;は無限小数なので省略されてこう表記されてるのだろう。&lt;/p&gt;
-
-&lt;p&gt;しかし、ここでこんなことしてみる。&lt;/p&gt;
-
-&lt;pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;print(&amp;#039;%.f100&amp;#039; % (1 / 3))&lt;/pre&gt;
-
-&lt;p&gt;&amp;lsquo;1 / 3&amp;#39;の結果を小数点以下100桁までprintしろって意味。&lt;/p&gt;
-
-&lt;p&gt;するとこうなってる。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://i.gyazo.com/ef03829c704e094a096402943a1df00d.png"&gt;&lt;/img&gt;&lt;/p&gt;
-
-&lt;p&gt;完全に闇wwww&lt;/p&gt;
-
-&lt;p&gt;この仕様のせいで、&amp;rsquo;== 0&amp;#39;がいつまでたっても通らなくて詰んだ。&lt;/p&gt;
-
-&lt;p&gt;int型は大丈夫なんだけど、floatだとこうなることがある。&lt;/p&gt;
-
-&lt;p&gt;ので、floatに対して&amp;rsquo;== 0&amp;#39;を実現したかったらこう書けば良い。&lt;/p&gt;
-
-&lt;pre class="brush: python; gutter: true; first-line: 1; highlight: []; html-script: false"&gt;hoge &amp;lt; 1.e-10&lt;/pre&gt;
-
-&lt;p&gt;こうすると、下11桁以降を無視して判定してくれる。&lt;/p&gt;
-
-&lt;p&gt;以上！&lt;/p&gt;
 
 &lt;hr&gt;
 
