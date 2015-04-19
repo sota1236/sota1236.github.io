@@ -1,5 +1,5 @@
 ---
-title: GistのCSSがおかしいので!importする
+title: GistのCSSがおかしいので修正する
 date: 2015-04-19 14:24 JST
 tags:
 - CSS
