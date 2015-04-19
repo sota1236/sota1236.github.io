@@ -54,6 +54,37 @@
           <section class='post'>
             <header class='post-header'>
               <h2 class='post-title'>
+                <a href="/blog/2015/04/19/fix_gist_css.html">GistのCSSがおかしいので!importする</a>
+              </h2>
+              <p class='post-date'>
+                Apr 19 2015
+                <ul class='tags'>
+                  <li>
+                    <a href="/blog/tags/css.html">CSS</a>
+                  </li>
+                </ul>
+              </p>
+            </header>
+            <div class='post-description'>
+              <p>先日書いたブログ記事にGistを埋め込むと表示がおかしくなってる。</p>
+              
+              <p><img src="/images/general/0419gist.png"></p>
+              
+              <p>ネタバレ防止みたいになってるので直す。</p>
+              
+              <p>Chromeのデベロッパーツールで見てみると、なぜか<code>span</code>タグに囲まれていないコードだけblog由来のハイライト用スタイルシートがあたっている。</p>
+              
+              <p>ggってみるとCSSの優先順位は後から読み込まれたものが優先されるはずなのだが、原因が不明なので<code>.gist pre</code>要素だけ新たにスタイルシートを追記して解決を試みる</p>
+              
+              <p><strong>※前提としてブログ構築環境はmiddleman-blog 3...</strong></p>
+            </div>
+            <div class='post-more'>
+              <a href="/blog/2015/04/19/fix_gist_css.html">Read more...</a>
+            </div>
+          </section>
+          <section class='post'>
+            <header class='post-header'>
+              <h2 class='post-title'>
                 <a href="/blog/2015/03/22/graduation_diary.html">卒業式前夜に思うこと</a>
               </h2>
               <p class='post-date'>
@@ -188,55 +219,14 @@
               <a href="/blog/2014/12/02/responsive.html">Read more...</a>
             </div>
           </section>
-          <section class='post'>
-            <header class='post-header'>
-              <h2 class='post-title'>
-                <a href="/blog/2014/11/03/renewal.html">ブログを移行しました</a>
-              </h2>
-              <p class='post-date'>
-                Nov  3 2014
-                <ul class='tags'>
-                  <li>
-                    <a href="/blog/tags/日常.html">日常</a>
-                  </li>
-                </ul>
-              </p>
-            </header>
-            <div class='post-description'>
-              <h3 id="ブログを移行した">ブログを移行した</h3>
-              
-              <p>もとの<a href="http://blog.sota1235.com">ブログ</a>は<code>Wordpress</code>で運用していたのだが、</p>
-              
-              <ul>
-              <li><p>いちいちWebで記事を投稿するのが馬鹿らしい</p></li>
-              <li>
-              <p>Markdownで書きたい</p>
-              
-              <ul>
-              <li>プラグインいれてたけどいろいろ競合してカオス</li>
-              </ul>
-              </li>
-              <li><p>デザインの融通をきかせたい</p></li>
-              </ul>
-              
-              <p>ってことで<code>middleman-blog</code> + <code>GitHub Pages</code>という構成に変えました。</p>
-              
-              <p>以下の記事を参考にさせていただきました。</p>
-              
-              <p>(というよりコードをめちゃくちゃ参考にしました。ありがとうございます)</p>
-              
-              <ul>
-              <li><a href="http://camuro.org/blog/2013/09/renewal.html">WordPressからmiddleman...</a></li>
-              </ul>
-            </div>
-            <div class='post-more'>
-              <a href="/blog/2014/11/03/renewal.html">Read more...</a>
-            </div>
-          </section>
           <p><a href="/blog/page/2.html">Next page</a></p>
           <aside>
             <h2>Recent Articles</h2>
             <ol>
+              <li>
+                <a href="/blog/2015/04/19/fix_gist_css.html">GistのCSSがおかしいので!importする</a>
+                <span>Apr 19</span>
+              </li>
               <li>
                 <a href="/blog/2015/03/22/graduation_diary.html">卒業式前夜に思うこと</a>
                 <span>Mar 22</span>
@@ -273,10 +263,6 @@
                 <a href="/blog/2014/08/13/13021030.html">* 堀宮が更新されたらYoしてくるアカウント作った(Yo API その２)</a>
                 <span>Aug 13</span>
               </li>
-              <li>
-                <a href="/blog/2014/08/06/06173532.html">* YoのAPIを触ってみる(その１)</a>
-                <span>Aug  6</span>
-              </li>
             </ol>
             <h2>Tags</h2>
             <ol>
@@ -284,14 +270,14 @@
               <li><a href="/blog/tags/server.html">Server (1)</a></li>
               <li><a href="/blog/tags/c.html">C (1)</a></li>
               <li><a href="/blog/tags/日常.html">日常 (2)</a></li>
-              <li><a href="/blog/tags/css.html">CSS (1)</a></li>
+              <li><a href="/blog/tags/css.html">CSS (2)</a></li>
               <li><a href="/blog/tags/git.html">git (1)</a></li>
               <li><a href="/blog/tags/github.html">GitHub (1)</a></li>
               <li><a href="/blog/tags/python3.html">Python3 (1)</a></li>
             </ol>
             <h2>By Year</h2>
             <ol>
-              <li><a href="/blog/2015.html">2015 (3)</a></li>
+              <li><a href="/blog/2015.html">2015 (4)</a></li>
               <li><a href="/blog/2014.html">2014 (30)</a></li>
               <li><a href="/blog/2013.html">2013 (5)</a></li>
             </ol>

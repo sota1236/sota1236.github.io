@@ -5,10 +5,60 @@
   <id>http://sota1235.com/blog</id>
   <link href="http://sota1235.com/blog"/>
   <link href="http://sota1235.com/feed.xml" rel="self"/>
-  <updated>2015-03-22T23:02:00+09:00</updated>
+  <updated>2015-04-19T14:24:00+09:00</updated>
   <author>
     <name>@sota1235</name>
   </author>
+  <entry>
+    <title>GistのCSSがおかしいので!importする</title>
+    <link rel="alternate" href="http://sota1235.com/blog/2015/04/19/fix_gist_css.html"/>
+    <id>http://sota1235.com/blog/2015/04/19/fix_gist_css.html</id>
+    <published>2015-04-19T14:24:00+09:00</published>
+    <updated>2015-04-19T14:48:33+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;先日書いたブログ記事にGistを埋め込むと表示がおかしくなってる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/general/0419gist.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;ネタバレ防止みたいになってるので直す。&lt;/p&gt;
+
+&lt;p&gt;Chromeのデベロッパーツールで見てみると、なぜか&lt;code&gt;span&lt;/code&gt;タグに囲まれていないコードだけblog由来のハイライト用スタイルシートがあたっている。&lt;/p&gt;
+
+&lt;p&gt;ggってみるとCSSの優先順位は後から読み込まれたものが優先されるはずなのだが、原因が不明なので&lt;code&gt;.gist pre&lt;/code&gt;要素だけ新たにスタイルシートを追記して解決を試みる&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;※前提としてブログ構築環境はmiddleman-blog 3.5.3です&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;まず&lt;code&gt;_gist.sass&lt;/code&gt;を新たに作成し、&lt;code&gt;/data/stylesheets/&lt;/code&gt;にいれる&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight sass"&gt;&lt;code&gt;
+&lt;span class="nc"&gt;.gist&lt;/span&gt;
+  &lt;span class="nt"&gt;pre&lt;/span&gt;
+    &lt;span class="nl"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;#66757f&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;これを&lt;code&gt;all.css.sass&lt;/code&gt;に読み込ませる&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight sass"&gt;&lt;code&gt;
+&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s"&gt;"gist"&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;middleman build &amp;amp; middleman deploy&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;デプロイする前にローカルで確認してみる&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/general/0419gist2.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;できた(╹◡╹)&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>卒業式前夜に思うこと</title>
     <link rel="alternate" href="http://sota1235.com/blog/2015/03/22/graduation_diary.html"/>
@@ -504,40 +554,6 @@
 &lt;p&gt;今後もコリコリ書いておしゃんてぃーブログを目指そうと思います。&lt;/p&gt;
 
 &lt;p&gt;では&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>* node.jsで標準出力に色をつける</title>
-    <link rel="alternate" href="http://sota1235.com/blog/2014/10/23/23224314.html"/>
-    <id>http://sota1235.com/blog/2014/10/23/23224314.html</id>
-    <published>2014-10-23T22:43:00+09:00</published>
-    <updated>2014-10-29T17:57:26+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;最近、node.jsをひいひい言いながら書いてるのだがプログラムの実行過程が知りたくて&lt;code&gt;console.log&lt;/code&gt;する時、色をつけたかったので調べた。&lt;/p&gt;
-
-&lt;p&gt;すると、こんな便利な&lt;code&gt;npm&lt;/code&gt;があるらしい。&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="npm - colors" href="https://www.npmjs.org/package/colors"&gt;npm - colors&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;こう書くと&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://i.gyazo.com/a596b7f9f2c788243952593c5e8ff00f.png" alt="pic" /&gt;&lt;/p&gt;
-
-&lt;p&gt;こうなる&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://i.gyazo.com/a92e7010abd5a061e283460127fe9345.png" alt="pic" /&gt;&lt;/p&gt;
-
-&lt;p&gt;これでエラーの出力とか便利になった。&lt;/p&gt;
-
-&lt;p&gt;ちなみに以下のサイトさんに教えていただきました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a title="Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)" href="http://yosuke-furukawa.hatenablog.com/entry/2012/11/09/021719"&gt;Smashing Node.js に書いてあるEffective Node.jsなこと(第二弾)&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;※この記事は WordPress に投稿した記事を変換したものです。一部不自然な表示があるかも知れません。ご了承ください。また、記事タイトル先頭の * は WordPress から移行した記事である印です。&lt;/p&gt;
 </content>
   </entry>
 </feed>
