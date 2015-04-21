@@ -20,19 +20,15 @@ ggってみるとCSSの優先順位は後から読み込まれたものが優先
 1. まず```_gist.sass```を新たに作成し、`/data/stylesheets/`にいれる
 
 ```sass
-
 .gist
   pre
     color: #66757f
-
 ```
 
 2. これを`all.css.sass`に読み込ませる
 
 ```sass
-
 @import "gist"
-
 ```
 
 3. middleman build & middleman deploy
