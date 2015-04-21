@@ -1,5 +1,5 @@
 ---
-title: solve-cards-by-python3
+title: Python3で軽ーーーーーく遊ぶ
 date: 2015-03-19 18:49 JST
 tags:
 - Python3
