@@ -12,7 +12,7 @@
     %script(type="text/javascript" src="https://www.google.com/jsapi")
     = javascript_include_tag "libs/jquery-1.11.1.min", "libs/jquery-migrate-1.2.1.min"
     = javascript_include_tag "mylibs/google"
-    = javascript_include_tag "getRSS"
+    %script(type="text/javascript" src="javascripts/getRSS.js" defer="defer")
   %body
     #layout.pure-g-r
       .sidebar.pure-u-1.pure-u-md-1-4
