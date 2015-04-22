@@ -52,7 +52,7 @@
     <link rel="alternate" href="http://sota1235.com/blog/2015/04/19/fix_gist_css.html"/>
     <id>http://sota1235.com/blog/2015/04/19/fix_gist_css.html</id>
     <published>2015-04-19T14:24:00+09:00</published>
-    <updated>2015-04-19T15:00:26+09:00</updated>
+    <updated>2015-04-22T00:03:03+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -71,19 +71,15 @@
 &lt;ol&gt;
 &lt;li&gt;まず&lt;code&gt;_gist.sass&lt;/code&gt;を新たに作成し、&lt;code&gt;/data/stylesheets/&lt;/code&gt;にいれる&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class="highlight sass"&gt;&lt;code&gt;
-&lt;span class="nc"&gt;.gist&lt;/span&gt;
+&lt;pre class="highlight sass"&gt;&lt;code&gt;&lt;span class="nc"&gt;.gist&lt;/span&gt;
   &lt;span class="nt"&gt;pre&lt;/span&gt;
     &lt;span class="nl"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;#66757f&lt;/span&gt;
-
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ol&gt;
 &lt;li&gt;これを&lt;code&gt;all.css.sass&lt;/code&gt;に読み込ませる&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class="highlight sass"&gt;&lt;code&gt;
-&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s"&gt;"gist"&lt;/span&gt;
-
+&lt;pre class="highlight sass"&gt;&lt;code&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s"&gt;"gist"&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ol&gt;
@@ -326,11 +322,11 @@
 </content>
   </entry>
   <entry>
-    <title>solve-cards-by-python3</title>
+    <title>Python3で軽ーーーーーく遊ぶ</title>
     <link rel="alternate" href="http://sota1235.com/blog/2015/03/19/solve-cards-by-python3.html"/>
     <id>http://sota1235.com/blog/2015/03/19/solve-cards-by-python3.html</id>
     <published>2015-03-19T18:49:00+09:00</published>
-    <updated>2015-04-19T14:02:05+09:00</updated>
+    <updated>2015-04-22T00:03:47+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
