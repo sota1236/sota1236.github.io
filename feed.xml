@@ -5,10 +5,137 @@
   <id>http://sota1235.com/blog</id>
   <link href="http://sota1235.com/blog"/>
   <link href="http://sota1235.com/feed.xml" rel="self"/>
-  <updated>2015-04-19T15:00:00+09:00</updated>
+  <updated>2015-04-23T23:03:00+09:00</updated>
   <author>
     <name>@sota1235</name>
   </author>
+  <entry>
+    <title>Pythonで二次元配列をsortする</title>
+    <link rel="alternate" href="http://sota1235.com/blog/2015/04/23/python_sort_twodime.html"/>
+    <id>http://sota1235.com/blog/2015/04/23/python_sort_twodime.html</id>
+    <published>2015-04-23T23:03:00+09:00</published>
+    <updated>2015-04-23T23:37:02+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;社会人になってからしばらくやっていなかった競技プログラミングを細々と再開してたりする。&lt;/p&gt;
+
+&lt;p&gt;主に&lt;a href="http://judge.u-aizu.ac.jp/onlinejudge/"&gt;Aizu Online Judge&lt;/a&gt;と&lt;a href="http://atcoder.jp/"&gt;AtCoder&lt;/a&gt;をやってたりしてて、言語は全部Pythonでやってる&lt;/p&gt;
+
+&lt;p&gt;理由はいくつかあって、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;書いてて楽しい&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;リスト周りの関数が強い&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;少なくとも自分がまともに使える言語の中では一番使いやすい&lt;/li&gt;
+&lt;li&gt;リスト内包表記最高です(^q^)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;キモいコード書いて悦に入れる&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;print(sum(list(map(int, input().split()))))&lt;/code&gt;みたいな&lt;/li&gt;
+&lt;li&gt;Zen of Pytonなんてなかった&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;てな感じ。&lt;/p&gt;
+
+&lt;p&gt;で、リハビリがてら簡単な問題をやっていて忘れてたことをメモ。&lt;/p&gt;
+
+&lt;h2 id="二次元配列をsortする"&gt;二次元配列をsortする&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;環境&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Python3.4.1&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;1次元配列のsortは&lt;code&gt;sort()&lt;/code&gt;もしくは&lt;code&gt;sorted()&lt;/code&gt;を素直に使えば良い。&lt;/p&gt;
+
+&lt;p&gt;前者は配列が持つ関数で返り値が無し。&lt;/p&gt;
+
+&lt;p&gt;後者は配列の内容は変わらないが返り値が来る。&lt;/p&gt;
+
+&lt;p&gt;以下のとおり&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c"&gt;# [1, 2, 3]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;         &lt;span class="c"&gt;# [2, 3, 1]&lt;/span&gt;
+
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# [1, 2, 3]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;まぁなんてことないですよね。&lt;/p&gt;
+
+&lt;p&gt;じゃあ二次元配列をsortするとどうなるか。&lt;/p&gt;
+
+&lt;p&gt;これは、要素の配列のどれをkeyとしてsortするのかで結果が変わってきます。&lt;/p&gt;
+
+&lt;p&gt;まずは素直にsortする。&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c"&gt;# [ [1, 3, 4], [2, 3, 1], [3, 4, 4] ]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;素直にsortすると各配列の先頭要素をkeyとしてsortします。&lt;/p&gt;
+
+&lt;p&gt;では各配列の2番めの値をkeyとしたいときはどうすればよいか。&lt;/p&gt;
+
+&lt;p&gt;方法としては&lt;code&gt;sorted()&lt;/code&gt;の引数に&lt;code&gt;key&lt;/code&gt;の値をしていします。&lt;/p&gt;
+
+&lt;p&gt;そしてその方法として以下の２つがあります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;keyに関数を指定する&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;標準ライブラリである&lt;a href="http://docs.python.jp/3.4/library/operator.html"&gt;operator&lt;/a&gt;の&lt;code&gt;itemgetter&lt;/code&gt;を使用&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;順番に紹介します。&lt;/p&gt;
+
+&lt;h3 id="keyに関数を指定する"&gt;keyに関数を指定する&lt;/h3&gt;
+
+&lt;p&gt;例えば、以下の様な書き方をすると各要素の2番目の値をkeyとしてsortを行います.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;prtint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="c"&gt;# [ [1, 1, 4], [1, 2, 3], [4, 5, 2] ]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここでは無名関数を用いることによって各要素の2番目のインデックスをkeyとして指定しています。&lt;/p&gt;
+
+&lt;p&gt;ここに&lt;code&gt;str.lower&lt;/code&gt;等を指定することで、小文字優先のsortにすることも可能だったりします&lt;/p&gt;
+
+&lt;h3 id="operatorモジュールを使用する"&gt;operatorモジュールを使用する&lt;/h3&gt;
+
+&lt;p&gt;上に書いたようなsortはしょっちゅうやるよね〜いちいち指定すんのだるいよね〜&lt;/p&gt;
+
+&lt;p&gt;ってことでドキュメントでは&lt;code&gt;itemgetter()&lt;/code&gt;が推奨されています。&lt;/p&gt;
+
+&lt;p&gt;こちらの方が高速にアクセスできるようなので何か特別な理由がなければこれを使うといいと想います(╹◡╹)&lt;/p&gt;
+
+&lt;p&gt;以下の一行でまずはimport&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;operator&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;itemgetter&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;そして使う&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;itemgetter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="c"&gt;# [ [1, 1, 4], [1, 2, 3], [4, 5, 2] ]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ね、簡単でしょ？&lt;/p&gt;
+
+&lt;p&gt;ってわけで引き続きこつこつ問題を解いていきたいと思います。&lt;/p&gt;
+
+&lt;p&gt;以上。解散！&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>ブログ記事の画像を環境に合わせてリサイズ</title>
     <link rel="alternate" href="http://sota1235.com/blog/2015/04/19/fix_image_size.html"/>
@@ -487,67 +614,6 @@
 &lt;p&gt;&lt;a href="http://blog.seasons.cc/entry/20090329/1238351273"&gt;Seasons.NETgit rebaseって超便利じゃね？&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://kik.xii.jp/archives/117"&gt;git rebasetips&lt;/a&gt;#&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>レスポンシブ対応しようとした時に困ったこと</title>
-    <link rel="alternate" href="http://sota1235.com/blog/2014/12/02/responsive.html"/>
-    <id>http://sota1235.com/blog/2014/12/02/responsive.html</id>
-    <published>2014-12-02T15:15:00+09:00</published>
-    <updated>2015-04-19T14:02:05+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;このsota1235.comは静的サイトジェネレータである&lt;a href="http://middlemanapp.com/jp/basics/blogging/"&gt;Middleman blog&lt;/a&gt;とCSSフレームワークである&lt;a href="http://purecss.io/"&gt;Pure&lt;/a&gt;を用いて作成されている。&lt;/p&gt;
-
-&lt;p&gt;これは&lt;a href="http://camuro.org"&gt;camuro.org&lt;/a&gt;をリスペクトしての構成であるが、レスポンシブ対応を試みた時につまづいたのでメモする。&lt;/p&gt;
-
-&lt;h3 id="media-queriesとviewport"&gt;Media Queriesとviewport&lt;/h3&gt;
-
-&lt;p&gt;Pure CSSでは&lt;code&gt;divタグ&lt;/code&gt;にclassを付与することでレイアウトを作成することができる。&lt;/p&gt;
-
-&lt;p&gt;生成されたページのCSSを見ると以下のようになっている。&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;code&gt;
-&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;48em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pure-u-md-1-4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pure-u-md-6-24&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;25%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;min-width: 48em&lt;/code&gt;の部分で基準のサイズを決めており、このような記法をMedia Queriesという。&lt;/p&gt;
-
-&lt;p&gt;また、これを反映させるためには&lt;code&gt;metaタグ&lt;/code&gt;でviewportを設定する必要がある。(ここでつまづいていた…)&lt;/p&gt;
-
-&lt;p&gt;sota1235.comでは以下のように設定してある。&lt;/p&gt;
-&lt;pre class="highlight html"&gt;&lt;code&gt;
-&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;"width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;"viewport"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;contentの内容は&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;width=device-width&lt;/code&gt; &amp;hellip; 横幅をデバイスの幅として設定&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;initial-scale=1.0&lt;/code&gt; &amp;hellip; 倍率の初期設定&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;user-scalable=no&lt;/code&gt; &amp;hellip; ユーザがズームできるかの設定&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;minimum-scale=1.0&lt;/code&gt; &amp;hellip; 最小比率の設定&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;maximum-scale=1.0&lt;/code&gt; &amp;hellip; 最大比率の設定&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;という感じ。&lt;/p&gt;
-
-&lt;p&gt;これを設定してあげることでCSSがデバイスの画面幅を読み込み、そのサイズにあったスタイルシートをあててくれる。&lt;/p&gt;
-
-&lt;p&gt;「とりあえずBootstrapダー！！」とか「Pureでレスポンシブなおしゃれブログ構築ヤー！！」なんて言う前に、こういう基礎の部分をしっかり抑えないとつまづくことが多いような気がします。&lt;/p&gt;
-
-&lt;p&gt;お勉強になったしいい教訓でした。ちゃんちゃん&lt;/p&gt;
-
-&lt;h3 id="参考"&gt;参考&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href="http://barktoimagine.com/web/846"&gt;レスポンシブWebデザインはviewportとメディアクエリーからはじめろ！&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://coliss.com/articles/build-websites/operation/css/css3-media-queries.html"&gt;CSS3のMedia Queries（メディアクエリ）の使い方と実装例&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
