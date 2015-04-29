@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' name='viewport'>
+    <title>
+      はらへり日記 - SlackにHubot Integrationを追加してから開発環境を整えるまで
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
+  </head>
+  <body class='blog blog_2015 blog_2015_04 blog_2015_04_29 blog_2015_04_29_slack_hubot'>
+    <div class='pure-g-r' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='menu-box'>
+          <a class='heading' href='/'>
+            はらへり日記
+          </a>
+          <div class='menu-description'>
+            プログラムに片思い中
+          </div>
+          <nav>
+            <ul class='menu cl-effect-1'>
+              <li class='menu-item'>
+                <a href='/'>
+                  Home
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/about.html'>
+                  About
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/blog.html'>
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              SlackにHubot Integrationを追加してから開発環境を整えるまで
+            </h2>
+            <p class='post-date'>
+              Apr 29 2015
+              <ul class='tags'>
+                <li>
+                  <a href="/blog/tags/hubot.html">Hubot</a>
+                </li>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>入社してからぼちぼち楽しい日々を送っているのですが、</p>
+              
+              <p>研修中はコードが書けないのでフラストレーション溜まって、同期で使ってるSlackのHubot開発で残業した</p>
+              
+              <p>ということでこの記事では</p>
+              
+              <p><strong>「SlackにHubotを追加し、実際に運用するまで」</strong></p>
+              
+              <p>をまとめます。</p>
+              
+              <p>そのために以下の環境を予め整えてください。</p>
+              
+              <ul>
+              <li><p>Slack Teamの作成</p></li>
+              <li><p>Node.js( &gt;= 0.10 )のインストール</p></li>
+              <li><p>GitHubの登録</p></li>
+              <li><p>Herokuの登録</p></li>
+              <li><p>Travis CIの登録</p></li>
+              <li><p>Heroku Toolbeltのインストール</p></li>
+              </ul>
+              
+              <p>具体的には以下の順で説明していきます</p>
+              
+              <ol>
+              <li><p>SlackにHubot Integrationを追加</p></li>
+              <li><p>Slack Hubotリポジトリを作成</p></li>
+              <li><p>Herokuにデプロイ</p></li>
+              <li><p>実際にいくつかHubotプラグインを入れる</p></li>
+              <li><p>自分でオリジナルのHubotプラグインを入れる</p></li>
+              </ol>
+              
+              <p>やっていきましょう。</p>
+              
+              <h1 id="1-slackにhubot-integrationを追加">1 SlackにHubot Integrationを追加</h1>
+              
+              <p>Slackを開いて、左上のチーム名をクリックします。</p>
+              
+              <p>すると&ldquo;Team Settings&quot;というのがあるので、それを開きます。</p>
+              
+              <p><img src="http://i.gyazo.com/af296c68f98fb2244146f1d500c38caf.png" /></p>
+              
+              <p>するとこんなかんじでページが開かれるので、左上の&quot;Menu&quot;から&quot;Integrations&quot;をクリック。</p>
+              
+              <p><img src="http://i.gyazo.com/c546e0441d4aee84ed4c1311fe78aa86.png" /></p>
+              
+              <p><img src="http://i.gyazo.com/54dd75b6061940d86235accf76225471.png" /></p>
+              
+              <p>するとIntegration一覧が出るので、Hubotを探して&quot;Add&quot;してください。</p>
+              
+              <p><img src="http://i.gyazo.com/6a3d92ed1d16b276f4df842efeae7e17.png" /></p>
+              
+              <p>あとは指示に従ってUser名やアイコン等をお好みで変えて完了です。</p>
+              
+              <p>これであなたのSlack TeamにHubotアカウントが追加されました。</p>
+              
+              <p>しかし、このままではHubotは抜け殻のままなので、中身を実装していきます。</p>
+              
+              <p>※ <code>HUBOT_SLACK_TOKEN</code>は後ほど使います。画面は開いたままで！</p>
+              
+              <h1 id="2-slack-hubotリポジトリを作成">2 Slack Hubotリポジトリを作成</h1>
+              
+              <p>手順１で作ったHubotアカウントの中身を作りましょう。</p>
+              
+              <p>今回はGitHub上で開発する前提で話を進めていきます。</p>
+              
+              <p>まずは必要なnpmをインストール。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>npm i -g hubot coffee-script generator-hubot
+              </code></pre>
+              
+              <p>次に適当な場所でHubot用のディレクトリを作成し、botoを作成します。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>mkdir <span class="o">[</span>hubot_name]
+              <span class="gp">$ </span><span class="nb">cd</span> <span class="o">[</span>hubot_name]
+              <span class="gp">$ </span>yo hubot
+              
+              ? <span class="o">==========================================================================</span>
+              We<span class="s1">'re constantly looking for ways to make yo better!
+              May we anonymously report usage statistics to improve the tool over time?
+              More info: https://github.com/yeoman/insight &amp; http://yeoman.io
+              ========================================================================== Yes
+                                   _____________________________
+                                  /                             \
+                 //\              |      Extracting input for    |
+                ////\    _____    |   self-replication process   |
+               //////\  /_____\   \                             /
+               ======= |[^_/\_]|   /----------------------------
+                |   | _|___@@__|__
+                +===+/  ///     \_\
+                 | |_\ /// HUBOT/\\
+                 |___/\//      /  \\
+                       \      /   +---+
+                        \____/    |   |
+                         | //|    +===+
+                          \//      |xx|
+              
+              ? Owner: sota1235 &lt;sota1235@gmail.com&gt;
+              ? Bot name: test2
+              ? Description: A simple helpful robot for your Company
+              ? Bot adapter: (campfire) slack
+              ? Bot adapter: slack
+              
+              </span></code></pre>
+              
+              <p>これでディレクトリにHubotのひな形ができました。</p>
+              
+              <p>これをgitリポジトリ化して次の手順に進みます。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>git init
+              
+              <span class="gp">$ </span>git add .
+              
+              <span class="gp">$ </span>git commit -m <span class="s2">"initial commit"</span>
+              </code></pre>
+              
+              <h1 id="3-herokuにデプロイ">3 Herokuにデプロイ</h1>
+              
+              <p>これで実際に中身ができたので、Herokuにデプロイします。</p>
+              
+              <p>HerokuはPaaSサービスの一種です。詳しくはこちらの記事を参照ください。</p>
+              
+              <p><a href="http://developers.mobage.jp/blog/how-to-use-for-beginners-heroku">初心者でも15分で公開できるHerokuのはじめかた</a></p>
+              
+              <p>Herokuへのデプロイは<a href="https://toolbelt.heroku.com/">heroku-toolbelt</a>を使用します。</p>
+              
+              <p>先ほどHubotを作成したフォルダに移動してください。</p>
+              
+              <p>まずheorkuにログイン、アプリケーションの作成を行います。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>heroku login
+              Enter your Heroku credentials.
+              Email: your@mail.address
+              Password <span class="o">(</span>typing will be hidden<span class="o">)</span>:
+              Authentication successful.
+              
+              <span class="gp">$ </span>heroku create <span class="o">[</span>hubot_name]
+              </code></pre>
+              
+              <p>これでGitリポジトリのリモートリポジトリにHerokuが追加されました。</p>
+              
+              <p><code>git remote -v</code>して確認してみてください。</p>
+              
+              <p>次に、Hubotに必要な<code>Redis</code>のアドオンをHerokuに追加します。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>heroku addons:add redistogo:nano
+              </code></pre>
+              
+              <p>完了したら、いくつかの環境変数をHerokuへ送信します。</p>
+              
+              <p>コマンドは<code>heroku config:set key1=val1</code>を使用します。</p>
+              
+              <p>1番の手順で出てきた<code>HUBOT_SLACK_TOKEN</code>を使用します。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>heroku config:set <span class="nv">HUBOT_SLACK_TOKEN</span><span class="o">=[</span>先ほどのTOKEN]
+              </code></pre>
+              
+              <p>次に<code>HUBOT_HEROKU_KEEPALIVE_URL</code>をセットする。</p>
+              
+              <p>値は以下のコマンドの結果の<code>web_url</code>に書いてあるものを設定する。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>heroku apps:info
+              
+              <span class="o">===</span> slack-hubot-fresh15
+              Addons:        redistogo:nano
+              Dynos:         1
+              Git URL:       https://git.heroku.com/yourapp.git
+              Owner Email:   your@email.jp
+              Region:        us
+              Repo Size:     19k
+              Slug Size:     19M
+              Stack:         cedar-14
+              Web URL:       <span class="o">[</span>hubot app url]
+              Workers:       0
+              
+              <span class="gp">$ </span>heroku config:set <span class="nv">HUBOT_HEROKU_KEEPALIVE_URL</span><span class="o">=[</span>hubot app url]
+              </code></pre>
+              
+              <p>これでHerokuの設定は完了です。</p>
+              
+              <p>以下のコマンドでデプロイしてみましょう。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>git push heroku master
+              </code></pre>
+              
+              <p>SlackでHubotにpingを送って返って来れば成功です！</p>
+              
+              <p><img src="http://i.gyazo.com/22940cd8f69a376467c2cace2de090ed.png" /></p>
+              
+              <h1 id="4-実際にいくつかhubotプラグインを入れる">4 実際にいくつかHubotプラグインを入れる</h1>
+              
+              <p>まずはnpmで配布されてるhubotプラグインをいくつか入れてみます。</p>
+              
+              <p>今回はhubot-shubotとhubot-rss-readerを追加してみます。</p>
+              
+              <p>追加する手順としては、</p>
+              
+              <ol>
+              <li><p><code>external-scripts.json</code>を編集</p></li>
+              <li><p><code>package.json</code>を編集</p></li>
+              </ol>
+              
+              <p>するだけです。なんて簡単＼(^o^)／！</p>
+              
+              <p><code>external-scripts.json</code></p>
+              <pre class="highlight javascript"><code><span class="p">[</span>
+                <span class="s2">"hubot-shubot"</span><span class="p">,</span>
+                <span class="s2">"hubot-rss-reader"</span>
+              <span class="p">]</span>
+              </code></pre>
+              
+              <p><code>package.json</code>は、<code>dependencies</code>の項に追加する</p>
+              <pre class="highlight json"><code><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your hubot app"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sota1235 &lt;sota1235@gmail.com&gt;"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hubot"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"hubot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.12.0"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-google-images"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.1.4"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-google-translate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.1.0"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-help"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.1.1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-heroku-keepalive"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.4"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-maps"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.2"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-pugme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.1.0"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-redis-brain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.2"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-rules"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.1.0"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-scripts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.5.16"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-shipit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.2.0"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-slack"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.3.0"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-youtube"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.1.2"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-shubot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"hubot-rss-reader"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                </span><span class="err">}</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"engines"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.10.x"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+              </span></code></pre>
+              
+              <p>これでデプロイするだけ！</p>
+              
+              <p>ただ、それぞれのプラグインで別途設定項目がある場合もあるので<code>README.md</code>をしっかり読みましょう。</p>
+              
+              <h1 id="5-自分でオリジナルのhubotプラグインを入れる">5 自分でオリジナルのHubotプラグインを入れる</h1>
+              
+              <p>プラグインとしてでなく、Hubotに機能を追加する場合は基本<code>scripts</code>ディレクトリにファイルを追加します。</p>
+              
+              <p>ファイル名に特に規則はありませんが、１機能１ファイルで作成していきましょう。</p>
+              
+              <p>言語は<code>CoffeeScript</code>です。</p>
+              
+              <p>弊社では新卒１年目に課される納会という名の試練があるので、納会の話が始まるとHubotが現実逃避をし始める機能を追加しました。</p>
+              
+              <ul>
+              <li><code>scripts/nokai.coffee</code></li>
+              </ul>
+              <pre class="highlight coffeescript"><code><span class="c1"># Description:
+              #   心の叫びを具現化する
+              #
+              # Author:
+              #   @sota1235
+              </span>
+              <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'lodash'</span>
+              
+              <span class="nx">module</span><span class="p">.</span><span class="na">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">robot</span><span class="p">)</span> <span class="o">-&gt;</span>
+                <span class="nx">robot</span><span class="p">.</span><span class="na">hear</span> <span class="sr">/納会/i</span><span class="p">,</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="o">-&gt;</span>
+                  <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="s">"納会なんてないっっっ！！！"</span>
+                    <span class="s">"納会なんてなかったんや…"</span>
+                    <span class="s">"納会？なにそれ美味しいの"</span>
+                  <span class="p">]</span>
+                  <span class="nx">msg</span><span class="p">.</span><span class="na">send</span> <span class="nx">_</span><span class="p">.</span><span class="na">sample</span> <span class="nx">words</span>
+              </code></pre>
+              
+              <p>これで納会機能が追加されました。</p>
+              
+              <p><img src="http://i.gyazo.com/5809637868c1013d7efefe77020db28c.png" /></p>
+              
+              <h1 id="まとめ">まとめ</h1>
+              
+              <p>Hubot最高</p>
+            </p>
+          </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
