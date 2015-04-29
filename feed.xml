@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://sota1235.com/blog/2015/04/29/slack_hubot.html"/>
     <id>http://sota1235.com/blog/2015/04/29/slack_hubot.html</id>
     <published>2015-04-29T17:11:00+09:00</published>
-    <updated>2015-04-29T18:17:30+09:00</updated>
+    <updated>2015-04-29T18:25:21+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -293,6 +293,10 @@ Workers:       0
 &lt;h1 id="まとめ"&gt;まとめ&lt;/h1&gt;
 
 &lt;p&gt;Hubot最高&lt;/p&gt;
+
+&lt;h1 id="参考"&gt;参考&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="http://qiita.com/misopeso/items/1f418dd02e89234499b3"&gt;Qiita: Slack で Hubot を使えるようにする&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
