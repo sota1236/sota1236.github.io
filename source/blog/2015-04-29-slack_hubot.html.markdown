@@ -304,3 +304,7 @@ module.exports = (robot) ->
 # まとめ
 
 Hubot最高
+
+# 参考
+
+[Qiita: Slack で Hubot を使えるようにする](http://qiita.com/misopeso/items/1f418dd02e89234499b3)
