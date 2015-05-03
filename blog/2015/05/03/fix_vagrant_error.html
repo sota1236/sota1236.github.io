@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge;chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' name='viewport'>
+    <title>
+      はらへり日記 - Vagrantfileにchefバージョン指定した時に出たエラー直した
+    </title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/all.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" rel="stylesheet" type="text/css" /><link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/rouge.css" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/mylibs/google.js" type="text/javascript"></script>
+  </head>
+  <body class='blog blog_2015 blog_2015_05 blog_2015_05_03 blog_2015_05_03_fix_vagrant_error'>
+    <div class='pure-g-r' id='layout'>
+      <div class='sidebar pure-u-1 pure-u-md-1-4'>
+        <div class='menu-box'>
+          <a class='heading' href='/'>
+            はらへり日記
+          </a>
+          <div class='menu-description'>
+            プログラムに片思い中
+          </div>
+          <nav>
+            <ul class='menu cl-effect-1'>
+              <li class='menu-item'>
+                <a href='/'>
+                  Home
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/about.html'>
+                  About
+                </a>
+              </li>
+              <li class='menu-item'>
+                <a href='/blog.html'>
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class='content pure-u-1 pure-u-md-3-4'>
+        <section class='post'>
+          <header class='post-header'>
+            <h2 class='post-title'>
+              Vagrantfileにchefバージョン指定した時に出たエラー直した
+            </h2>
+            <p class='post-date'>
+              May  3 2015
+              <ul class='tags'>
+                <li>
+                  <a href="/blog/tags/vagrant.html">Vagrant</a>
+                </li>
+              </ul>
+            </p>
+          </header>
+          <div class='post-description'>
+            <p>
+              <p>細々とVagrantいじってる過程でchefとやらを入れてみようと思って、</p>
+              
+              <p><code>vagrant-omnibus</code>をインストールした後、Vagrantfileに以下のように追記した。</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>vagrant plugin install vagrant-omnibus
+              </code></pre>
+              
+              <ul>
+              <li>Vagrantfile</li>
+              </ul>
+              <pre class="highlight plaintext"><code>config.omnibus.chef_version = :latest
+              </code></pre>
+              
+              <p>そしたら以下のようなエラーを吐いた。</p>
+              <pre class="highlight shell"><code>Bringing machine <span class="s1">'default'</span> up with <span class="s1">'virtualbox'</span> provider...
+              <span class="gp">==&gt; </span>default: Clearing any previously <span class="nb">set </span>forwarded ports...
+              <span class="gp">==&gt; </span>default: Clearing any previously <span class="nb">set </span>network interfaces...
+              <span class="gp">==&gt; </span>default: Preparing network interfaces based on configuration...
+                  default: Adapter 1: nat
+                  default: Adapter 2: hostonly
+              <span class="gp">==&gt; </span>default: Forwarding ports...
+                  default: 22 <span class="o">=</span>&gt; 2222 <span class="o">(</span>adapter 1<span class="o">)</span>
+              <span class="gp">==&gt; </span>default: Booting VM...
+              <span class="gp">==&gt; </span>default: Waiting <span class="k">for </span>machine to boot. This may take a few minutes...
+                  default: SSH address: 127.0.0.1:2222
+                  default: SSH username: vagrant
+                  default: SSH auth method: private key
+                  default: Warning: Connection timeout. Retrying...
+              <span class="gp">==&gt; </span>default: Machine booted and ready!
+              <span class="gp">==&gt; </span>default: Checking <span class="k">for </span>guest additions <span class="k">in </span>VM...
+              <span class="gp">==&gt; </span>default: Configuring and enabling network interfaces...
+              <span class="gp">==&gt; </span>default: Mounting shared folders...
+                  default: /vagrant <span class="o">=</span>&gt; /Users/sota1235/Documents/sota1235/vagrant_space/centos7
+              Failed to mount folders <span class="k">in </span>Linux guest. This is usually because
+              the <span class="s2">"vboxsf"</span> file system is not available. Please verify that
+              the guest additions are properly installed <span class="k">in </span>the guest and
+              can work properly. The <span class="nb">command </span>attempted was:
+              
+              mount -t vboxsf -o <span class="nv">uid</span><span class="o">=</span><span class="sb">`</span>id -u vagrant<span class="sb">`</span>,gid<span class="o">=</span><span class="sb">`</span>getent group vagrant | cut -d: -f3<span class="sb">`</span> vagrant /vagrant
+              mount -t vboxsf -o <span class="nv">uid</span><span class="o">=</span><span class="sb">`</span>id -u vagrant<span class="sb">`</span>,gid<span class="o">=</span><span class="sb">`</span>id -g vagrant<span class="sb">`</span> vagrant /vagrant
+              
+              The error output from the last <span class="nb">command </span>was:
+              
+              /sbin/mount.vboxsf: mounting failed with the error: No such device
+              </code></pre>
+              
+              <p>追記する前はなんの問題もなく起動できてたのに、いきなりエラー吐いて意味ぷーさん。</p>
+              
+              <p>んで、いろいろggってたら、以下のページの３番目の手法で解決できた。</p>
+              
+              <p><a href="http://techblog.clara.jp/2015/01/vagrant-3-centos7-virtual-machine/">Vagrant (3) 続・CentOS7 の仮想マシンを作る</a></p>
+              
+              <p>以下解決策。</p>
+              
+              <ul>
+              <li>vagrant-vbguestをインストール</li>
+              </ul>
+              
+              <p>これだけ。なので、</p>
+              <pre class="highlight shell"><code><span class="gp">$ </span>vagrant plugin install vagrant-vbguest
+              </code></pre>
+              
+              <p>して<code>vagrant up</code>して解決。ちゃんちゃん。</p>
+            </p>
+          </div>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          //<![CDATA[
+                            var disqus_shortname = 'haraheri';
+                    
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          //]]>
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
