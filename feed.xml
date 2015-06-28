@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>はらへり日記</title>
-  <subtitle>@sota1235によるプログラミング片思い日記</subtitle>
+  <title>sota1235.com</title>
+  <subtitle>Database of @sota1235</subtitle>
   <id>http://sota1235.com/blog</id>
   <link href="http://sota1235.com/blog"/>
   <link href="http://sota1235.com/feed.xml" rel="self"/>
